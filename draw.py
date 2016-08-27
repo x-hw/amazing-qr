@@ -2,6 +2,7 @@
 
 from PIL import Image, ImageDraw
 
+# test:
 m1 = [[1]*7+[0]*7+[1]*7,
       [1,0,0,0,0,0,1]+[0]*7+[1,0,0,0,0,0,1],
       [1,0,1,1,1,0,1]+[0]*7+[1,0,1,1,1,0,1],
@@ -41,4 +42,5 @@ def draw_qrcode(qrmatrix):
     pic.save('qrcode.jpg')
     pic.show()
 
+# test:
 draw_qrcode(m1)
