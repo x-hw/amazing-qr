@@ -43,4 +43,4 @@ def draw_qrcode(qrmatrix):
     pic.show()
 
 # test:
-draw_qrcode(m1)
+#draw_qrcode(m1)
