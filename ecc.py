@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 #GP: Generator Polynomial, MP: Message Polynomial
-# test:
 GP_list = {
         7: [0, 87, 229, 146, 149, 238, 102, 21],
         10: [0, 251, 67, 46, 61, 118, 70, 64, 94, 32, 45],
