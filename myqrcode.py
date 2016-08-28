@@ -1,17 +1,28 @@
 # -*- coding: utf-8 -*-
 
-import draw, ecc, data
+import draw, ECC, data, structure
 
 # ecl: Error Correction Level(L,M,Q,H)
 def get_qrcode(ecl, str):
     try:
-        ver, code = data.encode(ecl, str)
+        # Data Coding
+        ver, data_codewords = data.encode(ecl, str)
+
+        # Error Correction Coding
+        ecc = ECC.encode(ver, ecl, data_codewords)
+        
+        # Structure final bits
+        final_bits = structure.structure_final_bits(ver, ecl, data_codewords, ecc)
+        
+        # Get the QR Matrix
+        
+  
     except UnicodeEncodeError:
         print('Error input!!')
 
 
 if __name__ == '__main__':
     # test:
-    str = 'hello, world'
+    str = 'HELLO WORLD'
     str2 = '💩'
-    get_qrcode(str2,1,2)
+    get_qrcode('M',str)
