@@ -38,8 +38,9 @@ def XOR(MP, GP):
         GP += [0] * a
     
     remainder = []
-    for i in range(1, len(MP)):
+    for i in range(len(MP)):
         remainder.append(MP[i]^GP[i])
+    remainder = [i for i in remainder if i]
     return remainder
     
 def get_power_of_2_list():
