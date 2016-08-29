@@ -27,10 +27,11 @@ def divide(MP, *GP):
             GP[i] %= 255
         GP[i] = po2[GP[i]]
     
-    return XOR(MP, GP)
+    return XOR(GP, *MP)
     
     
-def XOR(MP, GP):
+def XOR(GP, *MP):
+    MP = list(MP)
     a = len(MP) - len(GP)
     if a < 0:
         MP += [0] * (-a)

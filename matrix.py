@@ -18,10 +18,15 @@ def get_qrmatrix(ver, ecl, bits):
     # Add the Dark Module and Reserved Areas
     add_dark_and_reserving(ver, qrmatrix)
     
+    maskmatrix = [i[:] for i in qrmatrix]
+    
     # Place the Data Bits
     place_bits(bits, qrmatrix)
     
     # Data Masking
+    mask_num, qrmatrix = mask(maskmatrix, qrmatrix)
+    
+    # Format and Version Information
     
     
     return qrmatrix
@@ -57,15 +62,16 @@ def add_timing(m):
         m[i][6] = m[6][i] = 1 if i % 2 ==0 else 0
     
 def add_dark_and_reserving(ver, m):
-    for j in range(9):
+    for j in range(8):
         m[8][j] = m[8][-j-1] = m[j][8] = m[-j-1][8] = 0
+    m[8][8] = 0
     m[8][6] = m[6][8] = m[-8][8] = 1
     
     if ver > 6:
         for i in range(6):
             for j in (-9, -10, -11):
                 m[i][j] = m[j][i] = 0
-  
+                
 def place_bits(bits, m):
     bit = (int(i) for i in bits)
 
@@ -79,7 +85,83 @@ def place_bits(bits, m):
                     m[i][j] = next(bit)
         up = not up
   
-if __name__ == '__main__':
-    m = get_qrmatrix(7,'H',1)
-    for i in range(len(m)):
-        print(m[i])
+def mask(mm, m):
+    mps = get_mask_patterns(mm)
+    scores = []
+    for mp in mps:
+        for i in len(mp):
+            for j in len(mp):
+                mp[i][j] = mp[i][j] ^ m[i][j]
+        scores.append(compute_score(mp))
+    best = scores.index(min(scores))
+    return best, mps[best]
+    
+  
+def get_mask_patterns(mm):
+    mm[-8][8] = None
+    for i in range(len(mm)):
+        for j in range(len(mm)):
+            mm[i][j] = 0 if mm[i][j] is not None else mm[i][j]
+    mps = []
+    for i in range(8):
+        mp = [ii[:] for ii in mm]
+        for row in len(mp):
+            for column in len(mp):
+                mp[row][column] = 1 if mp[row][column] is None and formula(i, row, column) else 0
+        mps.append(mp)
+        
+    return mps
+                
+    def formula(i, row, column):
+        if i == 0:
+            return (row + column) % 2 == 0
+        elif i == 1:
+            return row % 2 == 0
+        elif i == 2:
+            return column % 3 == 0
+        elif i == 3:
+            return (row + column) % 3 == 0
+        elif i == 4:
+            return 
+        elif i == 5:
+            return ((row * column) % 2) + ((row * column) % 3) == 0
+        elif i == 6:
+            return (((row * column) % 2) + ((row * column) % 3)) % 2 == 0
+        elif i == 7:
+            return 	(((row + column) % 2) + ((row * column) % 3)) % 2 == 0
+            
+def compute_score(m):
+    score = evaluation1(m) + evaluation2(m)+ evalutaion3(m) + evaluation4(m)
+    return score
+    
+    def evaluation1(m):
+        def ev1(ma):
+            sc = 0
+            for mi in ma:
+                j = 0
+                while j < len(mi)-4:
+                    n = 4
+                    while mi[j:j+n+1] in [[1]*(n+1), [0]*(n+1)]:
+                        n += 1
+                    (sc, j) = (sc+n-2, j+n) if n > 4 else (sc, j+1)
+            return sc
+        return ev1(m) + ev1(list(map(list, zip(*m))))
+        
+    def evaluation2(m):
+        sc = 0
+        for i in range(len(m)-1):
+            for j in range(len(m)-1):
+                sc += 3 if m[i][j] == m[i+1][j] == m[i][j+1] == m[i+1][j+1] else 0
+        return sc
+        
+    def evaluation3(m):
+        pass
+        
+    def evaluation4(m):
+        darknum = 0
+        for i in m:
+            darknum += sum(i)
+        
+        percent = darknum / (len(m)**2) * 100
+        (50 - percent) / 5 * 5
+        

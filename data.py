@@ -38,7 +38,7 @@ def encode(ecl, str):
     for n in range(g[2]):
         data_codewords.append(data_code[i:i+g[3]])
         i += g[3]
-        
+    
     return ver, data_codewords
     
 def analyse(ecl, str):
