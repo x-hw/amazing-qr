@@ -35,4 +35,4 @@ if __name__ == '__main__':
     str = 'HELLO WORLD'
     str2 = 'http://www.thonky.com/qr-code-tutorial/log-antilog-table'
     err = '💩'
-    get_qrcode('H',str2)
+    get_qrcode('Q',str)

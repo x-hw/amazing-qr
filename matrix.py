@@ -89,8 +89,8 @@ def mask(mm, m):
     mps = get_mask_patterns(mm)
     scores = []
     for mp in mps:
-        for i in len(mp):
-            for j in len(mp):
+        for i in range(len(mp)):
+            for j in range(len(mp)):
                 mp[i][j] = mp[i][j] ^ m[i][j]
         scores.append(compute_score(mp))
     best = scores.index(min(scores))
@@ -98,20 +98,6 @@ def mask(mm, m):
     
   
 def get_mask_patterns(mm):
-    mm[-8][8] = None
-    for i in range(len(mm)):
-        for j in range(len(mm)):
-            mm[i][j] = 0 if mm[i][j] is not None else mm[i][j]
-    mps = []
-    for i in range(8):
-        mp = [ii[:] for ii in mm]
-        for row in len(mp):
-            for column in len(mp):
-                mp[row][column] = 1 if mp[row][column] is None and formula(i, row, column) else 0
-        mps.append(mp)
-        
-    return mps
-                
     def formula(i, row, column):
         if i == 0:
             return (row + column) % 2 == 0
@@ -122,18 +108,29 @@ def get_mask_patterns(mm):
         elif i == 3:
             return (row + column) % 3 == 0
         elif i == 4:
-            return 
+            return (row // 2 + column // 3) % 2 == 0
         elif i == 5:
             return ((row * column) % 2) + ((row * column) % 3) == 0
         elif i == 6:
             return (((row * column) % 2) + ((row * column) % 3)) % 2 == 0
         elif i == 7:
             return 	(((row + column) % 2) + ((row * column) % 3)) % 2 == 0
+
+    mm[-8][8] = None
+    for i in range(len(mm)):
+        for j in range(len(mm)):
+            mm[i][j] = 0 if mm[i][j] is not None else mm[i][j]
+    mps = []
+    for i in range(8):
+        mp = [ii[:] for ii in mm]
+        for row in range(len(mp)):
+            for column in range(len(mp)):
+                mp[row][column] = 1 if mp[row][column] is None and formula(i, row, column) else 0
+        mps.append(mp)
+        
+    return mps
             
 def compute_score(m):
-    score = evaluation1(m) + evaluation2(m)+ evalutaion3(m) + evaluation4(m)
-    return score
-    
     def evaluation1(m):
         def ev1(ma):
             sc = 0
@@ -155,13 +152,29 @@ def compute_score(m):
         return sc
         
     def evaluation3(m):
-        pass
+        def ev3(ma):
+            sc = 0
+            for mi in ma:
+                j = 0
+                while j < len(mi)-10:
+                    if mi[j:j+11] == [1,0,1,1,1,0,1,0,0,0,0]:
+                        sc += 40
+                        j += 7
+                    elif mi[j:j+11] == [0,0,0,0,1,0,1,1,1,0,1]:
+                        sc += 40
+                        j += 4
+                    else:
+                        j += 1
+            return sc
+        return ev3(m) + ev3(list(map(list, zip(*m))))
         
     def evaluation4(m):
         darknum = 0
         for i in m:
             darknum += sum(i)
-        
-        percent = darknum / (len(m)**2) * 100
-        (50 - percent) / 5 * 5
-        
+        percent = darknum  / (len(m)**2) * 100
+        s = int((50 - percent) / 5) * 5
+        return 2*s if s >=0 else -2*s
+
+    score = evaluation1(m) + evaluation2(m)+ evaluation3(m) + evaluation4(m)
+    return score
