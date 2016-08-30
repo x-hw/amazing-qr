@@ -18,16 +18,16 @@ def get_ecc(dc, ecc_num):
     return remainder
     
 def divide(MP, *GP):
-    po2 = get_power_of_2_list()
-    log = get_log_list(po2)
-    GP = list(GP)
-    for i in range(len(GP)):
-        GP[i] += log[MP[0]]
-        if GP[i] > 255:
-            GP[i] %= 255
-        GP[i] = po2[GP[i]]
-    
-    return XOR(GP, *MP)
+    if MP[0]:
+        GP = list(GP)
+        for i in range(len(GP)):
+            GP[i] += log[MP[0]]
+            if GP[i] > 255:
+                GP[i] %= 255
+            GP[i] = po2[GP[i]]
+        return XOR(GP, *MP)
+    else:
+        return MP[1:]
     
     
 def XOR(GP, *MP):
@@ -39,22 +39,6 @@ def XOR(GP, *MP):
         GP += [0] * a
     
     remainder = []
-    for i in range(len(MP)):
+    for i in range(1, len(MP)):
         remainder.append(MP[i]^GP[i])
-    remainder = [i for i in remainder if i]
     return remainder
-    
-def get_power_of_2_list():
-    po2 = [1]
-    for i in range(255):
-        a = po2[i] * 2
-        if a > 255:
-            a ^= 285
-        po2.append(a)
-    return po2
-    
-def get_log_list(po2):
-    log = [None]*256
-    for i in range(255):
-        log[po2[i]] = i
-    return log

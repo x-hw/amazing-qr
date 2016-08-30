@@ -26,9 +26,9 @@ def get_qrmatrix(ver, ecl, bits):
     # Data Masking
     mask_num, qrmatrix = mask(maskmatrix, qrmatrix)
     
-    # Format and Version Information
-    
-    
+    # Format Information
+    add_format_and_version_string(ver, ecl, mask_num, qrmatrix)
+
     return qrmatrix
 
 def add_finder_and_separator(m):             
@@ -96,7 +96,6 @@ def mask(mm, m):
     best = scores.index(min(scores))
     return best, mps[best]
     
-  
 def get_mask_patterns(mm):
     def formula(i, row, column):
         if i == 0:
@@ -178,3 +177,18 @@ def compute_score(m):
 
     score = evaluation1(m) + evaluation2(m)+ evaluation3(m) + evaluation4(m)
     return score
+    
+def add_format_and_version_string(ver, ecl, mask_num, m):
+    fs = [int(i) for i in format_info_str[lindex[ecl]][mask_num]]
+    for j in range(6):
+        m[8][j] = m[-j-1][8] = fs[j]
+        m[8][-j-1] = m[j][8] = fs[-j-1]
+    m[8][7] = m[-7][8] = fs[6]
+    m[8][8] = m[8][-8] = fs[7]
+    m[7][8] = m[8][-7] = fs[8]
+    
+    if ver > 6:
+        vs = (int(i) for i in version_info_str[ver-7])
+        for j in range(5, -1, -1):
+            for i in (-9, -10, -11):
+                m[i][j] = m[j][i] = next(vs)

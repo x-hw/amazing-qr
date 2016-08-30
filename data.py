@@ -104,14 +104,3 @@ def get_cci(ver, mode, str):
     cci = bin(len(str))[2:]
     cci = '0' * (cci_len - len(cci)) + cci
     return cci
-  
-
-  
-if __name__ == '__main__':    
-    # test:
-    c,m = encode('M', 'HELLO WORLD')
-    print(c,m)
-    print(bool(m=='00100000010110110000101101111000110100010111001011011100010011010100001101000000111011000001000111101100'))
-    print(len(m))
-    
-    print(all(grouping_list[v][l][3]==0 or grouping_list[v][l][3]-1==grouping_list[v][l][1] for v in range(40) for l in range(4)))
