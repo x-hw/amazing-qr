@@ -1,19 +1,19 @@
 # QR-Code
-**QR Code in Python **
+**QR Code in Python**
 
 **Python QR二维码生成器**
 
-### Example 示例
+## Example 示例
 
-```python
+```console
 python myqrcode.py -l H https://github.com/sylnsfar/QR-Code
 ```
 
 ![](https://github.com/sylnsfar/QR-Code/blob/master/example/qrcode.jpg)
 
-### Usage 用法
+## Usage 用法
 
-```python
+```con
 python myqrcode.py [-l [L,M,Q,H]] xxxxxx
 ```
 
@@ -29,18 +29,24 @@ python myqrcode.py [-l [L,M,Q,H]] xxxxxx
 
   `xxxxxx` 代表要生成 QR 二维码的信息，可以是一个链接地址，也可以是其它字符串。
 
-### Supported 可用字符 
+## Supported 可用字符
 
-* Numbers: 0~9
+* Numbers:  `0~9`
 
   数字 0 到 9
 
-* Letters: a~z, A~Z
+* Letters:  `a~z, A~Z`
 
   大小写的英文字母
 
-* Common punctuations: ·, . : ; + - * / \ ~ ! @ # $ % ^ & ` [ ] ( ) ? _ { } | and space
+* Common punctuations:
 
-  常用标点符号（**英文标点**）和空格
+  常用**英文标点符号**和空格
+
+  ```console
+  · , . : ; + - * / \ ~ ! @ # $ % ^ & ` [ ] ( ) ? _ { } | and  (space)
+  ```
+
+  ​
 
   ​
