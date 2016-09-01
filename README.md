@@ -11,7 +11,7 @@ python myqrcode.py -l H https://github.com/sylnsfar/QR-Code
 
 ![](https://github.com/sylnsfar/QR-Code/blob/master/example/qrcode0.jpg)
 
-![](https://github.com/sylnsfar/QR-Code/blob/master/example/qrcode.jpg)
+![](https://github.com/sylnsfar/QR-Code/blob/master/example/qrcode1.jpg)
 
 ![](https://github.com/sylnsfar/QR-Code/blob/master/example/github.png)
 
