@@ -9,33 +9,39 @@ alig_location = [
 
 argparser = argparse.ArgumentParser()
 argparser.add_argument('WORDs', help = 'The words to produce you QR-code picture, like a URL or a sentence. Please read the README file for the supported characters.')
-argparser.add_argument('-l', '--level', help = 'Use this argument to choose an Error-Correction-Level: L(Low), M(Medium) or Q(Quartile), H(High). Otherwise, just use the default one: Q')
-argparser.add_argument('-v', '--version', help = 'The version means the length of a side of the QR-Code picture. From little size to large is 1 to 40.')
+argparser.add_argument('-v', '--version', type = int, choices = range(1,41), help = 'The version means the length of a side of the QR-Code picture. From little size to large is 1 to 40.')
+argparser.add_argument('-l', '--level', choices = list('LMQH'), help = 'Use this argument to choose an Error-Correction-Level: L(Low), M(Medium) or Q(Quartile), H(High). Otherwise, just use the default one: H')
 argparser.add_argument('-p', '--picture', help = 'the picture  e.g. example_pic.jpg')
+argparser.add_argument('-c', '--colorized', action = 'store_true', help = "Produce a colorized QR-Code with your picture. Just works when there is a correct '-p' or '--picture'.")
+argparser.add_argument('-con', '--contrast', type = float, help = 'A floating point value controlling the enhancement of contrast. Factor 1.0 always returns a copy of the original image, lower factors mean less color (brightness, contrast, etc), and higher values more. There are no restrictions on this value. Default: 1.0')
+argparser.add_argument('-bri', '--brightness', type = float, help = 'A floating point value controlling the enhancement of brightness. Factor 1.0 always returns a copy of the original image, lower factors mean less color (brightness, contrast, etc), and higher values more. There are no restrictions on this value. Default: 1.0')
 args = argparser.parse_args()
 
 # the default version depends on WORDs and level
 # init as 0
-ver = int(args.version) if args.version and int(args.version) in range(1,41) else 0
+ver = args.version if args.version else 0
 # the default level is Q
-ecl = args.level if args.level and args.level in 'LMQH' else 'Q'
+ecl = args.level if args.level else 'H'
 ver, qr_name = theqrmodule.get_qrcode(ver, ecl, args.WORDs, bool(args.picture))
 
 if args.picture:
     from PIL import Image, ImageEnhance, ImageFilter
     
-    qr = Image.open(qr_name).convert('RGBA')
+    qr = Image.open(qr_name)
+    qr = qr.convert('RGBA') if args.colorized else qr
+    
     bg0 = Image.open(args.picture).convert('RGBA')
-
-    bg0 = ImageEnhance.Contrast(bg0).enhance(1.5)
-    bg0 = ImageEnhance.Brightness(bg0).enhance(1.3)
+    con = args.contrast if args.contrast else 1.0
+    bg0 = ImageEnhance.Contrast(bg0).enhance(con)
+    bri = args.brightness if args.brightness else 1.0
+    bg0 = ImageEnhance.Brightness(bg0).enhance(bri)
 
     if bg0.size[0] < bg0.size[1]:
         bg0 = bg0.resize((qr.size[0]-24, (qr.size[0]-24)*int(bg0.size[1]/bg0.size[0])))
     else:
         bg0 = bg0.resize(((qr.size[1]-24)*int(bg0.size[0]/bg0.size[1]), qr.size[1]-24))    
         
-    bg = bg0#.convert('1')
+    bg = bg0 if args.colorized else bg0.convert('1')
     
     aligs = []
     if ver > 1:
@@ -45,13 +51,16 @@ if args.picture:
                 if not ((a==b==0) or (a==len(aloc)-1 and b==0) or (a==0 and b==len(aloc)-1)):
                     for i in range(3*(aloc[a]-2), 3*(aloc[a]+3)):
                         for j in range(3*(aloc[b]-2), 3*(aloc[b]+3)):
-                            aligs += (i,j)
+                            aligs.append((i,j))
 
     for i in range(bg.size[0]):
         for j in range(bg.size[1]):
-            if not ((i in (18,19,20)) or (j in (18,19,20)) or (i<24 and j<24) or (i<24 and j>bg.size[1]-25) or (i>bg.size[0]-25 and j<24) or (i in aligs and j in aligs) or (i%3==1 and j%3==1) or (bg0.getpixel((i,j))[3]==0)):
+            if not ((i in (18,19,20)) or (j in (18,19,20)) or (i<24 and j<24) or (i<24 and j>bg.size[1]-25) or (i>bg.size[0]-25 and j<24) or ((i,j) in aligs) or (i%3==1 and j%3==1) or (bg0.getpixel((i,j))[3]==0)):
                 qr.putpixel((i+12,j+12), bg.getpixel((i,j)))
-
-    qr.resize((qr.size[0]*10, qr.size[1]*10)).save(qr_name)
+    
+    os.remove(qr_name)
+    qr_name = os.path.join(os.path.abspath('.'), os.path.splitext(args.picture)[0] + '_qrcode.jpg')
+    qr.resize((qr.size[0]*2, qr.size[1]*2)).save(qr_name)
+    
 if qr_name is not None:
-    print('Succeed! Check out your ' +str(ver) + '-' + str(ecl) + ' QR-code at', qr_name)
+    print('Succeed! \nCheck out your ' +str(ver) + '-' + str(ecl) + ' QR-code at', qr_name)

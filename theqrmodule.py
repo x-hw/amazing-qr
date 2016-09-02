@@ -3,8 +3,10 @@
 from mylibs import data, ECC, structure, matrix, draw
 import os
 
-# ecl: Error Correction Level(L,M,Q,H)
-def get_qrcode(ver, ecl, str, pic=False):
+# ver: Version (from 1 to 40)
+# ecl: Error Correction Level (L,M,Q,H)
+def get_qrcode(ver, ecl, str, pic_exits = False):
+    # ver == 0: default that is depending on str and ecl
     if ver not in range(41):
         print('Version Error: please choose a version from 1 to 40!')
     if ecl not in 'LMQH':
@@ -24,7 +26,7 @@ def get_qrcode(ver, ecl, str, pic=False):
             qrmatrix = matrix.get_qrmatrix(ver, ecl, final_bits)
                 
             # Draw the picture and Save it, then return the absolute path
-            unit_len = 3 if pic else 9
+            unit_len = 3 if pic_exits else 9
             return ver, draw.draw_qrcode(os.path.abspath('.'), qrmatrix, unit_len)
             
         except UnicodeEncodeError:
