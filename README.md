@@ -3,6 +3,8 @@
 
 **Python QR二维码生成器**
 
+
+
 ## Example 示例
 
 ![](https://github.com/sylnsfar/QR-Code/blob/master/example/qrs0.jpg)
@@ -10,6 +12,8 @@
 ![](https://github.com/sylnsfar/QR-Code/blob/master/example/qrs1.jpg)
 
 ![](https://github.com/sylnsfar/QR-Code/blob/master/example/qrs2.jpg)
+
+
 
 ## Usage 用法
 
@@ -69,19 +73,23 @@ python myqr.py https://github.com -v 10 -l Q
 
   参数 `-h`, `-v` 和 `-l` 如上文述。
 
+  ​
+
 
 
 ```console
 python myqr.py https://github.com -p github.jpg
 ```
 
-* The `-p` is to combine the QR-Code with the following picture which is at the same directory as the program. The resulting picture is **black and white** by default.
+* The `-p` is to combine the QR-Code with the following picture which is at the same directory as the program. The resulting picture is <u>**black and white** </u> by default.
 
-  参数`-p` 用来将QR二维码图像与一张同目录下的图片相结合，产生一张黑白图片。
+  参数`-p` 用来将QR二维码图像与一张同目录下的图片相结合，产生一张**黑白**图片。
 
-* Suggestion: If the size of the picture is large, you should choose a correct large `-v` too instead of using the default one.
+* **Suggestion**: If the size of the picture is large, you should choose a correct large `-v` too instead of using the default one.
 
-  建议在图片尺寸大的时候使用 `-v` 的值也应该适当变大。
+  **建议**在图片尺寸大的时候使用 `-v` 的值也应该适当变大。
+
+  ​
 
 
 
@@ -89,9 +97,11 @@ python myqr.py https://github.com -p github.jpg
 python myqr.py https://github.com -p github.jpg -c
 ```
 
-* The `-c` is to make the resulting picture colorized.
+* The `-c` is to make the resulting picture **colorized**.
 
-  加上参数 `-c` 可以使产生的图片由黑白变为彩色的。
+  加上参数 `-c` 可以使产生的图片由黑白变为**彩色**的。
+
+  ​
 
 
 
@@ -106,6 +116,8 @@ python myqr.py https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 * The `-bri` changes the brightness and the value is just like `-con`'s.
 
   参数 `-bri` 用来调节图片的亮度，其余用法和取值与 `-con` 相同。
+
+  ​
 
 ## Supported Characters   可用字符
 
