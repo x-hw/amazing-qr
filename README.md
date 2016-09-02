@@ -7,11 +7,11 @@
 
 ## Example 示例
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs0.jpg)
+![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs2.jpg)
 
 ![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs1.jpg)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs2.jpg)
+![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs0.jpg)
 
 
 
