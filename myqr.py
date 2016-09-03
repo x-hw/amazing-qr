@@ -17,23 +17,16 @@ argparser.add_argument('-con', '--contrast', type = float, help = 'A floating po
 argparser.add_argument('-bri', '--brightness', type = float, help = 'A floating point value controlling the enhancement of brightness. Factor 1.0 always returns a copy of the original image, lower factors mean less color (brightness, contrast, etc), and higher values more. There are no restrictions on this value. Default: 1.0')
 args = argparser.parse_args()
 
-# the default version depends on WORDs and level
-# init as 0
-ver = args.version if args.version else 0
-# the default level is Q
-ecl = args.level if args.level else 'H'
-ver, qr_name = theqrmodule.get_qrcode(ver, ecl, args.WORDs, bool(args.picture))
-
-if args.picture:
+def combine(qr_name, bg_name, colorized, contrast, brightness, save_place):
     from PIL import Image, ImageEnhance, ImageFilter
     
     qr = Image.open(qr_name)
-    qr = qr.convert('RGBA') if args.colorized else qr
+    qr = qr.convert('RGBA') if colorized else qr
     
-    bg0 = Image.open(args.picture).convert('RGBA')
-    con = args.contrast if args.contrast else 1.0
+    bg0 = Image.open(bg_name).convert('RGBA')
+    con = contrast if contrast else 1.0
     bg0 = ImageEnhance.Contrast(bg0).enhance(con)
-    bri = args.brightness if args.brightness else 1.0
+    bri = brightness if brightness else 1.0
     bg0 = ImageEnhance.Brightness(bg0).enhance(bri)
 
     if bg0.size[0] < bg0.size[1]:
@@ -41,7 +34,7 @@ if args.picture:
     else:
         bg0 = bg0.resize(((qr.size[1]-24)*int(bg0.size[0]/bg0.size[1]), qr.size[1]-24))    
         
-    bg = bg0 if args.colorized else bg0.convert('1')
+    bg = bg0 if colorized else bg0.convert('1')
     
     aligs = []
     if ver > 1:
@@ -58,9 +51,50 @@ if args.picture:
             if not ((i in (18,19,20)) or (j in (18,19,20)) or (i<24 and j<24) or (i<24 and j>bg.size[1]-25) or (i>bg.size[0]-25 and j<24) or ((i,j) in aligs) or (i%3==1 and j%3==1) or (bg0.getpixel((i,j))[3]==0)):
                 qr.putpixel((i+12,j+12), bg.getpixel((i,j)))
     
-    os.remove(qr_name)
-    qr_name = os.path.join(os.path.abspath('.'), os.path.splitext(args.picture)[0] + '_qrcode.jpg')
+    qr_name = os.path.join(save_place, os.path.splitext(bg_name)[0] + '_qrcode.jpg')
     qr.resize((qr.size[0]*2, qr.size[1]*2)).save(qr_name)
+    return qr_name
+
+# the default version depends on WORDs and level
+# init as 0
+ver = args.version if args.version else 0
+# the default level is Q
+ecl = args.level if args.level else 'H'
+
+if not os.path.exists('temp'):
+    os.makedirs('temp')
+save_place = os.path.abspath('.') if not args.picture else os.path.join(os.path.abspath('.'), 'temp')
+ver, qr_name = theqrmodule.get_qrcode(ver, ecl, args.WORDs, save_place, bool(args.picture))
+
+if args.picture and args.picture[-4:]=='.gif':
+    from PIL import Image
+    import imageio
+     
+    print('it takes a while, please wait for minutes...')
+     
+    im = Image.open(args.picture)
+    im.save('temp/0.png')
+    while True:
+        try:
+            seq = im.tell()
+            im.seek(seq + 1)
+            im.save('temp/%s.png' %(seq+1))
+        except EOFError:
+            break
     
+    imsname = []
+    for s in range(seq+1):
+        bg_name = 'temp/%s.png' % s
+        imsname.append(combine(qr_name, bg_name, args.colorized, args.contrast, args.brightness, ''))
+    
+    ims = [imageio.imread(pic) for pic in imsname]
+    qr_name = os.path.splitext(args.picture)[0] + '_qrcode.gif'
+    imageio.mimsave(qr_name, ims)
+elif args.picture:
+    qr_name = combine(qr_name, args.picture, args.colorized, args.contrast, args.brightness, os.path.abspath('.'))
+
+import shutil
+if os.path.exists('temp'):
+    shutil.rmtree('temp')     
 if qr_name is not None:
     print('Succeed! \nCheck out your ' +str(ver) + '-' + str(ecl) + ' QR-code at', qr_name)

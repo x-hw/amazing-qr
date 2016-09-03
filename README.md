@@ -3,7 +3,9 @@
 
 **Python QR二维码生成器**
 
+It can generate common qr-code, black&white artistic qr-code, colorful artistic qr-code and animated qr-code.
 
+可以生成普通二维码、黑白带图片的艺术二维码、彩色艺术二维码和动态二维码。
 
 ## Example 示例
 
@@ -13,11 +15,13 @@
 
 ![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs0.jpg)
 
-
+![](https://github.com/sylnsfar/qrcode/blob/master/example/naruto_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/naruto_qrcode1.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
 ## Usage 用法
 
 ### Common QR-Code    普通QR二维码
+
+![](https://github.com/sylnsfar/qrcode/blob/master/example/0.jpg)
 
 ```
 python myqr.py 	[-h] 
@@ -58,8 +62,9 @@ python myqr.py https://github.com -v 10 -l Q
   ​
 
 
-
 ### Artistic QR-Code    艺术QR二维码
+
+![](https://github.com/sylnsfar/qrcode/blob/master/example/1.jpg)![](https://github.com/sylnsfar/qrcode/blob/master/example/2.jpg)
 
 	python myqr.py 	[-h] 
 					[-v {1,2,3,...,40}] 
@@ -117,7 +122,20 @@ python myqr.py https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 
   参数 `-bri` 用来调节图片的亮度，其余用法和取值与 `-con` 相同。
 
-  ​
+
+
+
+
+### Animated GIF QR-Code   
+
+![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
+
+The only one difference from Artistic QR-Code mentioned above is that you should input a image file in the format `.gif`. The you can get your black-and-white or colorful qr-code.
+
+动态二维码与上述的带图片的二维码的生成方法没什么区别，你只要采用 `.gif` 格式的图片即可黑白或者彩色的动态二维码。
+
+
+
 
 ## Supported Characters   可用字符
 
@@ -139,4 +157,8 @@ python myqr.py https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 
   ​
 
-  ​
+## Dependences
+
+* Only tested on Python 3.5
+* pillow
+* [imageio](https://pypi.python.org/pypi/imageio)
