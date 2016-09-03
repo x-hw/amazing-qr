@@ -15,7 +15,9 @@ It can generate common qr-code, black&white artistic qr-code, colorful artistic 
 
 ![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs0.jpg)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/naruto_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/naruto_qrcode1.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
+![](https://github.com/sylnsfar/qrcode/blob/master/example/naruto_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/naruto_qrcode1.gif)
+
+![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
 ## Usage 用法
 
@@ -38,6 +40,7 @@ python myqr.py 	[-h]
 
 
 ```console
+#1 url
 python myqr.py https://github.com
 ```
 
@@ -48,6 +51,7 @@ python myqr.py https://github.com
   ​
 
 ```console
+#2 -v, -l
 python myqr.py https://github.com -v 10 -l Q
 ```
 
@@ -83,6 +87,7 @@ python myqr.py https://github.com -v 10 -l Q
 
 
 ```console
+#1 -p
 python myqr.py https://github.com -p github.jpg
 ```
 
@@ -99,6 +104,7 @@ python myqr.py https://github.com -p github.jpg
 
 
 ```console
+#2 -c
 python myqr.py https://github.com -p github.jpg -c
 ```
 
@@ -111,6 +117,7 @@ python myqr.py https://github.com -p github.jpg -c
 
 
 ```console
+#3 -con, -bri
 python myqr.py https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 ```
 
@@ -126,13 +133,17 @@ python myqr.py https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 
 
 
-### Animated GIF QR-Code   
+
+
+### Animated GIF QR-Code   动态二维码   
 
 ![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
 The only one difference from Artistic QR-Code mentioned above is that you should input a image file in the format `.gif`. The you can get your black-and-white or colorful qr-code.
 
 动态二维码与上述的带图片的二维码的生成方法没什么区别，你只要采用 `.gif` 格式的图片即可黑白或者彩色的动态二维码。
+
+
 
 
 
