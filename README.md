@@ -21,7 +21,7 @@ It can generate common qr-code, black&white artistic qr-code, colorful artistic 
 
 ### Common QR-Code    普通QR二维码
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/0.jpg)
+![](https://github.com/sylnsfar/qrcode/blob/master/example/0.png)
 
 ```
 python myqr.py 	[-h] 
@@ -64,7 +64,7 @@ python myqr.py https://github.com -v 10 -l Q
 
 ### Artistic QR-Code    艺术QR二维码
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/1.jpg)![](https://github.com/sylnsfar/qrcode/blob/master/example/2.jpg)
+![](https://github.com/sylnsfar/qrcode/blob/master/example/1.png)![](https://github.com/sylnsfar/qrcode/blob/master/example/2.png)
 
 	python myqr.py 	[-h] 
 					[-v {1,2,3,...,40}] 
