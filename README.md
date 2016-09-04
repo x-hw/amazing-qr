@@ -170,6 +170,7 @@ The only one difference from Artistic QR-Code mentioned above is that you should
 
 ## Dependences
 
-* Only tested on Python 3.5
+* Python 3
 * pillow
+* numpy
 * [imageio](https://pypi.python.org/pypi/imageio)
