@@ -168,9 +168,16 @@ The only one difference from Artistic QR-Code mentioned above is that you should
 
   ​
 
-## Dependences
+## Dependences   依赖库
 
 * Python 3
 * pillow
 * numpy
 * [imageio](https://pypi.python.org/pypi/imageio)
+
+
+
+## System    系统
+
+* Linux
+* Windows
