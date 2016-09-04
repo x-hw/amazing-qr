@@ -46,9 +46,9 @@ def combine(qr_name, bg_name, colorized, contrast, brightness, save_place):
                         for j in range(3*(aloc[b]-2), 3*(aloc[b]+3)):
                             aligs.append((i,j))
 
-    for i in range(bg.size[0]):
-        for j in range(bg.size[1]):
-            if not ((i in (18,19,20)) or (j in (18,19,20)) or (i<24 and j<24) or (i<24 and j>bg.size[1]-25) or (i>bg.size[0]-25 and j<24) or ((i,j) in aligs) or (i%3==1 and j%3==1) or (bg0.getpixel((i,j))[3]==0)):
+    for i in range(qr.size[0]-24):
+        for j in range(qr.size[1]-24):
+            if not ((i in (18,19,20)) or (j in (18,19,20)) or (i<24 and j<24) or (i<24 and j>qr.size[1]-49) or (i>qr.size[0]-49 and j<24) or ((i,j) in aligs) or (i%3==1 and j%3==1) or (bg0.getpixel((i,j))[3]==0)):
                 qr.putpixel((i+12,j+12), bg.getpixel((i,j)))
     
     qr_name = os.path.join(save_place, os.path.splitext(bg_name)[0] + '_qrcode.jpg')
