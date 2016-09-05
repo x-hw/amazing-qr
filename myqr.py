@@ -2,6 +2,7 @@
 
 import argparse, os
 from mylibs import theqrmodule
+from PIL import Image
 
 # Alignment Pattern Locations
 alig_location = [
@@ -19,7 +20,7 @@ argparser.add_argument('-bri', '--brightness', type = float, help = 'A floating 
 args = argparser.parse_args()
 
 def combine(qr_name, bg_name, colorized, contrast, brightness, save_place):
-    from PIL import Image, ImageEnhance, ImageFilter
+    from PIL import ImageEnhance, ImageFilter
     
     qr = Image.open(qr_name)
     qr = qr.convert('RGBA') if colorized else qr
@@ -53,49 +54,58 @@ def combine(qr_name, bg_name, colorized, contrast, brightness, save_place):
                 qr.putpixel((i+12,j+12), bg.getpixel((i,j)))
     
     qr_name = os.path.join(save_place, os.path.splitext(bg_name)[0] + '_qrcode.png')
-    qr.resize((qr.size[0]*2, qr.size[1]*2)).save(qr_name)
+    qr.resize((qr.size[0]*3, qr.size[1]*3)).save(qr_name)
     return qr_name
 
-# the default version depends on WORDs and level
-# init as 0
-ver = args.version if args.version else 0
-# the default level is Q
-ecl = args.level if args.level else 'H'
+try:
+    # the default version depends on WORDs and level
+    # init as 0
+    ver = args.version if args.version else 0
+    # the default level is Q
+    ecl = args.level if args.level else 'H'
 
-if not os.path.exists('temp'):
-    os.makedirs('temp')
-save_place = os.path.abspath('.') if not args.picture else os.path.join(os.path.abspath('.'), 'temp')
-ver, qr_name = theqrmodule.get_qrcode(ver, ecl, args.WORDs, save_place, bool(args.picture))
+    if not os.path.exists('temp'):
+        os.makedirs('temp')
+    save_place = os.path.abspath('.') if not args.picture else os.path.join(os.path.abspath('.'), 'temp')
+    try:
+        ver, qr_name = theqrmodule.get_qrcode(ver, ecl, args.WORDs, save_place)
+    except TypeError:
+        qr_name = args.picture = None
 
-if args.picture and args.picture[-4:]=='.gif':
-    print('it takes a while, please wait for minutes...')
+    if args.picture and args.picture[-4:]=='.gif':
+        print('it takes a while, please wait for minutes...')
 
-    from PIL import Image
-    import imageio
-     
-    im = Image.open(args.picture)
-    im.save('temp/0.png')
-    while True:
-        try:
-            seq = im.tell()
-            im.seek(seq + 1)
-            im.save('temp/%s.png' %(seq+1))
-        except EOFError:
-            break
-    
-    imsname = []
-    for s in range(seq+1):
-        bg_name = 'temp/%s.png' % s
-        imsname.append(combine(qr_name, bg_name, args.colorized, args.contrast, args.brightness, ''))
-    
-    ims = [imageio.imread(pic) for pic in imsname]
-    qr_name = os.path.join(os.path.abspath('.'), os.path.splitext(args.picture)[0] + '_qrcode.gif')
-    imageio.mimsave(qr_name, ims)
-elif args.picture:
-    qr_name = combine(qr_name, args.picture, args.colorized, args.contrast, args.brightness, os.path.abspath('.'))
-
-import shutil
-if os.path.exists('temp'):
-    shutil.rmtree('temp')   
-if qr_name is not None:
-    print('Succeed! \nCheck out your ' +str(ver) + '-' + str(ecl) + ' QR-code at', qr_name)
+        import imageio
+         
+        im = Image.open(args.picture)
+        im.save('temp/0.png')
+        while True:
+            try:
+                seq = im.tell()
+                im.seek(seq + 1)
+                im.save('temp/%s.png' %(seq+1))
+            except EOFError:
+                break
+        
+        imsname = []
+        for s in range(seq+1):
+            bg_name = 'temp/%s.png' % s
+            imsname.append(combine(qr_name, bg_name, args.colorized, args.contrast, args.brightness, ''))
+        
+        ims = [imageio.imread(pic) for pic in imsname]
+        qr_name = os.path.join(os.path.abspath('.'), os.path.splitext(args.picture)[0] + '_qrcode.gif')
+        imageio.mimsave(qr_name, ims)
+    elif args.picture:
+        qr_name = combine(qr_name, args.picture, args.colorized, args.contrast, args.brightness, os.path.abspath('.'))
+    elif qr_name:
+        qr = Image.open(qr_name)
+        qr.resize((qr.size[0]*3, qr.size[1]*3)).save(qr_name)
+      
+    if qr_name:
+        print('Succeed! \nCheck out your ' +str(ver) + '-' + str(ecl) + ' QR-code at', qr_name)
+except:
+    raise
+finally:
+    import shutil
+    if os.path.exists('temp'):
+        shutil.rmtree('temp') 
