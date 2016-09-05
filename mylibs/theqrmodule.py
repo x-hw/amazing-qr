@@ -2,31 +2,31 @@
 
 from mylibs import data, ECC, structure, matrix, draw
 
+supported_chars = r'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ·,.:;+-*/\~!@#$%^&`[]()?_{}|'
+
 # ver: Version (from 1 to 40)
 # ecl: Error Correction Level (L,M,Q,H)
-def get_qrcode(ver, ecl, str, save_place, pic_exits = False):
+# get a qrcode picture of 3*3 pixels per module
+def get_qrcode(ver, ecl, str, save_place):
     # ver == 0: default that is depending on str and ecl
     if ver not in range(41):
-        print('Version Error: please choose a version from 1 to 40!')
+        print('WARNING: Version Error! Please choose a version from 1 to 40!')
     if ecl not in 'LMQH':
-        print('Level Error: please choose one of L,M,Q,H!')
+        print('WARNING: Level Error! Please choose one of L,M,Q,H!')
+    if any(i not in supported_chars for i in str):
+        print('WARNING: Input Error! Please read the README file for the supported characters!!')
     else:
-        try:
-            # Data Coding
-            ver, data_codewords = data.encode(ver, ecl, str)
+        # Data Coding
+        ver, data_codewords = data.encode(ver, ecl, str)
 
-            # Error Correction Coding
-            ecc = ECC.encode(ver, ecl, data_codewords)
+        # Error Correction Coding
+        ecc = ECC.encode(ver, ecl, data_codewords)
+        
+        # Structure final bits
+        final_bits = structure.structure_final_bits(ver, ecl, data_codewords, ecc)
+        
+        # Get the QR Matrix
+        qrmatrix = matrix.get_qrmatrix(ver, ecl, final_bits)
             
-            # Structure final bits
-            final_bits = structure.structure_final_bits(ver, ecl, data_codewords, ecc)
-            
-            # Get the QR Matrix
-            qrmatrix = matrix.get_qrmatrix(ver, ecl, final_bits)
-                
-            # Draw the picture and Save it, then return the absolute path
-            unit_len = 3 if pic_exits else 9
-            return ver, draw.draw_qrcode(save_place, qrmatrix, unit_len)
-            
-        except UnicodeEncodeError:
-            print('Input Error: please read the README file for the supported characters!!')
+        # Draw the picture and Save it, then return the absolute path
+        return ver, draw.draw_qrcode(save_place, qrmatrix)

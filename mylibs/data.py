@@ -86,7 +86,7 @@ def analyse(ver, ecl, str):
         mode = 'numeric'
     elif all(i in alphanum_list for i in str):
         mode = 'alphanumeric'
-    elif all(ord(i.encode('iso-8859-1')) for i in str):
+    else:
         mode = 'byte'
     
     m = mindex[mode]
