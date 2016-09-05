@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import argparse, os, theqrmodule
+import argparse, os
+from mylibs import theqrmodule
 
 # Alignment Pattern Locations
 alig_location = [
@@ -67,10 +68,10 @@ save_place = os.path.abspath('.') if not args.picture else os.path.join(os.path.
 ver, qr_name = theqrmodule.get_qrcode(ver, ecl, args.WORDs, save_place, bool(args.picture))
 
 if args.picture and args.picture[-4:]=='.gif':
+    print('it takes a while, please wait for minutes...')
+
     from PIL import Image
     import imageio
-     
-    print('it takes a while, please wait for minutes...')
      
     im = Image.open(args.picture)
     im.save('temp/0.png')
@@ -88,7 +89,7 @@ if args.picture and args.picture[-4:]=='.gif':
         imsname.append(combine(qr_name, bg_name, args.colorized, args.contrast, args.brightness, ''))
     
     ims = [imageio.imread(pic) for pic in imsname]
-    qr_name = os.path.splitext(args.picture)[0] + '_qrcode.gif'
+    qr_name = os.path.join(os.path.abspath('.'), os.path.splitext(args.picture)[0] + '_qrcode.gif')
     imageio.mimsave(qr_name, ims)
 elif args.picture:
     qr_name = combine(qr_name, args.picture, args.colorized, args.contrast, args.brightness, os.path.abspath('.'))
