@@ -157,7 +157,7 @@ The only one difference from Artistic QR-Code mentioned above is that you should
 
   ​
 
-  如果图片的模式是 “**RGBA**”  且 A 值为0（即透明无色），最终效果是：![](https://github.com/sylnsfar/qrcode/blob/master/example/aa.png)
+  如果图片有透明无色部分，最终效果是：![](https://github.com/sylnsfar/qrcode/blob/master/example/aa.png)
 
   你可以将透明部分修改成白色，最终效果会变成![](https://github.com/sylnsfar/qrcode/blob/master/example/a0.png)
 
