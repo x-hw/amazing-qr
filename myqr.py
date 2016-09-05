@@ -51,7 +51,7 @@ def combine(qr_name, bg_name, colorized, contrast, brightness, save_place):
             if not ((i in (18,19,20)) or (j in (18,19,20)) or (i<24 and j<24) or (i<24 and j>qr.size[1]-49) or (i>qr.size[0]-49 and j<24) or ((i,j) in aligs) or (i%3==1 and j%3==1) or (bg0.getpixel((i,j))[3]==0)):
                 qr.putpixel((i+12,j+12), bg.getpixel((i,j)))
     
-    qr_name = os.path.join(save_place, os.path.splitext(bg_name)[0] + '_qrcode.jpg')
+    qr_name = os.path.join(save_place, os.path.splitext(bg_name)[0] + '_qrcode.png')
     qr.resize((qr.size[0]*2, qr.size[1]*2)).save(qr_name)
     return qr_name
 
@@ -95,6 +95,6 @@ elif args.picture:
 
 import shutil
 if os.path.exists('temp'):
-    shutil.rmtree('temp')     
+    shutil.rmtree('temp')   
 if qr_name is not None:
     print('Succeed! \nCheck out your ' +str(ver) + '-' + str(ecl) + ' QR-code at', qr_name)

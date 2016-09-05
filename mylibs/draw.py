@@ -14,7 +14,7 @@ def draw_qrcode(abspath, qrmatrix, unit_len):
             x += unit_len
         x, y = 4*unit_len, y+unit_len
 
-    saving = os.path.join(abspath, 'qrcode.jpg')
+    saving = os.path.join(abspath, 'qrcode.png')
     pic.save(saving)
     return saving
     
