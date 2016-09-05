@@ -9,15 +9,15 @@ It can generate common qr-code, black&white artistic qr-code, colorful artistic 
 
 ## Example 示例
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs2.jpg)
+![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs0.jpg)
 
 ![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs1.jpg)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs0.jpg)
+![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs2.jpg)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/naruto_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/naruto_qrcode1.gif)
+![](https://github.com/sylnsfar/qrcode/blob/master/example/c_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode.gif)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
+![](https://github.com/sylnsfar/qrcode/blob/master/example/zootopia_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
 ## Usage 用法
 
