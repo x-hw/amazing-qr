@@ -145,6 +145,21 @@ The only one difference from Artistic QR-Code mentioned above is that you should
 
 
 
+## Tips
+
+* Use a **square** picture instead of a rectangle one.
+
+  请采用**正方形**的图片
+
+* If part of picture is transparent, the qr code will be like: ![](https://github.com/sylnsfar/qrcode/blob/master/example/aa.png)
+
+  You can change it into white, then be like: ![](https://github.com/sylnsfar/qrcode/blob/master/example/a0.png)
+
+  ​
+
+  如果图片的模式是 “**RGBA**”  且 A 值为0（即透明无色），最终效果是：![](https://github.com/sylnsfar/qrcode/blob/master/example/aa.png)
+
+  你可以将透明部分修改成白色，最终效果会变成![](https://github.com/sylnsfar/qrcode/blob/master/example/a0.png)
 
 
 
@@ -166,18 +181,19 @@ The only one difference from Artistic QR-Code mentioned above is that you should
   · , . : ; + - * / \ ~ ! @ # $ % ^ & ` [ ] ( ) ? _ { } | and  (space)
   ```
 
-  ​
+
+
 
 ## Dependences   依赖库
 
-* Python 3
 * pillow
 * numpy
 * [imageio](https://pypi.python.org/pypi/imageio)
 
 
 
-## System    系统
 
-* Linux
-* Windows
+## Environment    运行环境
+
+* Linux, Python 3
+* Windows, Python 3
