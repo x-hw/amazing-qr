@@ -2,12 +2,16 @@
 * update: add an **exe** version - [myqr.exe](https://github.com/sylnsfar/qrcode_win)
 
 
+​         
+
+## Overview   概述
+
 
 **QR Code in Python**
 
 **Python 二维码生成器**
 
-
+​             
 
 It can generate <u>common qr-code</u>, <u> artistic qr-code (black&white or colorized)</u>,  <u>animated qr-code (black&white or colorized)</u>.
 
