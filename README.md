@@ -1,11 +1,17 @@
 # QR-Code
+*update: add an **exe** version at https://github.com/sylnsfar/qrcode_win
+
+
+
 **QR Code in Python**
 
-**Python QR二维码生成器**
+**Python 二维码生成器**
 
-It can generate common qr-code, black&white artistic qr-code, colorful artistic qr-code and animated qr-code.
 
-可以生成普通二维码、黑白带图片的艺术二维码、彩色艺术二维码和动态二维码。
+
+It can generate <u>common qr-code</u>, <u> artistic qr-code (black&white or colorized)</u>,  <u>animated qr-code (black&white or colorized)</u>.
+
+可以生成<u>普通二维码</u>、<u>带图片的艺术二维码（黑白与彩色）</u>、<u>动态二维码（黑白与彩色）</u>。
 
 ## Example 示例
 
