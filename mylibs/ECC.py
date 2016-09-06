@@ -42,8 +42,7 @@ def encode(ver, ecl, data_codewords):
     en = ecc_num_per_block[ver-1][lindex[ecl]]
     ecc = []
     for dc in data_codewords:
-        test = get_ecc(dc, en)
-        ecc.append(test)
+        ecc.append(get_ecc(dc, en))
     return ecc
 
 def get_ecc(dc, ecc_num):

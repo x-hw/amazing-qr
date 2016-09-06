@@ -1,5 +1,5 @@
 # QR-Code
-*update: add an **exe** version at https://github.com/sylnsfar/qrcode_win
+* update: add an **exe** version - [myqr.exe](https://github.com/sylnsfar/qrcode_win)
 
 
 
