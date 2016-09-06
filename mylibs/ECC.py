@@ -42,7 +42,8 @@ def encode(ver, ecl, data_codewords):
     en = ecc_num_per_block[ver-1][lindex[ecl]]
     ecc = []
     for dc in data_codewords:
-        ecc.append(get_ecc(dc, en))
+        test = get_ecc(dc, en)
+        ecc.append(test)
     return ecc
 
 def get_ecc(dc, ecc_num):
@@ -62,7 +63,7 @@ def divide(MP, *GP):
             GP[i] = po2[GP[i]]
         return XOR(GP, *MP)
     else:
-        return MP[1:]
+        return XOR([0]*len(GP), *MP)
     
     
 def XOR(GP, *MP):
