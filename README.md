@@ -1,10 +1,7 @@
 # QR-Code
 * **update**: add an **exe** version - [myqr.exe in qrcode_win](https://github.com/sylnsfar/qrcode_win)
 
-
-​    
-
-[TOC]
+  ​
 
 ## Overview   概述
 
@@ -17,7 +14,30 @@
 
 It can generate <u>common qr-code</u>, <u> artistic qr-code (black&white or colorized)</u>,  <u>animated qr-code (black&white or colorized)</u>.
 
-可以生成<u>普通二维码</u>、<u>带图片的艺术二维码（黑白与彩色）</u>、<u>动态二维码（黑白与彩色）</u>。
+可以生成<u>普通二维码</u>、<u>带图片的艺术二维码（黑白与彩色）</u>、<u>动态二维码（黑白与彩色）</u>。  
+
+​    
+
+​     
+
+### Contents   目录
+
+* [Overview   概述](##Overview   概述)
+* [Example 示例](##Example 示例)
+* [Usage 用法](##Usage 用法)
+  * [Common QR-Code    普通QR二维码](###Common QR-Code    普通QR二维码)
+  * [Artistic QR-Code    艺术QR二维码](###Artistic QR-Code    艺术QR二维码)
+  * [Animated GIF QR-Code   动态二维码](###Animated GIF QR-Code   动态二维码)
+* [Tips   提示](##Tips   提示)
+* [Supported Characters   可用字符](##Supported Characters   可用字符)
+* [Dependences   依赖库](##Dependences   依赖库)
+* [Environment    运行环境](##Environment    运行环境)
+
+
+
+​       
+
+​     
 
 ​              
 
