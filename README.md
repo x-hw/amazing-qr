@@ -22,16 +22,16 @@ It can generate <u>common qr-code</u>, <u> artistic qr-code (black&white or colo
 
 ### Contents   目录
 
-* [Overview   概述](##Overview   概述)
-* [Example 示例](##Example 示例)
-* [Usage 用法](##Usage 用法)
-  * [Common QR-Code    普通QR二维码](###Common QR-Code    普通QR二维码)
-  * [Artistic QR-Code    艺术QR二维码](###Artistic QR-Code    艺术QR二维码)
-  * [Animated GIF QR-Code   动态二维码](###Animated GIF QR-Code   动态二维码)
-* [Tips   提示](##Tips   提示)
-* [Supported Characters   可用字符](##Supported Characters   可用字符)
-* [Dependences   依赖库](##Dependences   依赖库)
-* [Environment    运行环境](##Environment    运行环境)
+* [Overview   概述](#Overview   概述)
+* [Example 示例](#Example 示例)
+* [Usage 用法](#Usage 用法)
+  * [Common QR-Code    普通QR二维码](#Common QR-Code    普通QR二维码)
+  * [Artistic QR-Code    艺术QR二维码](#Artistic QR-Code    艺术QR二维码)
+  * [Animated GIF QR-Code   动态二维码](#Animated GIF QR-Code   动态二维码)
+* [Tips   提示](#Tips   提示)
+* [Supported Characters   可用字符](#Supported Characters   可用字符)
+* [Dependences   依赖库](#Dependences   依赖库)
+* [Environment    运行环境](#Environment    运行环境)
 
 
 
