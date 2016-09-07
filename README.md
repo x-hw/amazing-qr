@@ -208,7 +208,7 @@ The only one difference from Artistic QR-Code mentioned above is that you should
 
 You can use command `pip install -r requirements.txt` for all dependences.
 
-可以使用命令`pip install -r requirements.txt` 来安装所以依赖的库。
+可以使用命令`pip install -r requirements.txt` 来安装所有依赖的库。
 
 ​           
 
