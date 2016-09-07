@@ -1,8 +1,10 @@
 # QR-Code
-* update: add an **exe** version - [myqr.exe in qrcode_win](https://github.com/sylnsfar/qrcode_win)
+* **update**: add an **exe** version - [myqr.exe in qrcode_win](https://github.com/sylnsfar/qrcode_win)
 
 
-​         
+​    
+
+[TOC]
 
 ## Overview   概述
 
@@ -53,7 +55,7 @@ python myqr.py 	[-h]
   ​
 
 
-```python
+```markdown
 #1 url
 python myqr.py https://github.com
 ```
@@ -64,12 +66,12 @@ python myqr.py https://github.com
 
   ​
 
-```python
+```markdown
 #2 -v, -l
 python myqr.py https://github.com -v 10 -l Q
 ```
 
-* The **default** length of a side of QR-Code depends on both the numbers of words you input. And the **default** level (Error Correction Level) is **H** (the highest).
+* The **default** length of a side of QR-Code depends on the numbers of words you input. And the **default** level (Error Correction Level) is **H** (the highest).
 
   默认边长是取决于你输入的信息的长度，而默认纠错等级是最高级的H。
 
@@ -100,7 +102,7 @@ python myqr.py https://github.com -v 10 -l Q
 
 
 
-```python
+```markdown
 #1 -p
 python myqr.py https://github.com -p github.jpg
 ```
@@ -109,15 +111,12 @@ python myqr.py https://github.com -p github.jpg
 
   参数`-p` 用来将QR二维码图像与一张同目录下的图片相结合，产生一张**黑白**图片。
 
-* **Suggestion**: If the size of the picture is large, you should choose a correct large `-v` too instead of using the default one.
-
-  **建议**在图片尺寸大的时候使用 `-v` 的值也应该适当变大。
-
-  ​
+  ​  
 
 
 
-```python
+
+```markdown
 #2 -c
 python myqr.py https://github.com -p github.jpg -c
 ```
@@ -130,7 +129,7 @@ python myqr.py https://github.com -p github.jpg -c
 
 
 
-```python
+```markdown
 #3 -con, -bri
 python myqr.py https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 ```
@@ -161,9 +160,13 @@ The only one difference from Artistic QR-Code mentioned above is that you should
 
 ## Tips   提示
 
-* Use a **square** picture instead of a rectangle one.
+* Use a nearly **square** picture instead of a rectangle one.
 
-  请采用**正方形**的图片
+  请采用**正方形**近似正方形的图片
+
+* If the size of the picture is large, you should also choose a rightly large `-v` instead of using the default one.
+
+  建议在图片尺寸大的时候使用 `-v` 的值也应该适当变大。
 
 * If part of picture is transparent, the qr code will be like: ![](https://github.com/sylnsfar/qrcode/blob/master/example/aa.png)
 
