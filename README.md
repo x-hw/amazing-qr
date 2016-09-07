@@ -1,5 +1,5 @@
 # QR-Code
-* update: add an **exe** version - [myqr.exe](https://github.com/sylnsfar/qrcode_win)
+* update: add an **exe** version - [myqr.exe in qrcode_win](https://github.com/sylnsfar/qrcode_win)
 
 
 ​         
@@ -17,6 +17,8 @@ It can generate <u>common qr-code</u>, <u> artistic qr-code (black&white or colo
 
 可以生成<u>普通二维码</u>、<u>带图片的艺术二维码（黑白与彩色）</u>、<u>动态二维码（黑白与彩色）</u>。
 
+​              
+
 ## Example 示例
 
 ![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs0.jpg)
@@ -28,6 +30,8 @@ It can generate <u>common qr-code</u>, <u> artistic qr-code (black&white or colo
 ![](https://github.com/sylnsfar/qrcode/blob/master/example/c_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode.gif)
 
 ![](https://github.com/sylnsfar/qrcode/blob/master/example/zootopia_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
+
+​                    
 
 ## Usage 用法
 
@@ -49,7 +53,7 @@ python myqr.py 	[-h]
   ​
 
 
-```console
+```python
 #1 url
 python myqr.py https://github.com
 ```
@@ -60,7 +64,7 @@ python myqr.py https://github.com
 
   ​
 
-```console
+```python
 #2 -v, -l
 python myqr.py https://github.com -v 10 -l Q
 ```
@@ -73,7 +77,7 @@ python myqr.py https://github.com -v 10 -l Q
 
   **自定义尺寸**：如果想要控制边长和纠错水平就使用 `-v` 和 `-l` 参数。使用 `-v` 来控制边长，范围是1至40，数字越大边长越大；使用 `-l` 来控制纠错水平，范围是L、M、Q、H，从左到右依次升高。
 
-  ​
+  ​           
 
 
 ### Artistic QR-Code    艺术QR二维码
@@ -96,7 +100,7 @@ python myqr.py https://github.com -v 10 -l Q
 
 
 
-```console
+```python
 #1 -p
 python myqr.py https://github.com -p github.jpg
 ```
@@ -113,7 +117,7 @@ python myqr.py https://github.com -p github.jpg
 
 
 
-```console
+```python
 #2 -c
 python myqr.py https://github.com -p github.jpg -c
 ```
@@ -126,7 +130,7 @@ python myqr.py https://github.com -p github.jpg -c
 
 
 
-```console
+```python
 #3 -con, -bri
 python myqr.py https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 ```
@@ -142,7 +146,7 @@ python myqr.py https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 
 
 
-
+​         
 
 
 ### Animated GIF QR-Code   动态二维码   
@@ -153,9 +157,9 @@ The only one difference from Artistic QR-Code mentioned above is that you should
 
 动态二维码与上述的带图片的二维码的生成方法没什么区别，你只要采用 `.gif` 格式的图片即可黑白或者彩色的动态二维码。
 
+​          
 
-
-## Tips
+## Tips   提示
 
 * Use a **square** picture instead of a rectangle one.
 
@@ -165,13 +169,12 @@ The only one difference from Artistic QR-Code mentioned above is that you should
 
   You can change it into white, then be like: ![](https://github.com/sylnsfar/qrcode/blob/master/example/a0.png)
 
-  ​
-
   如果图片有透明无色部分，最终效果是：![](https://github.com/sylnsfar/qrcode/blob/master/example/aa.png)
 
   你可以将透明部分修改成白色，最终效果会变成![](https://github.com/sylnsfar/qrcode/blob/master/example/a0.png)
 
 
+​           
 
 ## Supported Characters   可用字符
 
@@ -192,7 +195,7 @@ The only one difference from Artistic QR-Code mentioned above is that you should
   ```
 
 
-
+​         
 
 ## Dependences   依赖库
 
@@ -202,6 +205,12 @@ The only one difference from Artistic QR-Code mentioned above is that you should
 
 
 
+
+You can use command `pip install -r requirements.txt` for all dependences.
+
+可以使用命令`pip install -r requirements.txt` 来安装所以依赖的库。
+
+​           
 
 ## Environment    运行环境
 
