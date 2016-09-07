@@ -3,7 +3,7 @@
 
   ​
 
-## Overview   概述
+## Overview 概述
 
 
 **QR Code in Python**
@@ -22,16 +22,16 @@ It can generate <u>common qr-code</u>, <u> artistic qr-code (black&white or colo
 
 ### Contents   目录
 
-* [Overview   概述](#Overview   概述)
-* [Example 示例](#Example 示例)
-* [Usage 用法](#Usage 用法)
-  * [Common QR-Code    普通QR二维码](#Common QR-Code    普通QR二维码)
-  * [Artistic QR-Code    艺术QR二维码](#Artistic QR-Code    艺术QR二维码)
-  * [Animated GIF QR-Code   动态二维码](#Animated GIF QR-Code   动态二维码)
-* [Tips   提示](#Tips   提示)
-* [Supported Characters   可用字符](#Supported Characters   可用字符)
-* [Dependences   依赖库](#Dependences   依赖库)
-* [Environment    运行环境](#Environment    运行环境)
+* [Overview   概述](#overview-概述)
+* [Example 示例](#example-示例)
+* [Usage 用法](#usage-用法)
+  * [Common QR-Code    普通QR二维码](#common-qr-code-普通qr二维码)
+  * [Artistic QR-Code    艺术QR二维码](#artistic-qr-code-艺术qr二维码)
+  * [Animated GIF QR-Code   动态二维码](#animated-gif-qr-code-动态二维码)
+* [Tips   提示](#tips-提示)
+* [Supported Characters   可用字符](#supported-characters-可用字符)
+* [Dependences   依赖库](#dependences-依赖库)
+* [Environment    运行环境](#environment-运行环境)
 
 
 
@@ -57,7 +57,7 @@ It can generate <u>common qr-code</u>, <u> artistic qr-code (black&white or colo
 
 ## Usage 用法
 
-### Common QR-Code    普通QR二维码
+### Common QR-Code 普通QR二维码
 
 ![](https://github.com/sylnsfar/qrcode/blob/master/example/0.png)
 
@@ -102,7 +102,7 @@ python myqr.py https://github.com -v 10 -l Q
   ​           
 
 
-### Artistic QR-Code    艺术QR二维码
+### Artistic QR-Code 艺术QR二维码
 
 ![](https://github.com/sylnsfar/qrcode/blob/master/example/1.png)![](https://github.com/sylnsfar/qrcode/blob/master/example/2.png)
 
@@ -168,7 +168,7 @@ python myqr.py https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 ​         
 
 
-### Animated GIF QR-Code   动态二维码   
+### Animated GIF QR-Code 动态二维码   
 
 ![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
@@ -178,7 +178,7 @@ The only one difference from Artistic QR-Code mentioned above is that you should
 
 ​          
 
-## Tips   提示
+## Tips 提示
 
 * Use a nearly **square** picture instead of a rectangle one.
 
@@ -199,7 +199,7 @@ The only one difference from Artistic QR-Code mentioned above is that you should
 
 ​           
 
-## Supported Characters   可用字符
+## Supported Characters 可用字符
 
 * Numbers:  `0~9`
 
@@ -220,7 +220,7 @@ The only one difference from Artistic QR-Code mentioned above is that you should
 
 ​         
 
-## Dependences   依赖库
+## Dependences 依赖库
 
 * pillow
 * numpy
@@ -235,7 +235,7 @@ You can use command `pip install -r requirements.txt` for all dependences.
 
 ​           
 
-## Environment    运行环境
+## Environment 运行环境
 
 * Linux, Python 3
 * Windows, Python 3
