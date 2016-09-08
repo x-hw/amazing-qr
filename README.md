@@ -1,5 +1,7 @@
 # QR-Code
-* **update**: added an **exe** version - [myqr.exe in qrcode_win](https://github.com/sylnsfar/qrcode_win)
+* **update (160906)**: added an **exe** version - [myqr.exe in qrcode_win](https://github.com/sylnsfar/qrcode_win)
+
+* **update (160908)**: added a **web** version - [amazing-qrcode](http://www.amazing-qrcode.com/) *(made by [Maras0830](https://github.com/Maras0830))*
 
   ​
 
