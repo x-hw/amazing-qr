@@ -18,7 +18,9 @@ It can generate <u>common qr-code</u>, <u> artistic qr-code (black & white or co
 
 可以生成<u>普通二维码</u>、<u>带图片的艺术二维码（黑白与彩色）</u>、<u>动态二维码（黑白与彩色）</u>。
 
-   
+​     
+
+​            
 
 ## Contents 目录
 
