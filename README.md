@@ -18,14 +18,14 @@ It can generate <u>common qr-code</u>, <u> artistic qr-code (black & white or co
 
 可以生成<u>普通二维码</u>、<u>带图片的艺术二维码（黑白与彩色）</u>、<u>动态二维码（黑白与彩色）</u>。
 
+   
 
-
-### Contents 目录
+## Contents 目录
 
 * [Overview   概述](#overview-概述)
-* [Contents 目录](#Contents-目录)
+* [Contents 目录](#contents-目录)
 * [Example 示例](#example-示例)
-* [Install via pip    使用pip安装](#Install-via-pip-使用pip安装)
+* [Install via pip    使用pip安装](#install-via-pip-使用pip安装)
 * [Usage 用法](#usage-用法)
   * [Common QR-Code    普通QR二维码](#common-qr-code-普通qr二维码)
   * [Artistic QR-Code    艺术QR二维码](#artistic-qr-code-艺术qr二维码)
@@ -34,7 +34,7 @@ It can generate <u>common qr-code</u>, <u> artistic qr-code (black & white or co
 * [Supported Characters   可用字符](#supported-characters-可用字符)
 * [Dependences   依赖库](#dependences-依赖库)
 * [Environment    运行环境](#environment-运行环境)
-* [License 协议](#License-协议)
+* [License 协议](#license-协议)
 
 
 ​
