@@ -12,22 +12,20 @@
 
 **QR Code in Python**
 
-**Python 二维码生成器**
-
-​
-
 It can generate <u>common qr-code</u>, <u> artistic qr-code (black & white or colorized)</u>,  <u>animated qr-code (black & white or colorized)</u>.
+
+**Python 二维码生成器**
 
 可以生成<u>普通二维码</u>、<u>带图片的艺术二维码（黑白与彩色）</u>、<u>动态二维码（黑白与彩色）</u>。
 
-​
 
-​
 
-### Contents   目录
+### Contents 目录
 
 * [Overview   概述](#overview-概述)
+* [Contents 目录](#Contents-目录)
 * [Example 示例](#example-示例)
+* [Install via pip    使用pip安装](#Install-via-pip-使用pip安装)
 * [Usage 用法](#usage-用法)
   * [Common QR-Code    普通QR二维码](#common-qr-code-普通qr二维码)
   * [Artistic QR-Code    艺术QR二维码](#artistic-qr-code-艺术qr二维码)
@@ -36,12 +34,8 @@ It can generate <u>common qr-code</u>, <u> artistic qr-code (black & white or co
 * [Supported Characters   可用字符](#supported-characters-可用字符)
 * [Dependences   依赖库](#dependences-依赖库)
 * [Environment    运行环境](#environment-运行环境)
+* [License 协议](#License-协议)
 
-
-
-​
-
-​
 
 ​
 
@@ -57,19 +51,23 @@ It can generate <u>common qr-code</u>, <u> artistic qr-code (black & white or co
 
 ![](https://github.com/sylnsfar/qrcode/blob/master/example/zootopia_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
+  
 
+  
 
-## Install 安装
+## Install via pip 使用pip安装
 
 ```python
-pip(3) install myqr
+pip(3) install myqr(or MyQR)
 ```
 
-(ps. If you haven't install **myqr**, you should  `python(3) myqr.py` instead of `myqr` blow.)
+  
 
-
+  
 
 ## Usage 用法
+
+(**TIPS**: If you haven't install [**myqr**](https://pypi.python.org/pypi/MyQR/1.0.0), you should  `python(3) myqr.py` instead of `myqr` blow.)
 
 ### Common QR-Code 普通QR二维码
 
@@ -243,13 +241,19 @@ The only difference from Artistic QR-Code mentioned above is that you should inp
 
 
 
-You can use `pip install -r requirements.txt` to ensure you have all dependencies.
+(**TIPS**: Without a installed [MyQR](https://pypi.python.org/pypi/MyQR/1.0.0), you should use `pip install -r requirements.txt` to ensure you have all dependencies.)
 
-可以使用命令`pip install -r requirements.txt` 来安装所有依赖的库。
+（提示：如果没有安装 [MyQR](https://pypi.python.org/pypi/MyQR/1.0.0) ，使用命令`pip install -r requirements.txt` 来安装所有依赖的库。）
 
-​
+
 
 ## Environment 运行环境
 
 * Linux, Python 3
 * Windows, Python 3
+
+
+
+## License 协议 
+
+* GPLv3
