@@ -3,6 +3,8 @@
 
 * **update (160908)**: added a **web** version - [amazing-qrcode](http://www.amazing-qrcode.com/) *(made by [Maras0830](https://github.com/Maras0830))*
 
+* **update (160910)**: distributed to **PyPI** - [MyQR](https://pypi.python.org/pypi/MyQR/1.0.0) !
+
   ​
 
 ## Overview 概述
@@ -55,7 +57,17 @@ It can generate <u>common qr-code</u>, <u> artistic qr-code (black & white or co
 
 ![](https://github.com/sylnsfar/qrcode/blob/master/example/zootopia_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
-​
+
+
+## Install 安装
+
+```python
+pip(3) install myqr
+```
+
+(ps. If you haven't install **myqr**, you should  `python(3) myqr.py` instead of `myqr` blow.)
+
+
 
 ## Usage 用法
 
@@ -64,10 +76,10 @@ It can generate <u>common qr-code</u>, <u> artistic qr-code (black & white or co
 ![](https://github.com/sylnsfar/qrcode/blob/master/example/0.png)
 
 ```
-python myqr.py 	[-h]
-				[-v {1,2,3,...,40}]
-				[-l {L,M,Q,H}]
-				Words
+myqr 	[-h]
+		[-v {1,2,3,...,40}]
+		[-l {L,M,Q,H}]
+		Words
 ```
 
 * Use argument `-h` for help.
@@ -79,7 +91,7 @@ python myqr.py 	[-h]
 
 ```markdown
 #1 url
-python myqr.py https://github.com
+myqr https://github.com
 ```
 
 * **Simplest  way**: Just input a URL or a sentence, then get your QR-Code in the current directory.
@@ -90,7 +102,7 @@ python myqr.py https://github.com
 
 ```markdown
 #2 -v, -l
-python myqr.py https://github.com -v 10 -l Q
+myqr https://github.com -v 10 -l Q
 ```
 
 * The **default** length of a side of QR-Code depends on the numbers of words you input. And the **default** level (Error Correction Level) is **H** (the highest).
@@ -108,14 +120,14 @@ python myqr.py https://github.com -v 10 -l Q
 
 ![](https://github.com/sylnsfar/qrcode/blob/master/example/1.png)![](https://github.com/sylnsfar/qrcode/blob/master/example/2.png)
 
-	python myqr.py 	[-h]
-					[-v {1,2,3,...,40}]
-					[-l {L,M,Q,H}]
-					[-p picture_file]
-					[-c]
-					[-con contrast]
-					[-bri brightness]
-					Words
+	myqr 	[-h]
+			[-v {1,2,3,...,40}]
+			[-l {L,M,Q,H}]
+			[-p picture_file]
+			[-c]
+			[-con contrast]
+			[-bri brightness]
+			Words
 * arguments `-h`, `-v` and `-l` is as mentioned above.
 
   参数 `-h`, `-v` 和 `-l` 如上文述。
@@ -126,7 +138,7 @@ python myqr.py https://github.com -v 10 -l Q
 
 ```markdown
 #1 -p
-python myqr.py https://github.com -p github.jpg
+myqr https://github.com -p github.jpg
 ```
 
 * The `-p` is to combine the QR-Code with the following picture which is in the same directory as the program. The resulting picture is <u>**black and white** </u> by default.
@@ -140,7 +152,7 @@ python myqr.py https://github.com -p github.jpg
 
 ```markdown
 #2 -c
-python myqr.py https://github.com -p github.jpg -c
+myqr https://github.com -p github.jpg -c
 ```
 
 * The `-c` is to make the resulting picture **colorized**.
@@ -153,7 +165,7 @@ python myqr.py https://github.com -p github.jpg -c
 
 ```markdown
 #3 -con, -bri
-python myqr.py https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
+myqr https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 ```
 
 * The `-con` flag changes the contrast of the picture - a low number corresponds to low contrast and a high number to high contrast. Default: 1.0.
