@@ -34,7 +34,7 @@ It can generate <u>common qr-code</u>, <u> artistic qr-code (black & white or co
   * [Animated GIF QR-Code   动态二维码](#animated-gif-qr-code-动态二维码)
 * [Tips   提示](#tips-提示)
 * [Supported Characters   可用字符](#supported-characters-可用字符)
-* [Dependences   依赖库](#dependences-依赖库)
+* [Dependencies 依赖库](#dependencies-依赖库)
 * [Environment    运行环境](#environment-运行环境)
 * [License 协议](#license-协议)
 
