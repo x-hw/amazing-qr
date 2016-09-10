@@ -3,7 +3,7 @@
 
 * **update (160908)**: added a **web** version - [amazing-qrcode](http://www.amazing-qrcode.com/) *(made by [Maras0830](https://github.com/Maras0830))*
 
-* **update (160910)**: distributed to **PyPI** - [MyQR](https://pypi.python.org/pypi/MyQR/1.0.0) !
+* **update (160910)**: distributed to **PyPI** - [**MyQR**](https://pypi.python.org/pypi/MyQR/1.0.0) !
 
   ​
 
@@ -27,7 +27,7 @@ It can generate <u>common qr-code</u>, <u> artistic qr-code (black & white or co
 * [Overview   概述](#overview-概述)
 * [Contents 目录](#contents-目录)
 * [Example 示例](#example-示例)
-* [Install via pip    使用pip安装](#install-via-pip-使用pip安装)
+* [Install 安装](#install-安装)
 * [Usage 用法](#usage-用法)
   * [Common QR-Code    普通QR二维码](#common-qr-code-普通qr二维码)
   * [Artistic QR-Code    艺术QR二维码](#artistic-qr-code-艺术qr二维码)
@@ -57,19 +57,24 @@ It can generate <u>common qr-code</u>, <u> artistic qr-code (black & white or co
 
   
 
-## Install via pip 使用pip安装
+## Install 安装
 
 ```python
+# via pip
 pip(3) install myqr(or MyQR)
 ```
 
-  
+​    
 
-  
+   
 
 ## Usage 用法
 
-(**TIPS**: If you haven't install [**myqr**](https://pypi.python.org/pypi/MyQR/1.0.0), you should  `python(3) myqr.py` instead of `myqr` blow.)
+(**TIPS**: If you haven't install [**MyQR**](https://pypi.python.org/pypi/MyQR/1.0.0), you should  `python(3) myqr.py` instead of `myqr` blow.)
+
+（**提示**：如果你尚未安装 [**MyQR**](https://pypi.python.org/pypi/MyQR/1.0.0) ，以下内容请使用`python(3) myqr.py` 而非`myqr` 。）
+
+
 
 ### Common QR-Code 普通QR二维码
 
@@ -105,9 +110,9 @@ myqr https://github.com
 myqr https://github.com -v 10 -l Q
 ```
 
-* The **default** length of a side of QR-Code depends on the numbers of words you input. And the **default** level (Error Correction Level) is **H** (the highest).
+* The **default** length of a side of QR-Code depends both on the numbers of words you input and the level. And the **default** level (Error Correction Level) is **H** (the highest).
 
-  默认边长是取决于你输入的信息的长度，而默认纠错等级是最高级的H。
+  **默认边长**是取决于你输入的信息的长度和使用的纠错等级；而**默认纠错等级**是最高级的H。
 
 * **Customize size**: If you want to control the length and the error-correction-level, use the `-v` and `-l` arguments. The `-v`  representing the length is from a minimum of 1 to a maximum of 40. The `-l` representing the error correction level is one of L, M, Q and H, where L is the lowest level and H is the highest.
 
@@ -168,13 +173,13 @@ myqr https://github.com -p github.jpg -c
 myqr https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 ```
 
-* The `-con` flag changes the contrast of the picture - a low number corresponds to low contrast and a high number to high contrast. Default: 1.0.
+* The `-con` flag changes the **contrast** of the picture - a low number corresponds to low contrast and a high number to high contrast. **Default: 1.0**.
 
-  参数`-con` 用以调节图片的对比度，1.0 表示原始图片，更小的值表示更低对比度，更大反之。默认为1.0。
+  参数`-con` 用以调节图片的**对比度**，1.0 表示原始图片，更小的值表示更低对比度，更大反之。**默认为1.0**。
 
-* The `-bri` flag changes the brightness and the parameter values work the same as those for `-con`. Default: 1.0.
+* The `-bri` flag changes the **brightness** and the parameter values work the same as those for `-con`. **Default: 1.0**.
 
-  参数 `-bri` 用来调节图片的亮度，其余用法和取值与 `-con` 相同。
+  参数 `-bri` 用来调节图片的**亮度**，其余用法和取值与 `-con` 相同。
 
 
 
@@ -196,7 +201,7 @@ The only difference from Artistic QR-Code mentioned above is that you should inp
 
 * Use a nearly **square** picture instead of a rectangle one.
 
-  请采用**正方形**近似正方形的图片
+  请采用**正方形**或近似正方形的图片
 
 * If the size of the picture is large, you should also choose a rightly large `-v` instead of using the default one.
 
@@ -236,24 +241,27 @@ The only difference from Artistic QR-Code mentioned above is that you should inp
 
 ## Dependencies 依赖库
 
-* [pillow](https://python-pillow.org/)
-* [numpy](http://www.numpy.org/)
+* [pillow](https://pypi.python.org/pypi/Pillow/3.3.1)
+* [numpy](https://pypi.python.org/pypi/numpy)
 * [imageio](https://pypi.python.org/pypi/imageio)
 
 
 
 
-(**TIPS**: Without a installed [MyQR](https://pypi.python.org/pypi/MyQR/1.0.0), you should use `pip install -r requirements.txt` to ensure you have all dependencies.)
+*(**TIPS**: Without a installed [**MyQR**](https://pypi.python.org/pypi/MyQR/1.0.0), you should use `pip install -r requirements.txt` to ensure you have all dependencies.)*
 
-（提示：如果没有安装 [MyQR](https://pypi.python.org/pypi/MyQR/1.0.0) ，使用命令`pip install -r requirements.txt` 来安装所有依赖的库。）
+*（**提示**：如果没有安装 [**MyQR**](https://pypi.python.org/pypi/MyQR/1.0.0) ，使用命令`pip install -r requirements.txt` 来安装所有依赖的库。）*
 
-
+  
 
 ## Environment 运行环境
 
 * Linux, Python 3
 * Windows, Python 3
+* Mac, Python 3
 
+
+​    
 
 
 ## License 协议 
