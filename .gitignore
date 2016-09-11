@@ -91,3 +91,5 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+setup.py
