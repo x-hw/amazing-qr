@@ -58,7 +58,7 @@
 ## 安装
 
 ```python
-# via pip
+# 通过 pip
 pip(3) install myqr(or MyQR)
 ```
 
@@ -212,7 +212,7 @@ version, level, qr_name = myqr.run(
 
 
 
-*一下各个参数以及在[上文](#命令行方式)有所介绍*
+*以下各个参数已经在[上文](#命令行方式)有所介绍*
 
 
 ```python
