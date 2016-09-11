@@ -93,3 +93,4 @@ ENV/
 .ropeproject
 
 setup.py
+MANIFEST

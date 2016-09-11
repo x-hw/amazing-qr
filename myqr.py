@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-# To be used just when PyInstaller is not installed
+# To be used just when MyQR is not installed
 
-from MyQR.__main__ import run
+from MyQR.terminal import main
 
-run()
+main()
