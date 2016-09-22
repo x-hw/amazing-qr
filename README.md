@@ -255,11 +255,11 @@ Optional parameters
 * Common punctuations:
 
   ```console
-  · , . : ; + - * / \ ~ ! @ # $ % ^ & ` [ ] ( ) ? _ { } | and  (space)
+  · , . : ; + - * / \ ~ ! @ # $ % ^ & ` ' = < > [ ] ( ) ? _ { } | and  (space)
   ```
 
 
-​
+``
 
 ## Dependencies
 
