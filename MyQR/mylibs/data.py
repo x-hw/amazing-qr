@@ -65,13 +65,12 @@ def numeric_encoding(str):
     str_list = [str[i:i+3] for i in range(0,len(str),3)]
     code = ''
     for i in str_list:
-        i_int = int(i)
         rqbin_len = 10
-        if i_int < 10:
+        if len(i) == 1: 
             rqbin_len = 4
-        elif i_int < 100:
+        elif len(i) == 2:
             rqbin_len = 7
-        code_temp = bin(i_int)[2:]
+        code_temp = bin(int(i))[2:]
         code += ('0'*(rqbin_len - len(code_temp)) + code_temp)
     return code
     
