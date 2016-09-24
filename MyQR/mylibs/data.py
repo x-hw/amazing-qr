@@ -10,8 +10,11 @@ def encode(ver, ecl, str):
             'byte': byte_encoding,
             'kanji': kanji_encoding
             }
-            
+          
     ver, mode = analyse(ver, ecl, str)
+    
+    print('line 16: mode:', mode)
+    
     code = mode_indicator[mode] + get_cci(ver, mode, str) + mode_encoding[mode](str)
     
     # Add a Terminator
@@ -58,13 +61,18 @@ def analyse(ver, ecl, str):
  
     return ver, mode
 
-def numeric_encoding(str):
-    str_list = [str[i:i+3] for i in range(len(str)) if i%3 == 0]
-    code_list = [bin(int(i)) for i in str_list]
+def numeric_encoding(str):   
+    str_list = [str[i:i+3] for i in range(0,len(str),3)]
     code = ''
-    for i in code_list:
-        code += i[2:]
-    
+    for i in str_list:
+        i_int = int(i)
+        rqbin_len = 10
+        if i_int < 10:
+            rqbin_len = 4
+        elif i_int < 100:
+            rqbin_len = 7
+        code_temp = bin(i_int)[2:]
+        code += ('0'*(rqbin_len - len(code_temp)) + code_temp)
     return code
     
 def alphanumeric_encoding(str):
@@ -104,3 +112,8 @@ def get_cci(ver, mode, str):
     cci = bin(len(str))[2:]
     cci = '0' * (cci_len - len(cci)) + cci
     return cci
+    
+if __name__ == '__main__':
+    s = '123456789'
+    v, datacode = encode(1, 'H', s)
+    print(v, datacode)
