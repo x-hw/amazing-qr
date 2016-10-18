@@ -22,8 +22,8 @@ from PIL import Image
 def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0, brightness=1.0, save_name=None, save_dir=os.getcwd()):
 
     supported_chars = r"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ··,.:;+-*/\~!@#$%^&`'=<>[]()?_{}|"
-     
-    
+
+
     # check every parameter
     if not isinstance(words, str) or any(i not in supported_chars for i in words):
         raise ValueError('Wrong words! Make sure the characters are supported!')
@@ -97,6 +97,7 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
             import imageio
              
             im = Image.open(picture)
+            duration = im.info.get('duration', 0)
             im.save(os.path.join(tempdir, '0.png'))
             while True:
                 try:
@@ -113,7 +114,7 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
             
             ims = [imageio.imread(pic) for pic in imsname]
             qr_name = os.path.join(save_dir, os.path.splitext(os.path.basename(picture))[0] + '_qrcode.gif') if not save_name else os.path.join(save_dir, save_name)
-            imageio.mimsave(qr_name, ims)
+            imageio.mimwrite(qr_name, ims, '.gif', **{ 'duration': duration/1000 })
         elif picture:
             qr_name = combine(ver, qr_name, picture, colorized, contrast, brightness, save_dir, save_name)
         elif qr_name:
