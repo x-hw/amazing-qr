@@ -25,7 +25,9 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
 
 
     # check every parameter
-    if not isinstance(words, str) or any(i not in supported_chars for i in words):
+    # if not isinstance(words, str) or any(i not in supported_chars for i in words):
+    #     raise ValueError('Wrong words! Make sure the characters are supported!')
+    if not isinstance(words, str) or (any(i not in supported_chars for i in words) and not any( 0x4E00 <= ord(i) <= 0x9fA5 or 0xFB00 <= ord(i) <=FFFD or 0x3000<= ord(i) <= 0x303F for i in words )):
         raise ValueError('Wrong words! Make sure the characters are supported!')
     if not isinstance(version, int) or version not in range(1, 41):
         raise ValueError('Wrong version! Please choose a int-type value from 1 to 40!')

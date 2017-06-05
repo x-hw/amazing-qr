@@ -1,21 +1,67 @@
 # -*- coding: utf-8 -*-
 
+import re
 from MyQR.mylibs.constant import char_cap, required_bytes, mindex, lindex, num_list, alphanum_list, grouping_list, mode_indicator
-       
+
+RE_numpat = re.compile('[0-9]+')
+RE_alpnumpat = re.compile(r'[' + re.escape('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:') + r']+')
+RE_chinesepat = re.compile('[\u4E00-\u9FA5\uFB00-\uFFFD\u3000-\u303F]+')
+RE_bytespat = re.compile('[\x00-\xff]+')
+
+ModeNameList = ['numeric', 'alphanumeric', 'byte', 'kanji']
+
+ModePattern = {
+    'numeric':RE_numpat,
+    'alphanumeric':RE_alpnumpat,
+    'byte':RE_bytespat,
+    'kanji':RE_chinesepat
+}
+
 # ecl: Error Correction Level(L,M,Q,H)
 def encode(ver, ecl, str):
     mode_encoding = {
             'numeric': numeric_encoding,
             'alphanumeric': alphanumeric_encoding,
             'byte': byte_encoding,
-            'kanji': kanji_encoding
+            'kanji': chinese_encoding
             }
-          
-    ver, mode = analyse(ver, ecl, str)
+    # analyse all modes.
+    tmpstr = str
+    code_list = []
+    while tmpstr:
+        mode, span = analyse(tmpstr)
+        if not mode:
+            break
+        print('line 16: mode:', mode)
+        code_list.append({
+            'str':tmpstr[span],
+            'mode':mode,
+            'mode_encoding':mode_encoding[mode](tmpstr[span])})
+        tmpstr = tmpstr[span.stop:]
     
-    print('line 16: mode:', mode)
+    totalbits = get_required_bits(ver, code_list)
+
+    tmpver = ver
+    while 8*required_bytes[tmpver-1][lindex[ecl]] < totalbits:
+        tmpver += 1
+    if tmpver > ver:
+        ver = tmpver
     
-    code = mode_indicator[mode] + get_cci(ver, mode, str) + mode_encoding[mode](str)
+    # try it again
+    totalbits = get_required_bits(ver, code_list)
+    while 8*required_bytes[tmpver-1][lindex[ecl]] < totalbits:
+        tmpver += 1
+    if tmpver > ver:
+        ver = tmpver
+
+    code = ''
+    for code_item in code_list:
+        str, mode, mode_encoding = code_item['str'], code_item['mode'], code_item['mode_encoding']
+        if mode == 'kanji':
+            code += mode_indicator[mode] + '0001' + get_cci(ver, mode, str) + mode_encoding
+        else:
+            code += mode_indicator[mode] + get_cci(ver, mode, str) + mode_encoding
+    # code = mode_indicator[mode] + get_cci(ver, mode, str) + mode_encoding[mode](str)
     
     # Add a Terminator
     rqbits = 8 * required_bytes[ver-1][lindex[ecl]]
@@ -44,22 +90,20 @@ def encode(ver, ecl, str):
     
     return ver, data_codewords
     
-def analyse(ver, ecl, str):
-    if all(i in num_list for i in str):
-        mode = 'numeric'
-    elif all(i in alphanum_list for i in str):
-        mode = 'alphanumeric'
-    else:
-        mode = 'byte'
-    
-    m = mindex[mode]
-    l = len(str)
-    for i in range(40):
-        if char_cap[ecl][i][m] > l:
-            ver = i + 1 if i+1 > ver else ver
+def analyse(data):
+    # analyse mode
+    if not data:
+        return None
+    mode = None
+    for mode_name in ModeNameList:
+        match = ModePattern[mode_name].match(data)
+        if match:
+            mode = mode_name
             break
- 
-    return ver, mode
+    if not mode:
+        raise ValueError('Invalid data to match: %s' % data)
+    span = match.span()
+    return mode, slice(span[0], span[1])
 
 def numeric_encoding(str):   
     str_list = [str[i:i+3] for i in range(0,len(str),3)]
@@ -96,9 +140,37 @@ def byte_encoding(str):
         code += c
     return code
     
-def kanji_encoding(str):
-    pass
-    
+def chinese_encoding(str):
+    gb2312 = str.encode('gb2312')
+    code = ''
+    span1 = (0xa1,0xaa)
+    span2 = (0xb0,0xfa)
+    spansecond = (0xa1,0xfe)
+    for i in range(0, len(gb2312), 2):
+        first,second = gb2312[i], gb2312[i+1]
+        if span1[0] <= first <= span1[1]:
+            if not spansecond[0] <= second <= spansecond[1]:
+                raise ValueError('Invalid chinese character : %s' % str(i//2))
+            # type 1
+            first = first - 0xa1
+            second = second - 0xa1
+            tmpcode = bin(first*0x60+second)[2:]
+            tmpcode_len = len(tmpcode)
+            tmpcode = '0'*(13-tmpcode_len) + tmpcode
+            code += tmpcode
+
+        elif span2[0] <= first <= span2[1]:
+            if not spansecond[0] <= second <= spansecond[1]:
+                raise ValueError('Invalid chinese character : %s' % str(i//2))
+            # type 2
+            first = first - 0xa6
+            second = second - 0xa1
+            tmpcode = bin(first*0x60+second)[2:]
+            tmpcode_len = len(tmpcode)
+            tmpcode = '0'*(13-tmpcode_len) + tmpcode
+            code += tmpcode
+    return code
+
 # cci: character count indicator  
 def get_cci(ver, mode, str):
     if 1 <= ver <= 9:
@@ -111,6 +183,17 @@ def get_cci(ver, mode, str):
     cci = bin(len(str))[2:]
     cci = '0' * (cci_len - len(cci)) + cci
     return cci
+    
+def get_required_bits(ver, code_list):
+    totalbits = 0
+    for i in code_list:
+        if i['mode'] == 'kanji':
+            totalbits += 8
+        else:
+            totalbits += 4
+        totalbits += len(get_cci(ver, i['mode'], i['str']))
+        totalbits += len(i['mode_encoding'])
+    return totalbits
     
 if __name__ == '__main__':
     s = '123456789'
