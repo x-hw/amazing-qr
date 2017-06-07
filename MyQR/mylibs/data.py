@@ -8,12 +8,13 @@ def encode(ver, ecl, str):
             'numeric': numeric_encoding,
             'alphanumeric': alphanumeric_encoding,
             'byte': byte_encoding,
-            'kanji': kanji_encoding
+            'kanji': kanji_encoding,
+            'zh_CN': zh_cn_encoding,
             }
           
     ver, mode = analyse(ver, ecl, str)
-    
-    print('line 16: mode:', mode)
+
+    print('line 16: version:%s, mode:%s' % (ver, mode))
     
     code = mode_indicator[mode] + get_cci(ver, mode, str) + mode_encoding[mode](str)
     
@@ -49,6 +50,10 @@ def analyse(ver, ecl, str):
         mode = 'numeric'
     elif all(i in alphanum_list for i in str):
         mode = 'alphanumeric'
+    elif any([ord(i) >= 0x4E00 and ord(i) <= 0x9FA5 for i in str]):
+        mode = 'zh_CN'
+    elif any([ord(i) >= 0x3040 and ord(i) <= 0x30FF for i in str]):
+        mode = 'kanji'
     else:
         mode = 'byte'
     
@@ -95,9 +100,53 @@ def byte_encoding(str):
         c = '0'*(8-len(c)) + c
         code += c
     return code
-    
+
+
 def kanji_encoding(str):
-    pass
+    code = ''
+    for i in str:
+        data = i.encode('cp932')
+        value = data[0] * 16 * 16 + data[1]
+        if value >= 0x8140 and value <= 0x9FFC:
+            value = value - 0x8140
+            length = len(bin(value))
+            high = bin(value)[2:length - 8]
+            low = bin(value)[-8:]
+            c = bin(int(high, 2) * 0xC0 + int(low, 2))[2:]
+            c = '0' * (13 - len(c)) + c
+            code += c
+        elif value >= 0xE040 and value <= 0xEBBF:
+            value = value - 0xC140
+            length = len(bin(value))
+            high = bin(value)[2:length - 8]
+            low = bin(value)[-8:]
+            c = bin(int(high, 2) * 0xC0 + int(low, 2))[2:]
+            c = '0' * (13 - len(c)) + c
+            code += c
+
+    return code
+
+
+def zh_cn_encoding(str):
+    code = ''
+    for i in str:
+        data = i.encode('gb2312')
+        value = data[0] * 16 * 16 + data[1]
+        length = len(bin(value))
+        high = int(bin(value)[2:length - 8], 2)
+        low = int(bin(value)[-8:], 2)
+        if (high >= 0xA1 and high <= 0xAA and
+                    low >= 0xA1 and low <= 0xFE):
+            c = bin((high - 0xA1) * 0x60 + low - 0xA1)[2:]
+            c = '0' * (13 - len(c)) + c
+            code += c
+        elif (high >= 0xB0 and high <= 0xFA and
+                      low >= 0xA1 and low <= 0xFE):
+            c = bin((high - 0xA6) * 0x60 + low - 0xA1)[2:]
+            c = '0' * (13 - len(c)) + c
+            code += c
+
+    return code
     
 # cci: character count indicator  
 def get_cci(ver, mode, str):
