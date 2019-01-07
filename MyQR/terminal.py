@@ -17,10 +17,10 @@ def main():
     argparser.add_argument('-n', '--name', help = "The filename of output tailed with one of {'.jpg', '.png', '.bmp', '.gif'}. eg. exampl.png")
     argparser.add_argument('-d', '--directory', default = os.getcwd(), help = 'The directory of output.')
     args = argparser.parse_args()
-    
+
     if args.picture and args.picture[-4:]=='.gif':
         print('It may take a while, please wait for minutes...')
-    
+
     try:
         ver, ecl, qr_name = run(
             args.Words,
@@ -32,7 +32,7 @@ def main():
             args.brightness,
             args.name,
             args.directory
-            )   
+            )
         print('Succeed! \nCheck out your', str(ver) + '-' + str(ecl), 'QR-code:', qr_name)
     except:
         raise
