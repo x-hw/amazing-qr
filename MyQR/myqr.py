@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import tempfile
 import os
 from MyQR.mylibs import theqrmodule
 from PIL import Image
@@ -84,8 +85,9 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
         qr_name = os.path.join(save_dir, os.path.splitext(os.path.basename(bg_name))[0] + '_qrcode.png') if not save_name else os.path.join(save_dir, save_name)
         qr.resize((qr.size[0]*3, qr.size[1]*3)).save(qr_name)
         return qr_name
-
-    tempdir = os.path.join(os.path.expanduser('~'), '.myqr')
+    
+    
+    tempdir = os.path.join(tempfile.gettempdir(), '.myqr')
     
     try:
         if not os.path.exists(tempdir):
