@@ -21,11 +21,8 @@ from PIL import Image
 # See [https://github.com/sylnsfar/qrcode] for more details!
 def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0, brightness=1.0, save_name=None, save_dir=os.getcwd()):
 
-    supported_chars = r"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ··,.:;+-*/\~!@#$%^&`'=<>[]()?_{}|"
-
-
     # check every parameter
-    if not isinstance(words, str) or any(i not in supported_chars for i in words):
+    if not isinstance(words, str):
         raise ValueError('Wrong words! Make sure the characters are supported!')
     if not isinstance(version, int) or version not in range(1, 41):
         raise ValueError('Wrong version! Please choose a int-type value from 1 to 40!')
