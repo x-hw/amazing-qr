@@ -89,9 +89,10 @@ def alphanumeric_encoding(str):
     return code
     
 def byte_encoding(str):
+    str = bytes(str, encoding="utf8")
     code = ''
     for i in str:
-        c = bin(ord(i.encode('iso-8859-1')))[2:]
+        c = bin(i)[2:]
         c = '0'*(8-len(c)) + c
         code += c
     return code
@@ -108,7 +109,7 @@ def get_cci(ver, mode, str):
     else:
         cci_len = (14, 13, 16, 12)[mindex[mode]]
         
-    cci = bin(len(str))[2:]
+    cci = bin(len(bytes(str, encoding="utf8")))[2:]
     cci = '0' * (cci_len - len(cci)) + cci
     return cci
     
