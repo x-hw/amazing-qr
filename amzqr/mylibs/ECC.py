@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from MyQR.mylibs.constant import GP_list, ecc_num_per_block, lindex, po2, log
+from amzqr.mylibs.constant import GP_list, ecc_num_per_block, lindex, po2, log
  
 #ecc: Error Correction Codewords
 def encode(ver, ecl, data_codewords):

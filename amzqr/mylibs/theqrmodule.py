@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from MyQR.mylibs import data, ECC, structure, matrix, draw
+from amzqr.mylibs import data, ECC, structure, matrix, draw
 
 # ver: Version from 1 to 40
 # ecl: Error Correction Level (L,M,Q,H)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
      
-from MyQR.mylibs.constant import alig_location, format_info_str, version_info_str, lindex
+from amzqr.mylibs.constant import alig_location, format_info_str, version_info_str, lindex
     
 def get_qrmatrix(ver, ecl, bits):
     num = (ver - 1) * 4 + 21
