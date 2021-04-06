@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from MyQR.mylibs.constant import char_cap, required_bytes, mindex, lindex, num_list, alphanum_list, grouping_list, mode_indicator
+from amzqr.mylibs.constant import char_cap, required_bytes, mindex, lindex, num_list, alphanum_list, grouping_list, mode_indicator
        
 # ecl: Error Correction Level(L,M,Q,H)
 def encode(ver, ecl, str):

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from MyQR.mylibs import theqrmodule
+from amzqr.mylibs import theqrmodule
 from PIL import Image
    
 # Positional parameters
@@ -18,7 +18,7 @@ from PIL import Image
 #   save_name: str, the output filename like 'example.png'
 #   save_dir: str, the output directory
 #
-# See [https://github.com/sylnsfar/qrcode] for more details!
+# See [https://github.com/hwxhw/amazing-qr] for more details!
 def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0, brightness=1.0, save_name=None, save_dir=os.getcwd()):
 
     supported_chars = r"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ··,.:;+-*/\~!@#$%^&`'=<>[]()?_{}|"
@@ -49,7 +49,7 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
     
         
     def combine(ver, qr_name, bg_name, colorized, contrast, brightness, save_dir, save_name=None):
-        from MyQR.mylibs.constant import alig_location
+        from amzqr.mylibs.constant import alig_location
         from PIL import ImageEnhance, ImageFilter
         
         qr = Image.open(qr_name)

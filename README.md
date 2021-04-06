@@ -1,113 +1,74 @@
-# QR-Code
-[*转到中文版*](https://github.com/sylnsfar/qrcode/blob/master/README-cn.md)
+# Amazing-QR
 
-* **update (160906)**: added an **exe** version - [myqr.exe in qrcode_win](https://github.com/sylnsfar/qrcode_win)
-
-* **update (160908)**: added a **web** version - [amazing-qrcode](http://www.amazing-qrcode.com/) *(made by [Maras0830](https://github.com/Maras0830))*
-
-* **update (160910)**: distributed to **PyPI** - [**MyQR**](https://pypi.python.org/pypi/MyQR) ! 
-
-  * 160911: updated to be importable
-
-  ​
+[*转到中文版*](https://github.com/hwxhw/amzqr/blob/master/README-cn.md)
 
 ## Overview
-
 
 **Python QR Code Generator**
 
 Generate *common qr-code*,  *artistic qr-code (black & white or colorized)*,  *animated qr-code (black & white or colorized)*.
 
-​     
-
 ## Contents
 
-* [Overview](#overview)
-* [Contents](#contents)
-* [Examples](#examples)
-* [Install](#install)
-* [Usage](#usage)
-  * [Terminal Way](#terminal-way)
-  * [Import Way](#import-way)
-* [Tips](#tips)
-* [Supported Characters](#supported-characters)
-* [Dependencies](#dependencies)
-* [Environment](#environment)
-* [License](#license)
-
-
-​
+[toc]
 
 ## Examples
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs0.jpg)
+![](https://github.com/hwxhw/amazing-qr/blob/master/example/qrs0.jpg)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs1.jpg)
+![](https://github.com/hwxhw/amazing-qr/blob/master/example/qrs1.jpg)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs2.jpg)
+![](https://github.com/hwxhw/amazing-qr/blob/master/example/qrs2.jpg)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/c_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode.gif)
+![](https://github.com/hwxhw/amazing-qr/blob/master/example/c_qrcode.gif)![](https://github.com/hwxhw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode.gif)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/zootopia_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
-
-  
-
-  
+![](https://github.com/hwxhw/amazing-qr/blob/master/example/zootopia_qrcode.gif)![](https://github.com/hwxhw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
 ## Install
 
 ```python
 # via pip
-pip(3) install myqr(or MyQR)
+pip install amzqr
 ```
-
-​    
-
-   
 
 ## Usage
 
 ### Terminal Way  
 
-*(**TIPS**: If you haven't install [**MyQR**](https://pypi.python.org/pypi/MyQR), you should  `python(3) myqr.py` instead of `myqr` blow.)*
+*(**TIPS**: If you haven't install [**amzqr**](https://pypi.python.org/pypi/amzqr), you should  `python(3) amzqr.py` instead of `amzqr` blow.)*
 
-```python
+```sh
 # summary
-myqr 	Words
-		[-v {1,2,3,...,40}]
-		[-l {L,M,Q,H}]
-        [-n output-filename]
-		[-d output-directory]
-		[-p picture_file]
-		[-c]
-		[-con contrast]
-		[-bri brightness]
+amzqr Words
+      [-v {1,2,3,...,40}]
+      [-l {L,M,Q,H}]
+      [-n output-filename]
+      [-d output-directory]
+      [-p picture_file]
+      [-c]
+      [-con contrast]
+      [-bri brightness]
 ```
 
 - see [Common QR-Code](#common-qr-code) for `Words`, `-v`, `-l`, `-n`, `-d`
 - see [Artistic QR-Code](#artistic-qr-code) for `-p`, `-c`, `-con`, `-bri`
 - see [Animated GIF QR-Code](#animated-gif-qr-code) about GIF
 
-
-​    
-
-
 #### Common QR-Code
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/0.png)
+![](https://github.com/hwxhw/amazing-qr/blob/master/example/0.png)
 
 ```markdown
 #1 Words
-myqr https://github.com
+amzqr https://github.com
 ```
 
 * Just input a URL or a sentence, then get your QR-Code named 'qrcode.png' in the current directory.
 
-  ​
 
 ```markdown
 #2 -v, -l
-myqr https://github.com -v 10 -l Q
+amzqr https://github.com -v 10 -l Q
 ```
 
 * The **default** size of QR-Code depends both on the numbers of words you input and the level, while the **default** level (Error Correction Level) is **H** (the highest).
@@ -123,7 +84,7 @@ myqr https://github.com -v 10 -l Q
 
 ```markdown
 #3 -n, -d
-myqr https://github.com   -n github_qr.jpg   -d .../paths/
+amzqr https://github.com   -n github_qr.jpg   -d .../paths/
 ```
 
 * The **default** output-filename is 'qrcode.png', while the **default** output-directory is current directory.
@@ -135,40 +96,31 @@ myqr https://github.com   -n github_qr.jpg   -d .../paths/
   `-d` means directory.
 
 
-
-
-
-
 #### Artistic QR-Code
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/1.png)![](https://github.com/sylnsfar/qrcode/blob/master/example/2.png)
+![](https://github.com/hwxhw/amazing-qr/blob/master/example/1.png)![](https://github.com/hwxhw/amazing-qr/blob/master/example/2.png)
 
 
 ```markdown
 #1 -p
-myqr https://github.com -p github.jpg
+amzqr https://github.com -p github.jpg
 ```
 
 * The `-p` is to combine the QR-Code with the following picture which is in the same directory as the program. The resulting picture is **black and white** by default.
 
 
-
-
-
 ```markdown
 #2 -c
-myqr https://github.com -p github.jpg -c
+amzqr https://github.com -p github.jpg -c
 ```
 
 * The `-c` is to make the resulting picture **colorized**.
-
-  ​
 
 
 
 ```markdown
 #3 -con, -bri
-myqr https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
+amzqr https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 ```
 
 * The `-con` flag changes the **contrast** of the picture - a low number corresponds to low contrast and a high number to high contrast. **Default: 1.0**.
@@ -181,19 +133,17 @@ myqr https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 
 #### Animated GIF QR-Code
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
+![](https://github.com/hwxhw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode.gif)![](https://github.com/hwxhw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
 The only difference from Artistic QR-Code mentioned above is that you should input an image file in the `.gif` format. The you can get your black-and-white or colorful qr-code. Remember that when you use `-n` to customize the output-filename, then the output-filename must end by `.gif`.
-
-
 
 ### Import Way
 
 ```python
-# after installation
-from MyQR import myqr
-version, level, qr_name = myqr.run(
-	words,
+from amzqr import amzqr
+
+version, level, qr_name = amzqr.run(
+    words,
     version=1,
     level='H',
     picture=None,
@@ -202,7 +152,7 @@ version, level, qr_name = myqr.run(
     brightness=1.0,
     save_name=None,
     save_dir=os.getcwd()
-	)
+)
 ```
 
 
@@ -210,7 +160,7 @@ version, level, qr_name = myqr.run(
 
 
 ```python
-# help(myqr)
+# help(amzqr)
 Positional parameter
    words: str
 
@@ -225,26 +175,15 @@ Optional parameters
    save_dir: str, the output directory
 ```
 
-
-
-
-
-
-
-
 ## Tips
 
 * Use a nearly **square** picture instead of a rectangle one.
 
 * If the size of the picture is large, you should also choose a **rightly** large `-v` instead of using the default one.
 
-* If part of the picture is transparent, the qr code will look like: ![](https://github.com/sylnsfar/qrcode/blob/master/example/aa.png)
+* If part of the picture is transparent, the qr code will look like: ![](https://github.com/hwxhw/amazing-qr/blob/master/example/aa.png)
 
-  You can change the transparent layer to white, and then it will look like: ![](https://github.com/sylnsfar/qrcode/blob/master/example/a0.png)
-
-
-
-
+  You can change the transparent layer to white, and then it will look like: ![](https://github.com/hwxhw/amazing-qr/blob/master/example/a0.png)
 
 ## Supported Characters
 
@@ -258,32 +197,10 @@ Optional parameters
   · , . : ; + - * / \ ~ ! @ # $ % ^ & ` ' = < > [ ] ( ) ? _ { } | and  (space)
   ```
 
-
-   
-
-## Dependencies
-
-* [pillow](https://pypi.python.org/pypi/Pillow/3.3.1)
-* [numpy](https://pypi.python.org/pypi/numpy)
-* [imageio](https://pypi.python.org/pypi/imageio)
-
-
-
-
-*(**TIPS**: Without a installed [**MyQR**](https://pypi.python.org/pypi/MyQR), you should use `pip install -r requirements.txt` to ensure you have all dependencies.)*
-
-  
-
 ## Environment
 
-* Linux, Python 3
-* Windows, Python 3
-* Mac, Python 3
+- Python 3
 
-
-​    
-
-
-## License 
+## License
 
 * GPLv3
