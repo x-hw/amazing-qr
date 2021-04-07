@@ -95,3 +95,5 @@ ENV/
 MANIFEST
 
 .idea
+.vscode
+
