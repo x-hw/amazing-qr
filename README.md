@@ -10,7 +10,18 @@ Generate *common qr-code*,  *artistic qr-code (black & white or colorized)*,  *a
 
 ## Contents
 
-[toc]
+* [Amazing-QR](#amazing-qr)
+  * [Overview](#overview)
+  * [Contents](#contents)
+  * [Examples](#examples)
+  * [Install](#install)
+  * [Usage](#usage)
+    * [Terminal Way](#terminal-way)
+    * [Import Way](#import-way)
+  * [Tips](#tips)
+  * [Supported Characters](#supported-characters)
+  * [Environment](#environment)
+  * [License](#license)
 
 ## Examples
 
