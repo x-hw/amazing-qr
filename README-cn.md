@@ -1,5 +1,9 @@
 # Amazing-QR
 
+[![former name](https://img.shields.io/badge/old%20name-MyQR-yellow)](https://pypi.org/project/myqr/) [![PyPI - Downloads](https://img.shields.io/pypi/dm/myqr?label=downloads@myqr)](https://pypi.org/project/myqr/) [![](https://img.shields.io/badge/language-Python-blue)](https://www.python.org/) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/amzqr?logo=python&logoColor=ffffff&label=Python&labelColor=blue&color=ffffff) [![PyPI](https://img.shields.io/pypi/v/amzqr?logo=pypi&logoColor=ffffff&label=PyPI&labelColor=blue)](https://pypi.org/project/amzqr/) ![PyPI - Wheel](https://img.shields.io/pypi/wheel/amzqr) [![PyPI - Downloads](https://img.shields.io/pypi/dm/amzqr)](https://pypi.org/project/amzqr/) [![PyPI - License](https://img.shields.io/pypi/l/amzqr)](https://github.com/x-hw/amazing-qr/blob/master/LICENSE.md) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/x-hw/amazing-qr)
+
+[![](https://img.shields.io/badge/GitHub-x.hw-blue?logo=github)](https://github.com/x-hw) ![GitHub Sponsors](https://img.shields.io/github/sponsors/x-hw?logo=github-sponsors&labelColor=pink&color=white) [![wechatpay](https://img.shields.io/badge/微信打赏--brightgreen?logo=wechat&logoColor=ffffff&labelColor=brightgreen)](#请杯咖啡--打赏) [![alipay](https://img.shields.io/badge/支付宝打赏--blue?logo=alipay&logoColor=ffffff&labelColor=blue)](#请杯咖啡--打赏)
+
 [*back to English*](https://github.com/hwxhw/amzqr/blob/master/README.md)
 
 
@@ -23,6 +27,7 @@
   * [可用字符](#可用字符)
   * [环境](#环境)
   * [协议](#协议)
+  * [请杯咖啡☕️ / 打赏](#请杯咖啡--打赏)
 
 ## 示例
 
@@ -202,3 +207,13 @@ Optional parameters
 ## 协议
 
 * GPLv3
+
+## 请杯咖啡 / 打赏
+
+微信:
+![wechatpay](https://github.com/hwxhw/amazing-qr/blob/master/example/wechatpay.jpg)
+
+or
+
+支付宝:
+![alipay](https://github.com/hwxhw/amazing-qr/blob/master/example/alipay-qrcode.png)

@@ -1,5 +1,9 @@
 # Amazing-QR
 
+[![former name](https://img.shields.io/badge/old%20name-MyQR-yellow)](https://pypi.org/project/myqr/) [![PyPI - Downloads](https://img.shields.io/pypi/dm/myqr?label=downloads@myqr)](https://pypi.org/project/myqr/) [![](https://img.shields.io/badge/language-Python-blue)](https://www.python.org/) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/amzqr?logo=python&logoColor=ffffff&label=Python&labelColor=blue&color=ffffff) [![PyPI](https://img.shields.io/pypi/v/amzqr?logo=pypi&logoColor=ffffff&label=PyPI&labelColor=blue)](https://pypi.org/project/amzqr/) ![PyPI - Wheel](https://img.shields.io/pypi/wheel/amzqr) [![PyPI - Downloads](https://img.shields.io/pypi/dm/amzqr)](https://pypi.org/project/amzqr/) [![PyPI - License](https://img.shields.io/pypi/l/amzqr)](https://github.com/x-hw/amazing-qr/blob/master/LICENSE.md) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/x-hw/amazing-qr)
+
+[![](https://img.shields.io/badge/GitHub-x.hw-blue?logo=github)](https://github.com/x-hw) ![GitHub Sponsors](https://img.shields.io/github/sponsors/x-hw?logo=github-sponsors&labelColor=pink&color=white) [![wechatpay](https://img.shields.io/badge/sponsor_by_wechat--brightgreen?logo=wechat&logoColor=ffffff&labelColor=brightgreen)](#buy-me-a-coffee--sponsor) [![alipay](https://img.shields.io/badge/sponsor_by_alipay--blue?logo=alipay&logoColor=ffffff&labelColor=blue)](#buy-me-a-coffee--sponsor)
+
 [*转到中文版*](https://github.com/hwxhw/amzqr/blob/master/README-cn.md)
 
 ## Overview
@@ -22,18 +26,19 @@ Generate *common qr-code*,  *artistic qr-code (black & white or colorized)*,  *a
   * [Supported Characters](#supported-characters)
   * [Environment](#environment)
   * [License](#license)
+  * [Buy me a coffee ☕️ / Sponsor](#buy-me-a-coffee--sponsor)
 
 ## Examples
 
-![](https://github.com/hwxhw/amazing-qr/blob/master/example/qrs0.jpg)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/qrs0.jpg)
 
-![](https://github.com/hwxhw/amazing-qr/blob/master/example/qrs1.jpg)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/qrs1.jpg)
 
-![](https://github.com/hwxhw/amazing-qr/blob/master/example/qrs2.jpg)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/qrs2.jpg)
 
-![](https://github.com/hwxhw/amazing-qr/blob/master/example/c_qrcode.gif)![](https://github.com/hwxhw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode.gif)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/c_qrcode.gif)![](https://github.com/x-hw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode.gif)
 
-![](https://github.com/hwxhw/amazing-qr/blob/master/example/zootopia_qrcode.gif)![](https://github.com/hwxhw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode0.gif)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/zootopia_qrcode.gif)![](https://github.com/x-hw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
 ## Install
 
@@ -215,3 +220,13 @@ Optional parameters
 ## License
 
 * GPLv3
+
+## Buy me a coffee / Sponsor
+
+wechat:
+![wechatpay](https://github.com/hwxhw/amazing-qr/blob/master/example/wechatpay.jpg)
+
+or
+
+alipay:
+![alipay](https://github.com/hwxhw/amazing-qr/blob/master/example/alipay-qrcode.png)
