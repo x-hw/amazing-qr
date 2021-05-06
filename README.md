@@ -4,6 +4,7 @@
 
 [![](https://img.shields.io/badge/GitHub-x.hw-blue?logo=github)](https://github.com/x-hw) ![GitHub Sponsors](https://img.shields.io/github/sponsors/x-hw?logo=github-sponsors&labelColor=pink&color=white) [![wechatpay](https://img.shields.io/badge/sponsor_by_wechat--brightgreen?logo=wechat&logoColor=ffffff&labelColor=brightgreen)](#buy-me-a-coffee--sponsor) [![alipay](https://img.shields.io/badge/sponsor_by_alipay--blue?logo=alipay&logoColor=ffffff&labelColor=blue)](#buy-me-a-coffee--sponsor)
 
+
 [*转到中文版*](https://github.com/x-hw/amazing-qr/blob/master/README-cn.md)
 
 ## Overview

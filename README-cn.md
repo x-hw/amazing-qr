@@ -6,7 +6,6 @@
 
 [*back to English*](https://github.com/x-hw/amazing-qr/blob/master/README.md)
 
-
 ## 概述
 
 **Python 二维码生成器**
