@@ -1,6 +1,10 @@
 # Amazing-QR
 
-[*back to English*](https://github.com/hwxhw/amzqr/blob/master/README.md)
+[![former name](https://img.shields.io/badge/old%20name-MyQR-yellow)](https://pypi.org/project/myqr/) [![PyPI - Downloads](https://img.shields.io/pypi/dm/myqr?label=downloads@myqr)](https://pypi.org/project/myqr/) [![](https://img.shields.io/badge/language-Python-blue)](https://www.python.org/) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/amzqr?logo=python&logoColor=ffffff&label=Python&labelColor=blue&color=ffffff) [![PyPI](https://img.shields.io/pypi/v/amzqr?logo=pypi&logoColor=ffffff&label=PyPI&labelColor=blue)](https://pypi.org/project/amzqr/) ![PyPI - Wheel](https://img.shields.io/pypi/wheel/amzqr) [![PyPI - Downloads](https://img.shields.io/pypi/dm/amzqr)](https://pypi.org/project/amzqr/) [![PyPI - License](https://img.shields.io/pypi/l/amzqr)](https://github.com/x-hw/amazing-qr/blob/master/LICENSE.md) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/x-hw/amazing-qr)
+
+[![](https://img.shields.io/badge/GitHub-x.hw-blue?logo=github)](https://github.com/x-hw) ![GitHub Sponsors](https://img.shields.io/github/sponsors/x-hw?logo=github-sponsors&labelColor=pink&color=white) [![wechatpay](https://img.shields.io/badge/微信打赏--brightgreen?logo=wechat&logoColor=ffffff&labelColor=brightgreen)](#请杯咖啡--打赏) [![alipay](https://img.shields.io/badge/支付宝打赏--blue?logo=alipay&logoColor=ffffff&labelColor=blue)](#请杯咖啡--打赏)
+
+[*back to English*](https://github.com/x-hw/amazing-qr/blob/master/README.md)
 
 
 ## 概述
@@ -23,18 +27,19 @@
   * [可用字符](#可用字符)
   * [环境](#环境)
   * [协议](#协议)
+  * [请杯咖啡☕️ / 打赏](#请杯咖啡--打赏)
 
 ## 示例
 
-![](https://github.com/hwxhw/amazing-qr/blob/master/example/qrs0.jpg)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/qrs0.jpg)
 
-![](https://github.com/hwxhw/amazing-qr/blob/master/example/qrs1.jpg)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/qrs1.jpg)
 
-![](https://github.com/hwxhw/amazing-qr/blob/master/example/qrs2.jpg)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/qrs2.jpg)
 
-![](https://github.com/hwxhw/amazing-qr/blob/master/example/c_qrcode.gif)![](https://github.com/hwxhw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode.gif)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/c_qrcode.gif)![](https://github.com/x-hw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode.gif)
 
-![](https://github.com/hwxhw/amazing-qr/blob/master/example/zootopia_qrcode.gif)![](https://github.com/hwxhw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode0.gif)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/zootopia_qrcode.gif)![](https://github.com/x-hw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
 
 ## 安装
@@ -68,7 +73,7 @@ amzqr  Words
 
 #### 普通二维码
 
-![](https://github.com/hwxhw/amzqr/blob/master/example/0.png)
+![](https://github.com/x-hw/amzqr/blob/master/example/0.png)
 
 ```markdown
 #1 Words
@@ -105,9 +110,9 @@ amzqr https://github.com -n github_qr.jpg  -d .../paths/
 
   `-d` 控制位置。
 
-  ​#### 艺术二维码
+  #### 艺术二维码
 
-![](https://github.com/hwxhw/amazing-qr/blob/master/example/1.png)![](https://github.com/hwxhw/amazing-qr/blob/master/example/2.png)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/1.png)![](https://github.com/x-hw/amazing-qr/blob/master/example/2.png)
 
 ```markdown
 #1 -p
@@ -134,7 +139,7 @@ amzqr https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 
 #### 动态GIF二维码
 
-![](https://github.com/hwxhw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode.gif)![](https://github.com/hwxhw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode0.gif)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode.gif)![](https://github.com/x-hw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
 动态二维码与上述的带图片的二维码的生成方法没什么区别，你只要采用 `.gif` 格式的图片即可生成黑白或者彩色的动态二维码。但**注意**如果使用了 `-n` 参数自定义输出的文件名，切记其格式也必须是 `.gif` 格式。
 
@@ -179,9 +184,9 @@ Optional parameters
 
 * 建议在图片尺寸大的时候使用 `-v` 的值也应该**适当**变大。
 
-* 如果图片有透明无色部分，最终效果是：![](https://github.com/hwxhw/amazing-qr/blob/master/example/aa.png)
+* 如果图片有透明无色部分，最终效果是：![](https://github.com/x-hw/amazing-qr/blob/master/example/aa.png)
 
-  你可以将透明部分修改成白色，最终效果会变成![](https://github.com/hwxhw/amazing-qr/blob/master/example/a0.png)
+  你可以将透明部分修改成白色，最终效果会变成![](https://github.com/x-hw/amazing-qr/blob/master/example/a0.png)
 
 ## 可用字符
 
@@ -202,3 +207,15 @@ Optional parameters
 ## 协议
 
 * GPLv3
+
+## 请杯咖啡 / 打赏
+
+微信:
+
+<img src="https://github.com/x-hw/amazing-qr/blob/master/example/wechatpay.jpg" width = "124" height = "116" alt="wechatpay" align=center />
+
+or
+
+支付宝:
+
+<img src="https://github.com/x-hw/amazing-qr/blob/master/example/alipay_qrcode.png" width = "132" height = "132" alt="alipay" align=center />
