@@ -232,3 +232,5 @@ Optional parameters
 ![alipay](https://img.shields.io/badge/-alipay-blue?logo=alipay&logoColor=ffffff&labelColor=blue)
 
 <img src="https://github.com/x-hw/amazing-qr/blob/master/example/alipay.gif" width = "132" height = "132" alt="alipay" align=center />
+
+🎉🎉🎉 Thanks for your support. 🎉🎉🎉
