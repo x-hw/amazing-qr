@@ -181,7 +181,7 @@ Positional parameter
 Optional parameters
    version: int, from 1 to 40
    level: str, just one of ('L','M','Q','H')
-   picutre: str, a filename of a image
+   picture: str, a filename of a image
    colorized: bool
    constrast: float
    brightness: float
