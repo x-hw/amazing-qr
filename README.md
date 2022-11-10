@@ -183,7 +183,7 @@ Optional parameters
    level: str, just one of ('L','M','Q','H')
    picutre: str, a filename of a image
    colorized: bool
-   constrast: float
+   contrast: float
    brightness: float
    save_name: str, the output filename like 'example.png'
    save_dir: str, the output directory
