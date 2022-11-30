@@ -1,113 +1,90 @@
-# QR-Code
-[*转到中文版*](https://github.com/sylnsfar/qrcode/blob/master/README-cn.md)
+# Amazing-QR
 
-* **update (160906)**: added an **exe** version - [myqr.exe in qrcode_win](https://github.com/sylnsfar/qrcode_win)
+[![former name](https://img.shields.io/badge/old%20name-MyQR-yellow)](https://pypi.org/project/myqr/) [![PyPI - Downloads](https://img.shields.io/pypi/dm/myqr?label=downloads@myqr)](https://pypi.org/project/myqr/) [![](https://img.shields.io/badge/language-Python-blue)](https://www.python.org/) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/amzqr?logo=python&logoColor=ffffff&label=Python&labelColor=blue&color=ffffff) [![PyPI](https://img.shields.io/pypi/v/amzqr?logo=pypi&logoColor=ffffff&label=PyPI&labelColor=blue)](https://pypi.org/project/amzqr/) ![PyPI - Wheel](https://img.shields.io/pypi/wheel/amzqr) [![PyPI - Downloads](https://img.shields.io/pypi/dm/amzqr)](https://pypi.org/project/amzqr/) [![PyPI - License](https://img.shields.io/pypi/l/amzqr)](https://github.com/x-hw/amazing-qr/blob/master/LICENSE.md) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/x-hw/amazing-qr) ![macos](https://img.shields.io/badge/-macOS-black?logo=macos) ![linux](https://img.shields.io/badge/-Linux-yellow?logo=linux) ![windows](https://img.shields.io/badge/-Windows-blue?logo=windows)
 
-* **update (160908)**: added a **web** version - [amazing-qrcode](http://www.amazing-qrcode.com/) *(made by [Maras0830](https://github.com/Maras0830))*
+[![](https://img.shields.io/badge/GitHub-x.hw-blue?logo=github)](https://github.com/x-hw) [![sponsor](https://img.shields.io/badge/sponsor--pink?logo=github-sponsors&labelColor=pink)](#buy-me-a-coffee)
 
-* **update (160910)**: distributed to **PyPI** - [**MyQR**](https://pypi.python.org/pypi/MyQR) ! 
-
-  * 160911: updated to be importable
-
-  ​
+[*转到中文版*](https://github.com/x-hw/amazing-qr/blob/master/README-cn.md)
 
 ## Overview
-
 
 **Python QR Code Generator**
 
 Generate *common qr-code*,  *artistic qr-code (black & white or colorized)*,  *animated qr-code (black & white or colorized)*.
 
-​     
-
 ## Contents
 
-* [Overview](#overview)
-* [Contents](#contents)
-* [Examples](#examples)
-* [Install](#install)
-* [Usage](#usage)
-  * [Terminal Way](#terminal-way)
-  * [Import Way](#import-way)
-* [Tips](#tips)
-* [Supported Characters](#supported-characters)
-* [Dependencies](#dependencies)
-* [Environment](#environment)
-* [License](#license)
-
-
-​
+* [Amazing-QR](#amazing-qr)
+  * [Overview](#overview)
+  * [Contents](#contents)
+  * [Examples](#examples)
+  * [Install](#install)
+  * [Usage](#usage)
+    * [Terminal Way](#terminal-way)
+    * [Import Way](#import-way)
+  * [Tips](#tips)
+  * [Supported Characters](#supported-characters)
+  * [Environment](#environment)
+  * [License](#license)
+  * [Buy me a coffee ☕️](#buy-me-a-coffee)
 
 ## Examples
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs0.jpg)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/qrs0.jpg)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs1.jpg)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/qrs1.jpg)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs2.jpg)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/qrs2.jpg)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/c_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode.gif)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/c_qrcode.gif)![](https://github.com/x-hw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode.gif)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/zootopia_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
-
-  
-
-  
+![](https://github.com/x-hw/amazing-qr/blob/master/example/zootopia_qrcode.gif)![](https://github.com/x-hw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
 ## Install
 
 ```python
 # via pip
-pip(3) install myqr(or MyQR)
+pip install amzqr
 ```
-
-​    
-
-   
 
 ## Usage
 
 ### Terminal Way  
 
-*(**TIPS**: If you haven't install [**MyQR**](https://pypi.python.org/pypi/MyQR), you should  `python(3) myqr.py` instead of `myqr` blow.)*
+*(**TIPS**: If you haven't install [**amzqr**](https://pypi.python.org/pypi/amzqr), you should  `python(3) amzqr.py` instead of `amzqr` blow.)*
 
-```python
+```sh
 # summary
-myqr 	Words
-		[-v {1,2,3,...,40}]
-		[-l {L,M,Q,H}]
-        [-n output-filename]
-		[-d output-directory]
-		[-p picture_file]
-		[-c]
-		[-con contrast]
-		[-bri brightness]
+amzqr Words
+      [-v {1,2,3,...,40}]
+      [-l {L,M,Q,H}]
+      [-n output-filename]
+      [-d output-directory]
+      [-p picture_file]
+      [-c]
+      [-con contrast]
+      [-bri brightness]
 ```
 
 - see [Common QR-Code](#common-qr-code) for `Words`, `-v`, `-l`, `-n`, `-d`
 - see [Artistic QR-Code](#artistic-qr-code) for `-p`, `-c`, `-con`, `-bri`
 - see [Animated GIF QR-Code](#animated-gif-qr-code) about GIF
 
-
-​    
-
-
 #### Common QR-Code
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/0.png)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/0.png)
 
 ```markdown
 #1 Words
-myqr https://github.com
+amzqr https://github.com
 ```
 
 * Just input a URL or a sentence, then get your QR-Code named 'qrcode.png' in the current directory.
 
-  ​
 
 ```markdown
 #2 -v, -l
-myqr https://github.com -v 10 -l Q
+amzqr https://github.com -v 10 -l Q
 ```
 
 * The **default** size of QR-Code depends both on the numbers of words you input and the level, while the **default** level (Error Correction Level) is **H** (the highest).
@@ -123,7 +100,7 @@ myqr https://github.com -v 10 -l Q
 
 ```markdown
 #3 -n, -d
-myqr https://github.com   -n github_qr.jpg   -d .../paths/
+amzqr https://github.com   -n github_qr.jpg   -d .../paths/
 ```
 
 * The **default** output-filename is 'qrcode.png', while the **default** output-directory is current directory.
@@ -135,40 +112,31 @@ myqr https://github.com   -n github_qr.jpg   -d .../paths/
   `-d` means directory.
 
 
-
-
-
-
 #### Artistic QR-Code
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/1.png)![](https://github.com/sylnsfar/qrcode/blob/master/example/2.png)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/1.png)![](https://github.com/x-hw/amazing-qr/blob/master/example/2.png)
 
 
 ```markdown
 #1 -p
-myqr https://github.com -p github.jpg
+amzqr https://github.com -p github.jpg
 ```
 
 * The `-p` is to combine the QR-Code with the following picture which is in the same directory as the program. The resulting picture is **black and white** by default.
 
 
-
-
-
 ```markdown
 #2 -c
-myqr https://github.com -p github.jpg -c
+amzqr https://github.com -p github.jpg -c
 ```
 
 * The `-c` is to make the resulting picture **colorized**.
-
-  ​
 
 
 
 ```markdown
 #3 -con, -bri
-myqr https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
+amzqr https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 ```
 
 * The `-con` flag changes the **contrast** of the picture - a low number corresponds to low contrast and a high number to high contrast. **Default: 1.0**.
@@ -181,19 +149,17 @@ myqr https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 
 #### Animated GIF QR-Code
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode.gif)![](https://github.com/x-hw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
 The only difference from Artistic QR-Code mentioned above is that you should input an image file in the `.gif` format. The you can get your black-and-white or colorful qr-code. Remember that when you use `-n` to customize the output-filename, then the output-filename must end by `.gif`.
-
-
 
 ### Import Way
 
 ```python
-# after installation
-from MyQR import myqr
-version, level, qr_name = myqr.run(
-	words,
+from amzqr import amzqr
+
+version, level, qr_name = amzqr.run(
+    words,
     version=1,
     level='H',
     picture=None,
@@ -202,15 +168,13 @@ version, level, qr_name = myqr.run(
     brightness=1.0,
     save_name=None,
     save_dir=os.getcwd()
-	)
+)
 ```
-
 
 *details about each parameter are as mentioned [above](#terminal-way)*
 
-
 ```python
-# help(myqr)
+# help(amzqr)
 Positional parameter
    words: str
 
@@ -225,26 +189,15 @@ Optional parameters
    save_dir: str, the output directory
 ```
 
-
-
-
-
-
-
-
 ## Tips
 
 * Use a nearly **square** picture instead of a rectangle one.
 
 * If the size of the picture is large, you should also choose a **rightly** large `-v` instead of using the default one.
 
-* If part of the picture is transparent, the qr code will look like: ![](https://github.com/sylnsfar/qrcode/blob/master/example/aa.png)
+* If part of the picture is transparent, the qr code will look like: ![](https://github.com/x-hw/amazing-qr/blob/master/example/aa.png)
 
-  You can change the transparent layer to white, and then it will look like: ![](https://github.com/sylnsfar/qrcode/blob/master/example/a0.png)
-
-
-
-
+  You can change the transparent layer to white, and then it will look like: ![](https://github.com/x-hw/amazing-qr/blob/master/example/a0.png)
 
 ## Supported Characters
 
@@ -258,32 +211,26 @@ Optional parameters
   · , . : ; + - * / \ ~ ! @ # $ % ^ & ` ' = < > [ ] ( ) ? _ { } | and  (space)
   ```
 
-
-   
-
-## Dependencies
-
-* [pillow](https://pypi.python.org/pypi/Pillow/3.3.1)
-* [numpy](https://pypi.python.org/pypi/numpy)
-* [imageio](https://pypi.python.org/pypi/imageio)
-
-
-
-
-*(**TIPS**: Without a installed [**MyQR**](https://pypi.python.org/pypi/MyQR), you should use `pip install -r requirements.txt` to ensure you have all dependencies.)*
-
-  
-
 ## Environment
 
-* Linux, Python 3
-* Windows, Python 3
-* Mac, Python 3
+- Python 3
 
-
-​    
-
-
-## License 
+## License
 
 * GPLv3
+
+## Buy me a coffee
+
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/x-hw?logo=github-sponsors&labelColor=pink&color=white)](https://github.com/sponsors#regions)
+
+*Since the GitHub Sponsors is unavailable in China yet...*
+
+![wechatpay](https://img.shields.io/badge/-wechat_pay-brightgreen?labelColor=brightgreen&logo=data:image/png;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAAGa0aABmtGg4ZrRoOGa0aABmtGgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABmtGgAZrRpGGa0arBmtGkEZrRobGa0aOBmtGkwZrRpNGa0aORmtGhoZrRoDGa0aAAAAAAAAAAAAAAAAAAAAAAAZrRoAGa0aKBmtGucZrRrwGa0a3BmtGvIZrRr6Ga0a+xmtGvMZrRrYGa0alxmtGjcZrRoCGa0aAAAAAAAZrRoAGa0aBhmtGnMZrRr1Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRroGa0adBmtGgkZrRoAGa0aAhmtGnEZrRr2Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGvgZrRp5Ga0aAxmtGkEZrRrmGa0a/xmtGv8ZrRr+Ga0a8RmtGvsZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a6hmtGkkZrRqlGa0a/xmtGv8ZrRr/Ga0a5RmtGkwZrRpzGa0a3hmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRqvGa0a3xmtGv8ZrRr/Ga0a/xmtGpkZrRoDGa0aABmtGicZrRqWGa0a7hmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a5xmtGusZrRr/Ga0a/xmtGu0ZrRo9Ga0aPBmtGmcZrRohGa0aAxmtGj8ZrRq0Ga0a+BmtGv8ZrRr/Ga0a/xmtGvIZrRrQGa0a/xmtGv8ZrRrLGa0agRmtGukZrRr+Ga0a3RmtGosZrRowGa0aEBmtGlsZrRrNGa0a/RmtGv8ZrRrYGa0agxmtGv0ZrRr/Ga0a+hmtGvsZrRr/Ga0a/xmtGv8ZrRr/Ga0a6hmtGqIZrRpDGa0aJRmtGnsZrRrhGa0ajBmtGiAZrRrHGa0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a9BmtGrcZrRpdGa0aOxmtGhoZrRoAGa0aPBmtGtcZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a1BmtGiwZrRoAGa0aABmtGgAZrRowGa0arRmtGvQZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr2Ga0asRmtGjQZrRoAGa0aAAAAAAAZrRoAGa0aABmtGgsZrRpFGa0ajRmtGrsZrRrPGa0azxmtGr0ZrRqQGa0aSBmtGgwZrRoAGa0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAGa0aABmtGgEZrRoKGa0aFBmtGhUZrRoKGa0aARmtGgAAAAAAAAAAAAAAAAAAAAAAz/8AAMAPAADAAwAAgAEAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAMADAADgBwAA+B8AAA==)
+
+<img src="https://github.com/x-hw/amazing-qr/blob/master/example/wechatpay.jpg" width = "124" height = "116" alt="wechatpay" align=center />
+
+![alipay](https://img.shields.io/badge/-alipay-blue?logo=alipay&logoColor=ffffff&labelColor=blue)
+
+<img src="https://github.com/x-hw/amazing-qr/blob/master/example/alipay.gif" width = "132" height = "132" alt="alipay" align=center />
+
+🎉🎉🎉 Thanks for your support. 🎉🎉🎉

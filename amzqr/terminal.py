@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from MyQR.myqr import run
+from amzqr.amzqr import run
 import os
 
 def main():

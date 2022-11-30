@@ -92,5 +92,8 @@ ENV/
 # Rope project settings
 .ropeproject
 
-setup.py
 MANIFEST
+
+.idea
+.vscode
+

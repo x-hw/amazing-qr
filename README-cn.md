@@ -1,15 +1,10 @@
-# QR-Code
-[*back to English*](https://github.com/sylnsfar/qrcode/blob/master/README.md)
+# Amazing-QR
 
-* **更新 (160906)**: 新增 **exe** 版本 - [myqr.exe in qrcode_win](https://github.com/sylnsfar/qrcode_win)
+[![former name](https://img.shields.io/badge/old%20name-MyQR-yellow)](https://pypi.org/project/myqr/) [![PyPI - Downloads](https://img.shields.io/pypi/dm/myqr?label=downloads@myqr)](https://pypi.org/project/myqr/) [![](https://img.shields.io/badge/language-Python-blue)](https://www.python.org/) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/amzqr?logo=python&logoColor=ffffff&label=Python&labelColor=blue&color=ffffff) [![PyPI](https://img.shields.io/pypi/v/amzqr?logo=pypi&logoColor=ffffff&label=PyPI&labelColor=blue)](https://pypi.org/project/amzqr/) ![PyPI - Wheel](https://img.shields.io/pypi/wheel/amzqr) [![PyPI - Downloads](https://img.shields.io/pypi/dm/amzqr)](https://pypi.org/project/amzqr/) [![PyPI - License](https://img.shields.io/pypi/l/amzqr)](https://github.com/x-hw/amazing-qr/blob/master/LICENSE.md) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/x-hw/amazing-qr) ![macos](https://img.shields.io/badge/-macOS-black?logo=macos) ![linux](https://img.shields.io/badge/-Linux-yellow?logo=linux) ![windows](https://img.shields.io/badge/-Windows-blue?logo=windows)
 
-* **更新 (160908)**: 新增**网页**版本 - [amazing-qrcode](http://www.amazing-qrcode.com/) *(made by [Maras0830](https://github.com/Maras0830))*
+[![](https://img.shields.io/badge/GitHub-x.hw-blue?logo=github)](https://github.com/x-hw) [![sponsor](https://img.shields.io/badge/sponsor--pink?logo=github-sponsors&labelColor=pink)](#打赏杯咖啡)
 
-* **更新 (160910)**: 发布到 **PyPI** - [**MyQR**](https://pypi.python.org/pypi/MyQR) ! 
-
-  * 160911: 更新为可导入的模块
-
-  ​
+[*back to English*](https://github.com/x-hw/amazing-qr/blob/master/README.md)
 
 ## 概述
 
@@ -17,98 +12,78 @@
 
 可生成*普通二维码*、*带图片的艺术二维码（黑白与彩色）*、*动态二维码（黑白与彩色）*。
 
-​     
-
-​            
-
 ## Contents 目录
 
-* [概述](#概述)
-* [目录](#目录)
-* [示例](#示例)
-* [安装](#安装)
-* [使用方法](#使用方法)
-  * [命令行方式](#命令行方式)
-  * [作为导入文件](#作为导入文件)
-* [使用提示](#使用提示)
-* [可用字符](#可用字符)
-* [依赖库](#依赖库)
-* [运行环境](#运行环境)
-* [协议](#协议)
-
-
-​
+* [Amazing-QR](#amazing-qr)
+  * [概述](#概述)
+  * [目录](#目录)
+  * [示例](#示例)
+  * [安装](#安装)
+  * [使用方法](#使用方法)
+    * [命令行方式](#命令行方式)
+    * [作为导入文件](#作为导入文件)
+  * [使用提示](#使用提示)
+  * [可用字符](#可用字符)
+  * [环境](#环境)
+  * [协议](#协议)
+  * [打赏杯咖啡☕️](#打赏杯咖啡)
 
 ## 示例
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs0.jpg)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/qrs0.jpg)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs1.jpg)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/qrs1.jpg)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/qrs2.jpg)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/qrs2.jpg)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/c_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode.gif)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/c_qrcode.gif)![](https://github.com/x-hw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode.gif)
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/zootopia_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/zootopia_qrcode.gif)![](https://github.com/x-hw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
-  
-
-  
 
 ## 安装
 
 ```python
-# 通过 pip
-pip(3) install myqr(or MyQR)
+pip install amzqr
 ```
-
-​    
-
-   
 
 ## 使用方法
 
 ### 命令行方式
 
-*（**提示**：如果你尚未安装 [**MyQR**](https://pypi.python.org/pypi/MyQR) ，以下内容请使用`python(3) myqr.py` 而非`myqr` 。）*
+*（**提示**：如果你尚未安装 [**amzqr**](https://pypi.python.org/pypi/amzqr) ，以下内容请使用`python(3) amzqr.py` 而非`amzqr` 。）*
 
 ```python
 # 概括
-myqr 	Words
-		[-v {1,2,3,...,40}]
-		[-l {L,M,Q,H}]
-        [-n output-filename]
-		[-d output-directory]
-		[-p picture_file]
-		[-c]
-		[-con contrast]
-		[-bri brightness]
+amzqr  Words
+      [-v {1,2,3,...,40}]
+      [-l {L,M,Q,H}]
+      [-n output-filename]
+      [-d output-directory]
+      [-p picture_file]
+      [-c]
+      [-con contrast]
+      [-bri brightness]
 ```
 
 - [普通二维码](#普通二维码) 介绍了 `Words`, `-v`, `-l`, `-n`, `-d` 
 - [艺术二维码](#艺术二维码) 介绍了  `-p`, `-c`, `-con`, `-bri`
 - [动态GIF二维码](#动态gif二维码) 介绍了动态的生成方法和注意点
 
-
-
-
-
 #### 普通二维码
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/0.png)
+![](https://github.com/x-hw/amzqr/blob/master/example/0.png)
 
 ```markdown
 #1 Words
-myqr https://github.com
+amzqr https://github.com
 ```
 
 * 在命令后输入链接或者句子作为参数，然后在程序的当前目录中产生相应的二维码图片文件，默认命名为” qrcode.png“。
 
-  ​
-
 ```markdown
 #2 -v, -l
-myqr https://github.com -v 10 -l Q
+amzqr https://github.com -v 10 -l Q
 ```
 
 * **默认边长**是取决于你输入的信息的长度和使用的纠错等级；
@@ -121,12 +96,9 @@ myqr https://github.com -v 10 -l Q
 
    `-l` 控制纠错水平，范围是**L、M、Q、H**，从左到右依次升高。
 
-
-
-
 ```markdown
 #3 -n, -d
-myqr https://github.com -n github_qr.jpg  -d .../paths/
+amzqr https://github.com -n github_qr.jpg  -d .../paths/
 ```
 
 - **默认输出文件名**是“ qrcode.png "，而**默认存储位置**是当前目录。
@@ -137,68 +109,46 @@ myqr https://github.com -n github_qr.jpg  -d .../paths/
 
   `-d` 控制位置。
 
-  ​
+  #### 艺术二维码
 
-
-
-
-
-
-#### 艺术二维码
-
-![](https://github.com/sylnsfar/qrcode/blob/master/example/1.png)![](https://github.com/sylnsfar/qrcode/blob/master/example/2.png)
-
+![](https://github.com/x-hw/amazing-qr/blob/master/example/1.png)![](https://github.com/x-hw/amazing-qr/blob/master/example/2.png)
 
 ```markdown
 #1 -p
-myqr https://github.com -p github.jpg
+amzqr https://github.com -p github.jpg
 ```
 
 * 参数`-p` 用来将QR二维码图像与一张同目录下的图片相结合，产生一张**黑白**图片。
 
-  ​
-
-
-
-
 ```markdown
 #2 -c
-myqr https://github.com -p github.jpg -c
+amzqr https://github.com -p github.jpg -c
 ```
 
 * 加上参数 `-c` 可以使产生的图片由黑白变为**彩色**的。
 
-  ​
-
-
-
 ```markdown
 #3 -con, -bri
-myqr https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
+amzqr https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 ```
 
 * 参数`-con` 用以调节图片的**对比度**，1.0 表示原始图片，更小的值表示更低对比度，更大反之。**默认为1.0**。
 
 * 参数 `-bri` 用来调节图片的**亮度**，其余用法和取值与 `-con` 相同。
 
-
-
-
 #### 动态GIF二维码
 
-![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode.gif)![](https://github.com/sylnsfar/qrcode/blob/master/example/daftpunktocat-guy_qrcode0.gif)
+![](https://github.com/x-hw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode.gif)![](https://github.com/x-hw/amazing-qr/blob/master/example/daftpunktocat-guy_qrcode0.gif)
 
 动态二维码与上述的带图片的二维码的生成方法没什么区别，你只要采用 `.gif` 格式的图片即可生成黑白或者彩色的动态二维码。但**注意**如果使用了 `-n` 参数自定义输出的文件名，切记其格式也必须是 `.gif` 格式。
-
-
 
 ### 作为导入文件
 
 ```python
 # 安装模块后
-from MyQR import myqr
-version, level, qr_name = myqr.run(
-	words,
+from amzqr import amzqr
+version, level, qr_name = amzqr.run(
+    words,
     version=1,
     level='H',
     picture=None,
@@ -207,16 +157,13 @@ version, level, qr_name = myqr.run(
     brightness=1.0,
     save_name=None,
     save_dir=os.getcwd()
-	)
+)
 ```
-
-
 
 *以下各个参数已经在[上文](#命令行方式)有所介绍*
 
-
 ```python
-# help(myqr)
+# help(amzqr)
 Positional parameter
    words: str
 
@@ -230,23 +177,15 @@ Optional parameters
    save_name: str, the output filename like 'example.png'
    save_dir: str, the output directory
 ```
-
-
-
-
-
 ## 使用提示
 
 * 请采用**正方形**或近似正方形的图片
 
 * 建议在图片尺寸大的时候使用 `-v` 的值也应该**适当**变大。
 
-* 如果图片有透明无色部分，最终效果是：![](https://github.com/sylnsfar/qrcode/blob/master/example/aa.png)
+* 如果图片有透明无色部分，最终效果是：![](https://github.com/x-hw/amazing-qr/blob/master/example/aa.png)
 
-  你可以将透明部分修改成白色，最终效果会变成![](https://github.com/sylnsfar/qrcode/blob/master/example/a0.png)
-
-
-
+  你可以将透明部分修改成白色，最终效果会变成![](https://github.com/x-hw/amazing-qr/blob/master/example/a0.png)
 
 ## 可用字符
 
@@ -260,32 +199,26 @@ Optional parameters
   · , . : ; + - * / \ ~ ! @ # $ % ^ & ` ' = < > [ ] ( ) ? _ { } | and  (space)
   ```
 
+## 环境
 
-​
+- Python 3
 
-## 依赖库
-
-* [pillow](https://pypi.python.org/pypi/Pillow/3.3.1)
-* [numpy](https://pypi.python.org/pypi/numpy)
-* [imageio](https://pypi.python.org/pypi/imageio)
-
-
-
-
-*（**提示**：如果没有安装 [**MyQR**](https://pypi.python.org/pypi/MyQR) ，使用命令`pip install -r requirements.txt` 来安装所有依赖的库。）*
-
-  
-
-## 运行环境
-
-* Linux, Python 3
-* Windows, Python 3
-* Mac, Python 3
-
-
-​    
-
-
-## 协议 
+## 协议
 
 * GPLv3
+
+## 打赏杯咖啡
+
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/x-hw?logo=github-sponsors&labelColor=pink&color=white)](https://github.com/sponsors#regions)
+
+*GitHub Sponsors 还用不了...*
+
+![wechatpay](https://img.shields.io/badge/-微信打赏-brightgreen?labelColor=brightgreen&logo=data:image/png;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAAGa0aABmtGg4ZrRoOGa0aABmtGgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABmtGgAZrRpGGa0arBmtGkEZrRobGa0aOBmtGkwZrRpNGa0aORmtGhoZrRoDGa0aAAAAAAAAAAAAAAAAAAAAAAAZrRoAGa0aKBmtGucZrRrwGa0a3BmtGvIZrRr6Ga0a+xmtGvMZrRrYGa0alxmtGjcZrRoCGa0aAAAAAAAZrRoAGa0aBhmtGnMZrRr1Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRroGa0adBmtGgkZrRoAGa0aAhmtGnEZrRr2Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGvgZrRp5Ga0aAxmtGkEZrRrmGa0a/xmtGv8ZrRr+Ga0a8RmtGvsZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a6hmtGkkZrRqlGa0a/xmtGv8ZrRr/Ga0a5RmtGkwZrRpzGa0a3hmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRqvGa0a3xmtGv8ZrRr/Ga0a/xmtGpkZrRoDGa0aABmtGicZrRqWGa0a7hmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a5xmtGusZrRr/Ga0a/xmtGu0ZrRo9Ga0aPBmtGmcZrRohGa0aAxmtGj8ZrRq0Ga0a+BmtGv8ZrRr/Ga0a/xmtGvIZrRrQGa0a/xmtGv8ZrRrLGa0agRmtGukZrRr+Ga0a3RmtGosZrRowGa0aEBmtGlsZrRrNGa0a/RmtGv8ZrRrYGa0agxmtGv0ZrRr/Ga0a+hmtGvsZrRr/Ga0a/xmtGv8ZrRr/Ga0a6hmtGqIZrRpDGa0aJRmtGnsZrRrhGa0ajBmtGiAZrRrHGa0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a9BmtGrcZrRpdGa0aOxmtGhoZrRoAGa0aPBmtGtcZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr/Ga0a1BmtGiwZrRoAGa0aABmtGgAZrRowGa0arRmtGvQZrRr/Ga0a/xmtGv8ZrRr/Ga0a/xmtGv8ZrRr2Ga0asRmtGjQZrRoAGa0aAAAAAAAZrRoAGa0aABmtGgsZrRpFGa0ajRmtGrsZrRrPGa0azxmtGr0ZrRqQGa0aSBmtGgwZrRoAGa0aAAAAAAAAAAAAAAAAAAAAAAAAAAAAGa0aABmtGgEZrRoKGa0aFBmtGhUZrRoKGa0aARmtGgAAAAAAAAAAAAAAAAAAAAAAz/8AAMAPAADAAwAAgAEAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAMADAADgBwAA+B8AAA==)
+
+<img src="https://github.com/x-hw/amazing-qr/blob/master/example/wechatpay.jpg" width = "124" height = "116" alt="wechatpay" align=center />
+
+![alipay](https://img.shields.io/badge/-支付宝打赏-blue?logo=alipay&logoColor=ffffff&labelColor=blue)
+
+<img src="https://github.com/x-hw/amazing-qr/blob/master/example/alipay.gif" width = "132" height = "132" alt="alipay" align=center />
+
+🎉🎉🎉 感谢你的支持 🎉🎉🎉
