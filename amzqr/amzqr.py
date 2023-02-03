@@ -35,7 +35,7 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
         if not isinstance(picture, str) or not os.path.isfile(picture) or picture[-4:] not in ('.jpg','.png','.bmp','.gif'):
             raise ValueError("Wrong picture! Input a filename that exists and be tailed with one of {'.jpg', '.png', '.bmp', '.gif'}!")
         if picture[-4:] == '.gif' and save_name and save_name[-4:] != '.gif':
-            raise ValueError('Wrong save_name! If the picuter is .gif format, the output filename should be .gif format, too!')
+            raise ValueError('Wrong save_name! If the picture is .gif format, the output filename should be .gif format, too!')
         if not isinstance(colorized, bool):
             raise ValueError('Wrong colorized! Input a bool-type value!')
         if not isinstance(contrast, float):
