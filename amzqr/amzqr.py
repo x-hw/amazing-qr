@@ -17,9 +17,10 @@ from PIL import Image
 #   brightness: float
 #   save_name: str, the output filename like 'example.png'
 #   save_dir: str, the output directory
+#   resizemode: int, from 1 to 2
 #
 # See [https://github.com/hwxhw/amazing-qr] for more details!
-def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0, brightness=1.0, save_name=None, save_dir=os.getcwd()):
+def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0, brightness=1.0, save_name=None, save_dir=os.getcwd(), resizemode=1):
 
     supported_chars = r"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ··,.:;+-*/\~!@#$%^&`'=<>[]()?_{}|"
 
@@ -31,9 +32,11 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
         raise ValueError('Wrong version! Please choose a int-type value from 1 to 40!')
     if not isinstance(level, str) or len(level)>1 or level not in 'LMQH':
         raise ValueError("Wrong level! Please choose a str-type level from {'L','M','Q','H'}!")
+    if not isinstance(resizemode, int) or resizemode not in range(1, 3):
+        raise ValueError('Wrong mode! Please choose a int-type value from 1 to 2! [1 = keep ratio, 2 = center crop]')
     if picture:
-        if not isinstance(picture, str) or not os.path.isfile(picture) or picture[-4:] not in ('.jpg','.png','.bmp','.gif'):
-            raise ValueError("Wrong picture! Input a filename that exists and be tailed with one of {'.jpg', '.png', '.bmp', '.gif'}!")
+        if not isinstance(picture, str) or not os.path.isfile(picture) or picture[-4:] not in ('webp','jpeg','.jpg','.png','.bmp','.gif'):
+            raise ValueError("Wrong picture! Input a filename that exists and be tailed with one of {'webp', 'jpeg', '.jpg', '.png', '.bmp', '.gif'}!")
         if picture[-4:] == '.gif' and save_name and save_name[-4:] != '.gif':
             raise ValueError('Wrong save_name! If the picuter is .gif format, the output filename should be .gif format, too!')
         if not isinstance(colorized, bool):
@@ -48,7 +51,7 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
         raise ValueError('Wrong save_dir! Input a existing-directory!')
     
         
-    def combine(ver, qr_name, bg_name, colorized, contrast, brightness, save_dir, save_name=None):
+    def combine(ver, qr_name, bg_name, colorized, contrast, brightness, save_dir, resizemode, save_name=None):
         from amzqr.mylibs.constant import alig_location
         from PIL import ImageEnhance, ImageFilter
         
@@ -59,10 +62,16 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
         bg0 = ImageEnhance.Contrast(bg0).enhance(contrast)
         bg0 = ImageEnhance.Brightness(bg0).enhance(brightness)
 
-        if bg0.size[0] < bg0.size[1]:
-            bg0 = bg0.resize((qr.size[0]-24, (qr.size[0]-24)*int(bg0.size[1]/bg0.size[0])))
+        if resizemode == 1:
+           #To resize with ratio
+           if bg0.size[0] < bg0.size[1]:
+               bg0 = bg0.resize((qr.size[0]-24, (qr.size[0]-24)*int(bg0.size[1]/bg0.size[0])))
+           else:
+               bg0 = bg0.resize(((qr.size[1]-24)*int(bg0.size[0]/bg0.size[1]), qr.size[1]-24))    
         else:
-            bg0 = bg0.resize(((qr.size[1]-24)*int(bg0.size[0]/bg0.size[1]), qr.size[1]-24))    
+            #Crop to center
+            bg0 = crop_max_square(bg0)
+            bg0 = bg0.resize((qr.size[0]-24, qr.size[1]-24))
             
         bg = bg0 if colorized else bg0.convert('1')
         
@@ -87,11 +96,22 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
 
     tempdir = os.path.join(os.path.expanduser('~'), '.myqr')
     
+    #Center crop image
+    def crop_max_square(pil_img):
+        return crop_center(pil_img, min(pil_img.size), min(pil_img.size))
+    
+    def crop_center(pil_img, crop_width, crop_height):
+        img_width, img_height = pil_img.size
+        return pil_img.crop(((img_width - crop_width) // 2,
+                            (img_height - crop_height) // 2,
+                            (img_width + crop_width) // 2,
+                            (img_height + crop_height) // 2))
+      
     try:
         if not os.path.exists(tempdir):
             os.makedirs(tempdir)
 
-        ver, qr_name = theqrmodule.get_qrcode(version, level, words, tempdir)
+        ver, qr_name = theqrmodule.get_qrcode(version, level, words, tempdir, resizemode)
 
         if picture and picture[-4:]=='.gif':
             import imageio
@@ -116,7 +136,7 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
             qr_name = os.path.join(save_dir, os.path.splitext(os.path.basename(picture))[0] + '_qrcode.gif') if not save_name else os.path.join(save_dir, save_name)
             imageio.mimwrite(qr_name, ims, '.gif', **{ 'duration': duration/1000 })
         elif picture:
-            qr_name = combine(ver, qr_name, picture, colorized, contrast, brightness, save_dir, save_name)
+            qr_name = combine(ver, qr_name, picture, colorized, contrast, brightness, save_dir, resizemode, save_name)
         elif qr_name:
             qr = Image.open(qr_name)
             qr_name = os.path.join(save_dir, os.path.basename(qr_name)) if not save_name else os.path.join(save_dir, save_name)
