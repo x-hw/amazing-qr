@@ -62,7 +62,7 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
         bg0 = ImageEnhance.Contrast(bg0).enhance(contrast)
         bg0 = ImageEnhance.Brightness(bg0).enhance(brightness)
 
-        if runmode == 1:
+        if resizemode == 1:
            #To resize with ratio
            if bg0.size[0] < bg0.size[1]:
                bg0 = bg0.resize((qr.size[0]-24, (qr.size[0]-24)*int(bg0.size[1]/bg0.size[0])))
