@@ -16,6 +16,7 @@ def main():
     argparser.add_argument('-bri', '--brightness', type = float, default = 1.0, help = 'A floating point value controlling the enhancement of brightness. Factor 1.0 always returns a copy of the original image, lower factors mean less color (brightness, contrast, etc), and higher values more. There are no restrictions on this value. Default: 1.0')
     argparser.add_argument('-n', '--name', help = "The filename of output tailed with one of {'.jpg', '.png', '.bmp', '.gif'}. eg. exampl.png")
     argparser.add_argument('-d', '--directory', default = os.getcwd(), help = 'The directory of output.')
+    argparser.add_argument('-m', '--mode', type = int, choices = range(1,3), default = 1, help = 'The mode means the crop/resize of the bg picture. [1 = keep ratio, 2 = center crop] Default: 1')
     args = argparser.parse_args()
     
     if args.picture and args.picture[-4:]=='.gif':
@@ -31,7 +32,8 @@ def main():
             args.contrast,
             args.brightness,
             args.name,
-            args.directory
+            args.directory,
+            args.mode
             )   
         print('Succeed! \nCheck out your', str(ver) + '-' + str(ecl), 'QR-code:', qr_name)
     except:
