@@ -2,6 +2,7 @@
 
 from PIL import Image
 import os
+from random import randint
 
 def draw_qrcode(abspath, qrmatrix):
     unit_len = 3
@@ -15,7 +16,7 @@ def draw_qrcode(abspath, qrmatrix):
             x += unit_len
         x, y = 4*unit_len, y+unit_len
 
-    saving = os.path.join(abspath, 'qrcode.png')
+    saving = os.path.join(abspath, f'qrcode{randint(1,1000)}.png')
     pic.save(saving)
     return saving
     
