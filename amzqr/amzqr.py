@@ -19,7 +19,7 @@ from PIL import Image
 #   save_dir: str, the output directory
 #
 # See [https://github.com/hwxhw/amazing-qr] for more details!
-def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0, brightness=1.0, save_name=None, save_dir=os.getcwd()):
+def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0, brightness=1.0, save_name=None, save_dir=os.getcwd(),temp_dir=os.getcwd()):
 
     supported_chars = r"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ··,.:;+-*/\~!@#$%^&`'=<>[]()?_{}|"
 
@@ -46,6 +46,8 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
         raise ValueError("Wrong save_name! Input a filename tailed with one of {'.jpg', '.png', '.bmp', '.gif'}!")
     if not os.path.isdir(save_dir):
         raise ValueError('Wrong save_dir! Input a existing-directory!')
+    if not os.path.isdir(temp_dir):
+        raise ValueError('Wrong temp_dir! Input a existing-directory!')
     
         
     def combine(ver, qr_name, bg_name, colorized, contrast, brightness, save_dir, save_name=None):
@@ -84,33 +86,31 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
         qr_name = os.path.join(save_dir, os.path.splitext(os.path.basename(bg_name))[0] + '_qrcode.png') if not save_name else os.path.join(save_dir, save_name)
         qr.resize((qr.size[0]*3, qr.size[1]*3)).save(qr_name)
         return qr_name
-
-    tempdir = os.path.join(os.path.expanduser('~'), '.myqr')
     
     try:
-        if not os.path.exists(tempdir):
-            os.makedirs(tempdir)
+        if not os.path.exists(temp_dir):
+            os.makedirs(temp_dir)
 
-        ver, qr_name = theqrmodule.get_qrcode(version, level, words, tempdir)
+        ver, qr_name = theqrmodule.get_qrcode(version, level, words, temp_dir)
 
         if picture and picture[-4:]=='.gif':
             import imageio
              
             im = Image.open(picture)
             duration = im.info.get('duration', 0)
-            im.save(os.path.join(tempdir, '0.png'))
+            im.save(os.path.join(temp_dir, '0.png'))
             while True:
                 try:
                     seq = im.tell()
                     im.seek(seq + 1)
-                    im.save(os.path.join(tempdir, '%s.png' %(seq+1)))
+                    im.save(os.path.join(temp_dir, '%s.png' %(seq+1)))
                 except EOFError:
                     break
             
             imsname = []
             for s in range(seq+1):
-                bg_name = os.path.join(tempdir, '%s.png' % s)
-                imsname.append(combine(ver, qr_name, bg_name, colorized, contrast, brightness, tempdir))
+                bg_name = os.path.join(temp_dir, '%s.png' % s)
+                imsname.append(combine(ver, qr_name, bg_name, colorized, contrast, brightness, temp_dir))
             
             ims = [imageio.imread(pic) for pic in imsname]
             qr_name = os.path.join(save_dir, os.path.splitext(os.path.basename(picture))[0] + '_qrcode.gif') if not save_name else os.path.join(save_dir, save_name)
@@ -128,5 +128,5 @@ def run(words, version=1, level='H', picture=None, colorized=False, contrast=1.0
         raise
     finally:
         import shutil
-        if os.path.exists(tempdir):
-            shutil.rmtree(tempdir) 
+        if os.path.exists(temp_dir):
+            shutil.rmtree(temp_dir) 
