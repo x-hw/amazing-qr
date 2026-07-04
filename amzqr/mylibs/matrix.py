@@ -116,7 +116,6 @@ def get_mask_patterns(mm):
         elif i == 7:
             return 	(((row + column) % 2) + ((row * column) % 3)) % 2 == 0
 
-    mm[-8][8] = None
     for i in range(len(mm)):
         for j in range(len(mm)):
             mm[i][j] = 0 if mm[i][j] is not None else mm[i][j]
