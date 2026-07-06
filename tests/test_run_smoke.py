@@ -8,6 +8,8 @@ avoid depending on any image fixtures. They confirm the public contract
 
 import os
 
+import pytest
+
 from amzqr import amzqr
 
 
@@ -21,14 +23,10 @@ def test_run_plain_writes_png(tmp_path):
 
 
 def test_run_rejects_unsupported_chars(tmp_path):
-    import pytest
-
     with pytest.raises(ValueError):
         amzqr.run("你好", save_dir=str(tmp_path))
 
 
 def test_run_rejects_bad_version(tmp_path):
-    import pytest
-
     with pytest.raises(ValueError):
         amzqr.run("https://github.com", version=0, save_dir=str(tmp_path))

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "amzqr"
 version = "0.0.2"
-description = "Generater for amazing QR Codes. Including Common, Artistic and Animated QR Codes."
+description = "Generator for amazing QR Codes. Including Common, Artistic and Animated QR Codes."
 keywords = ["qr", "qrcode", "amazing", "artistic", "animated", "gif", "colorized"]
 license = { text = "GPLv3" }
 authors = [{ name = "hw", email = "xhaowen.xu@gmail.com" }]
