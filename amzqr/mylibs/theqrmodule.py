@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from amzqr.mylibs import data, ECC, structure, matrix, draw
+from amzqr.mylibs import ECC, data, draw, matrix, structure
+
 
 # ver: Version from 1 to 40
 # ecl: Error Correction Level (L,M,Q,H)
@@ -11,12 +12,12 @@ def get_qrcode(ver, ecl, str, save_place):
 
     # Error Correction Coding
     ecc = ECC.encode(ver, ecl, data_codewords)
-    
+
     # Structure final bits
     final_bits = structure.structure_final_bits(ver, ecl, data_codewords, ecc)
-    
+
     # Get the QR Matrix
     qrmatrix = matrix.get_qrmatrix(ver, ecl, final_bits)
-        
+
     # Draw the picture and Save it, then return the real ver and the absolute name
     return ver, draw.draw_qrcode(save_place, qrmatrix)

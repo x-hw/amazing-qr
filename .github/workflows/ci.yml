@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.8", "3.10", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+
+      - name: Set up Python ${{ matrix.python }}
+        run: uv python install ${{ matrix.python }}
+
+      - name: Install dependencies
+        # uv.toml is gitignored (local Tsinghua mirror only); CI resolves
+        # directly from PyPI via the index auto-configured by setup-uv.
+        run: uv sync --python ${{ matrix.python }}
+
+      - name: Lint (ruff check)
+        run: uv run ruff check
+
+      - name: Format check (ruff format --check)
+        run: uv run ruff format --check
+
+      - name: Test (pytest)
+        run: uv run pytest -q

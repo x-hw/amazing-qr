@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "amzqr"
+version = "0.0.2"
+description = "Generator for amazing QR Codes. Including Common, Artistic and Animated QR Codes."
+keywords = ["qr", "qrcode", "amazing", "artistic", "animated", "gif", "colorized"]
+license = { text = "GPLv3" }
+authors = [{ name = "hw", email = "xhaowen.xu@gmail.com" }]
+requires-python = ">=3.8"
+readme = "README.md"
+dependencies = [
+    "imageio>=1.5",
+    "numpy>=1.11.1",
+    "Pillow>=3.3.1",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+]
+
+[project.urls]
+Homepage = "https://github.com/hwxhw/amazing-qr"
+Download = "https://github.com/hwxhw/amazing-qr"
+"Bug Tracker" = "https://github.com/hwxhw/amazing-qr/issues"
+
+[project.scripts]
+amzqr = "amzqr.terminal:main"
+
+[tool.setuptools]
+packages = ["amzqr", "amzqr.mylibs"]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[tool.ruff]
+target-version = "py38"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["F", "E9", "I"]
+ignore = []
+
+[tool.ruff.format]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
