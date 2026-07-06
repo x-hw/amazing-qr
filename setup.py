@@ -8,7 +8,7 @@ setuptools.setup(
     name='amzqr',
     version='0.0.2',
     keywords='qr qrcode amazing artistic animated gif colorized',
-    description='Generater for amazing QR Codes. Including Common, Artistic and Animated QR Codes.',
+    description='Generator for amazing QR Codes. Including Common, Artistic and Animated QR Codes.',
     long_description=long_description,
     long_description_content_type="text/markdown",
     author='hw',
