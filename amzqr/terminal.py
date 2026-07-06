@@ -63,18 +63,15 @@ def main():
     if args.picture and args.picture[-4:] == ".gif":
         print("It may take a while, please wait for minutes...")
 
-    try:
-        ver, ecl, qr_name = run(
-            args.Words,
-            args.version,
-            args.level,
-            args.picture,
-            args.colorized,
-            args.contrast,
-            args.brightness,
-            args.name,
-            args.directory,
-        )
-        print("Succeed! \nCheck out your", str(ver) + "-" + str(ecl), "QR-code:", qr_name)
-    except:
-        raise
+    ver, ecl, qr_name = run(
+        args.Words,
+        args.version,
+        args.level,
+        args.picture,
+        args.colorized,
+        args.contrast,
+        args.brightness,
+        args.name,
+        args.directory,
+    )
+    print("Succeed! \nCheck out your", str(ver) + "-" + str(ecl), "QR-code:", qr_name)

@@ -23,8 +23,6 @@ def encode(ver, ecl, str):
 
     ver, mode = analyse(ver, ecl, str)
 
-    print("line 16: mode:", mode)
-
     code = mode_indicator[mode] + get_cci(ver, mode, str) + mode_encoding[mode](str)
 
     # Add a Terminator
@@ -65,10 +63,17 @@ def analyse(ver, ecl, str):
 
     m = mindex[mode]
     l = len(str)
+    fit_ver = None
     for i in range(40):
         if char_cap[ecl][i][m] > l:
-            ver = i + 1 if i + 1 > ver else ver
+            fit_ver = i + 1
             break
+    if fit_ver is None:
+        raise ValueError(
+            f"content too long: {l} characters exceed the maximum capacity "
+            f"of QR version 1-40 at error correction level {ecl}"
+        )
+    ver = max(ver, fit_ver)
 
     return ver, mode
 
@@ -90,11 +95,16 @@ def numeric_encoding(str):
 def alphanumeric_encoding(str):
     code_list = [alphanum_list.index(i) for i in str]
     code = ""
+    # Pair up chars: each pair encodes to 11 bits via v1*45 + v2.
     for i in range(1, len(code_list), 2):
         c = bin(code_list[i - 1] * 45 + code_list[i])[2:]
         c = "0" * (11 - len(c)) + c
         code += c
-    if i != len(code_list) - 1:
+    # Trailing unpaired char (odd length) encodes to 6 bits. Judge by length
+    # parity, not by the loop variable `i`: when len==1 the loop body never
+    # runs and `i` is unbound, so the old `if i != len(code_list) - 1` check
+    # raised UnboundLocalError instead of encoding the single char.
+    if len(code_list) % 2 == 1:
         c = bin(code_list[-1])[2:]
         c = "0" * (6 - len(c)) + c
         code += c
