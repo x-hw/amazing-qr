@@ -12,6 +12,13 @@
 
 Generate *common qr-code*,  *artistic qr-code (black & white or colorized)*,  *animated qr-code (black & white or colorized)*.
 
+## Fast instructions
+* Clone the repo
+* `py -m venv venv`
+* `./venv/Scripts/activate`
+* `pip install -e .`
+* `amzqrgui` to run the GUI
+
 ## Contents
 
 * [Amazing-QR](#amazing-qr)

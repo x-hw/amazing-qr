@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name='amzqr',
-    version='0.0.2',
+    version='0.0.3',
     keywords='qr qrcode amazing artistic animated gif colorized',
     description='Generator for amazing QR Codes. Including Common, Artistic and Animated QR Codes.',
     long_description=long_description,
@@ -21,7 +21,8 @@ setuptools.setup(
     install_requires=[
         'imageio >= 1.5',
         'numpy >= 1.11.1',
-        'Pillow>=3.3.1'
+        'Pillow>=3.3.1',
+        'sv-ttk>=2.6.0'
     ],
     packages=['amzqr', 'amzqr.mylibs'],
     license='GPLv3',
@@ -35,6 +36,7 @@ setuptools.setup(
     entry_points={
         'console_scripts': [
             'amzqr=amzqr.terminal:main',
+            'amzqrgui=amzqr.ui:main',
         ],
     },
     python_requires=">=3",

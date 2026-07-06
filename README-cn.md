@@ -12,6 +12,13 @@
 
 可生成*普通二维码*、*带图片的艺术二维码（黑白与彩色）*、*动态二维码（黑白与彩色）*。
 
+## 快速指南
+* 克隆仓库
+* `py -m venv venv`
+* `./venv/Scripts/activate`
+* `pip install -e .`
+* 运行 GUI：`amzqrgui`
+
 ## Contents 目录
 
 * [Amazing-QR](#amazing-qr)
