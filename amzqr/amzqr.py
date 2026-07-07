@@ -22,7 +22,7 @@ from amzqr.mylibs import theqrmodule
 #   save_name: str, the output filename like 'example.png'
 #   save_dir: str, the output directory
 #
-# See [https://github.com/hwxhw/amazing-qr] for more details!
+# See [https://github.com/x-hw/amazing-qr] for more details!
 def run(
     words,
     version=1,
