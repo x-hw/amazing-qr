@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 """Unit tests for amzqr.mylibs.data — assert spec-correct encoding behavior.
 
-Where the current code violates the QR spec, the test is RED until the
-corresponding bugfix lands (no xfail softening). The red is the work item.
-
 Reference: ISO/IEC 18004. Alphanumeric values per Annex Table A.1,
   0-9 -> 0-9, A-Z -> 10-35, space=36, $=37, %=38, *=39, +=40, -=41,
   .=42, /=43, :=44.
@@ -41,8 +38,6 @@ def test_alphanumeric_encoding_ac42():
 
 def test_alphanumeric_single_char():
     # Spec: a trailing single char encodes in 6 bits. A=10 -> 001010.
-    # Currently RED (TODO #2): range(1, 1, 2) is empty -> `i` undefined ->
-    # UnboundLocalError instead of a 6-bit code.
     assert data.alphanumeric_encoding("A") == "001010"
 
 
@@ -71,11 +66,9 @@ def test_encode_chooses_alphanumeric_for_mixed():
     assert ver == 1
 
 
-# --- spec-correct behavior currently violated (RED, drives fix) ----------
+# --- encode() rejects oversized content --------------------------------
 def test_oversized_content_raises():
-    # 5000 digits exceeds even v40-H numeric capacity. analyse() never finds a
-    # fitting version and encode proceeds with the stale requested ver (1),
-    # producing garbage instead of an error. Spec: must raise ValueError.
-    # Currently RED (TODO #3).
+    # 5000 digits exceeds even v40-H numeric capacity. Spec: encode() must
+    # raise ValueError when no version fits.
     with pytest.raises(ValueError):
         data.encode(1, "H", "0" * 5000)

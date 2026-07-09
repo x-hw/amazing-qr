@@ -4,9 +4,11 @@ import os
 
 from PIL import Image
 
+from amzqr.mylibs.constant import PIXELS_PER_MODULE
+
 
 def draw_qrcode(abspath, qrmatrix):
-    unit_len = 3
+    unit_len = PIXELS_PER_MODULE
     x = y = 4 * unit_len
     pic = Image.new("1", [(len(qrmatrix) + 8) * unit_len] * 2, "white")
 
