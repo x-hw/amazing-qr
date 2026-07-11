@@ -12,7 +12,6 @@ authors = [{ name = "x.hw", email = "xhw.xu@outlook.com" }]
 requires-python = ">=3.8"
 readme = "README.md"
 dependencies = [
-    "imageio>=1.5",
     "numpy>=1.11.1",
     "Pillow>=3.3.1",
 ]

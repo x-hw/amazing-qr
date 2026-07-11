@@ -148,16 +148,16 @@ def run(
         ver, qr_name = theqrmodule.get_qrcode(version, level, words, tempdir)
 
         if picture and picture[-4:] == ".gif":
-            import imageio
-
             im = Image.open(picture)
-            duration = im.info.get("duration", 0)
+            durations = []
             im.save(os.path.join(tempdir, "0.png"))
+            durations.append(im.info.get("duration", 0))
             while True:
                 try:
                     seq = im.tell()
                     im.seek(seq + 1)
                     im.save(os.path.join(tempdir, "%s.png" % (seq + 1)))
+                    durations.append(im.info.get("duration", 0))
                 except EOFError:
                     break
 
@@ -168,7 +168,6 @@ def run(
                     combine(ver, qr_name, bg_name, colorized, contrast, brightness, tempdir)
                 )
 
-            ims = [imageio.imread(pic) for pic in imsname]
             qr_name = (
                 os.path.join(
                     save_dir, os.path.splitext(os.path.basename(picture))[0] + "_qrcode.gif"
@@ -176,7 +175,14 @@ def run(
                 if not save_name
                 else os.path.join(save_dir, save_name)
             )
-            imageio.mimwrite(qr_name, ims, ".gif", **{"duration": duration / 1000})
+            frames = [Image.open(pic) for pic in imsname]
+            frames[0].save(
+                qr_name,
+                save_all=True,
+                append_images=frames[1:],
+                duration=durations,
+                loop=0,
+            )
         elif picture:
             qr_name = combine(
                 ver, qr_name, picture, colorized, contrast, brightness, save_dir, save_name
