@@ -2,19 +2,13 @@
 """End-to-end tests for amzqr.mylibs.theqrmodule.
 
 Asserts spec-correct invariants on the full pipeline output for a fixed real
-input ('https://github.com', H). These are *spec* assertions, not a snapshot
-of current behavior — where the current code violates the spec, the test is
-RED until the corresponding bugfix lands. That red is the work item.
+input ('https://github.com', H).
 
 Invariants pinned here (ISO/IEC 18004):
   - version / size scale as (ver-1)*4+21
   - three finder patterns at the canonical corners, each a 7x7 border
   - timing patterns on row/col 6 alternate
   - the fixed dark module at (4*ver+9, 8) == m[-8][8] is ALWAYS 1
-
-The dark-module assertion was RED until TODO #15 was fixed in 76f07c8 (which
-deleted matrix.py:128 `mm[-8][8] = None`); it now passes and guards against
-that line ever returning.
 """
 
 from amzqr.mylibs import ECC, data, matrix, structure, theqrmodule
@@ -56,7 +50,7 @@ def test_pipeline_timing_patterns():
 
 def test_pipeline_dark_module_is_fixed_dark():
     # ISO/IEC 18004 §7.3.4: the module at (4*ver+9, 8) is a fixed dark module,
-    # always 1, never masked. Was RED until TODO #15 was fixed (76f07c8).
+    # always 1, never masked.
     _, m = _rebuild_matrix("https://github.com", 1, "H")
     assert m[-8][8] == 1
 

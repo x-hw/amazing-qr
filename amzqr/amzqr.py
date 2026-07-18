@@ -75,7 +75,16 @@ def run(
     def combine(ver, qr_name, bg_name, colorized, contrast, brightness, save_dir, save_name=None):
         from PIL import ImageEnhance
 
-        from amzqr.mylibs.constant import alig_location
+        from amzqr.mylibs.constant import (
+            DATA_OFFSET_PX,
+            FINDER_REGION_PX,
+            PASTE_OFFSET_PX,
+            TIMING_MODULE,
+            alig_location,
+        )
+        from amzqr.mylibs.constant import (
+            PIXELS_PER_MODULE as ppm,
+        )
 
         qr = Image.open(qr_name)
         qr = qr.convert("RGBA") if colorized else qr
@@ -84,13 +93,17 @@ def run(
         bg0 = ImageEnhance.Contrast(bg0).enhance(contrast)
         bg0 = ImageEnhance.Brightness(bg0).enhance(brightness)
 
+        data_w = qr.size[0] - DATA_OFFSET_PX
+        data_h = qr.size[1] - DATA_OFFSET_PX
         if bg0.size[0] < bg0.size[1]:
-            bg0 = bg0.resize((qr.size[0] - 24, (qr.size[0] - 24) * int(bg0.size[1] / bg0.size[0])))
+            bg0 = bg0.resize((data_w, data_w * int(bg0.size[1] / bg0.size[0])))
         else:
-            bg0 = bg0.resize(((qr.size[1] - 24) * int(bg0.size[0] / bg0.size[1]), qr.size[1] - 24))
+            bg0 = bg0.resize((data_h * int(bg0.size[0] / bg0.size[1]), data_h))
 
         bg = bg0 if colorized else bg0.convert("1")
 
+        # Reserved-module skip set, in data-area pixel coords (origin at the
+        # first matrix module, i.e. PASTE_OFFSET_PX into the qr image).
         aligs = []
         if ver > 1:
             aloc = alig_location[ver - 2]
@@ -101,23 +114,27 @@ def run(
                         or (a == len(aloc) - 1 and b == 0)
                         or (a == 0 and b == len(aloc) - 1)
                     ):
-                        for i in range(3 * (aloc[a] - 2), 3 * (aloc[a] + 3)):
-                            for j in range(3 * (aloc[b] - 2), 3 * (aloc[b] + 3)):
+                        for i in range(ppm * (aloc[a] - 2), ppm * (aloc[a] + 3)):
+                            for j in range(ppm * (aloc[b] - 2), ppm * (aloc[b] + 3)):
                                 aligs.append((i, j))
 
-        for i in range(qr.size[0] - 24):
-            for j in range(qr.size[1] - 24):
+        timing_pixels = range(TIMING_MODULE * ppm, (TIMING_MODULE + 1) * ppm)
+        right_finder_start = data_w - FINDER_REGION_PX
+        bottom_finder_start = data_h - FINDER_REGION_PX
+
+        for i in range(data_w):
+            for j in range(data_h):
                 if not (
-                    (i in (18, 19, 20))
-                    or (j in (18, 19, 20))
-                    or (i < 24 and j < 24)
-                    or (i < 24 and j > qr.size[1] - 49)
-                    or (i > qr.size[0] - 49 and j < 24)
+                    (i in timing_pixels)
+                    or (j in timing_pixels)
+                    or (i < FINDER_REGION_PX and j < FINDER_REGION_PX)
+                    or (i < FINDER_REGION_PX and j >= bottom_finder_start)
+                    or (i >= right_finder_start and j < FINDER_REGION_PX)
                     or ((i, j) in aligs)
-                    or (i % 3 == 1 and j % 3 == 1)
+                    or (i % ppm == ppm // 2 and j % ppm == ppm // 2)
                     or (bg0.getpixel((i, j))[3] == 0)
                 ):
-                    qr.putpixel((i + 12, j + 12), bg.getpixel((i, j)))
+                    qr.putpixel((i + PASTE_OFFSET_PX, j + PASTE_OFFSET_PX), bg.getpixel((i, j)))
 
         qr_name = (
             os.path.join(save_dir, os.path.splitext(os.path.basename(bg_name))[0] + "_qrcode.png")
@@ -131,16 +148,16 @@ def run(
         ver, qr_name = theqrmodule.get_qrcode(version, level, words, tempdir)
 
         if picture and picture[-4:] == ".gif":
-            import imageio
-
             im = Image.open(picture)
-            duration = im.info.get("duration", 0)
+            durations = []
             im.save(os.path.join(tempdir, "0.png"))
+            durations.append(im.info.get("duration", 0))
             while True:
                 try:
                     seq = im.tell()
                     im.seek(seq + 1)
                     im.save(os.path.join(tempdir, "%s.png" % (seq + 1)))
+                    durations.append(im.info.get("duration", 0))
                 except EOFError:
                     break
 
@@ -151,7 +168,6 @@ def run(
                     combine(ver, qr_name, bg_name, colorized, contrast, brightness, tempdir)
                 )
 
-            ims = [imageio.imread(pic) for pic in imsname]
             qr_name = (
                 os.path.join(
                     save_dir, os.path.splitext(os.path.basename(picture))[0] + "_qrcode.gif"
@@ -159,7 +175,14 @@ def run(
                 if not save_name
                 else os.path.join(save_dir, save_name)
             )
-            imageio.mimwrite(qr_name, ims, ".gif", **{"duration": duration / 1000})
+            frames = [Image.open(pic) for pic in imsname]
+            frames[0].save(
+                qr_name,
+                save_all=True,
+                append_images=frames[1:],
+                duration=durations,
+                loop=0,
+            )
         elif picture:
             qr_name = combine(
                 ver, qr_name, picture, colorized, contrast, brightness, save_dir, save_name

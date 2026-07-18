@@ -1275,3 +1275,18 @@ version_info_str = [
     "100111010101000001",
     "101000110001101001",
 ]
+
+
+# ── Rendering layout (non-spec; shared by draw.py and combine()) ──
+# These are NOT QR-spec lookup tables; they are amzqr's own rendering
+# layout choices. draw.py and amzqr.py combine() must both source from
+# here, or layout drift silently breaks compositing (reserved modules
+# get painted over by the background, etc.). Changes are rendering-level,
+# not spec-level.
+PIXELS_PER_MODULE = 3  # draw.py unit_len: pixels per module
+QUIET_ZONE_MODULES = 4  # QR-spec minimum quiet zone; draw.py quiet zone
+PASTE_OFFSET_PX = QUIET_ZONE_MODULES * PIXELS_PER_MODULE  # 12
+DATA_OFFSET_PX = 2 * QUIET_ZONE_MODULES * PIXELS_PER_MODULE  # 24
+FINDER_REGION_MODULES = 8  # finder(7) + separator(1)
+FINDER_REGION_PX = FINDER_REGION_MODULES * PIXELS_PER_MODULE  # 24
+TIMING_MODULE = 6  # timing pattern row/col (0-indexed)
