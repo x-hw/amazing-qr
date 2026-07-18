@@ -180,7 +180,9 @@ def test_combine_scaling_preserves_aspect_ratio(tmp_path):
     # Sample a data module near the BOTTOM of the QR (module (10, n-10)) —
     # should be BLUE because the portrait bg's bottom half is blue.
     bottom_mx, bottom_my = 10, n - 10
-    assert (bottom_mx, bottom_my) not in reserved, f"bottom sample module ({bottom_mx},{bottom_my}) is reserved"
+    assert (bottom_mx, bottom_my) not in reserved, (
+        f"bottom sample module ({bottom_mx},{bottom_my}) is reserved"
+    )
     bottom_x = (qz + bottom_mx) * modules_per_unit
     bottom_y = (qz + bottom_my) * modules_per_unit
     bottom_px = out.getpixel((bottom_x, bottom_y))
@@ -194,6 +196,4 @@ def test_combine_scaling_preserves_aspect_ratio(tmp_path):
     finder_y0 = qz * modules_per_unit + modules_per_unit // 2
     fp = out.getpixel((finder_x0, finder_y0))
     # Finder center should be dark (black module), not red or blue.
-    assert fp[0] < 50 and fp[1] < 50 and fp[2] < 50, (
-        f"finder should be dark, got {fp}"
-    )
+    assert fp[0] < 50 and fp[1] < 50 and fp[2] < 50, f"finder should be dark, got {fp}"
