@@ -95,10 +95,22 @@ def run(
 
         data_w = qr.size[0] - DATA_OFFSET_PX
         data_h = qr.size[1] - DATA_OFFSET_PX
+
+        # Scale bg to cover the data area, preserving aspect ratio, then
+        # center-crop to exactly data_w × data_h.
         if bg0.size[0] < bg0.size[1]:
-            bg0 = bg0.resize((data_w, data_w * int(bg0.size[1] / bg0.size[0])))
+            # Portrait: fit width to data_w, scale height proportionally
+            new_w = data_w
+            new_h = int(bg0.size[1] * (new_w / bg0.size[0]))
         else:
-            bg0 = bg0.resize((data_h * int(bg0.size[0] / bg0.size[1]), data_h))
+            # Landscape or square: fit height to data_h, scale width proportionally
+            new_h = data_h
+            new_w = int(bg0.size[0] * (new_h / bg0.size[1]))
+
+        bg0 = bg0.resize((new_w, new_h))
+        left = (new_w - data_w) // 2
+        top = (new_h - data_h) // 2
+        bg0 = bg0.crop((left, top, left + data_w, top + data_h))
 
         bg = bg0 if colorized else bg0.convert("1")
 

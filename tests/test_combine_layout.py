@@ -117,3 +117,83 @@ def test_combine_respects_reserved_modules(tmp_path):
         assert (mx, my) not in reserved, (mx, my)
         red = _count_red_in_module(out, mx, my, modules_per_unit, qz)
         assert red >= 50, f"data module ({mx},{my}) not painted red: {red}/81"
+
+
+def test_combine_scaling_preserves_aspect_ratio(tmp_path):
+    """Non-square backgrounds should retain their aspect ratio after scaling.
+
+    Uses a two-tone background (red top half, blue bottom half) so the
+    vertical split is visible after center-crop. For a portrait bg, the
+    top and bottom are cropped equally; the red/blue boundary should
+    remain near the vertical center of the data area.
+    """
+    words = "https://github.com"
+    ver, _ = theqrmodule.get_qrcode(1, "H", words, str(tmp_path))
+    n = (ver - 1) * 4 + 21
+
+    # Create a portrait bg (width < height) with distinct top/bottom colors.
+    # Red top half, blue bottom half — boundary at h/2.
+    bg_w, bg_h = 80, 160
+    bg = Image.new("RGBA", (bg_w, bg_h))
+    for y in range(bg_h):
+        color = (255, 0, 0, 255) if y < bg_h // 2 else (0, 0, 255, 255)
+        for x in range(bg_w):
+            bg.putpixel((x, y), color)
+    bg_path = tmp_path / "two_tone_portrait.png"
+    bg.save(bg_path)
+
+    out_name = "out.png"
+    rver, rlevel, out_path = amzqr.run(
+        words,
+        level="H",
+        picture=str(bg_path),
+        colorized=True,
+        save_name=out_name,
+        save_dir=str(tmp_path),
+    )
+    assert rver == ver
+
+    out = Image.open(out_path).convert("RGBA")
+    qz = constant.QUIET_ZONE_MODULES
+    total_modules = n + 2 * qz
+    assert out.width % total_modules == 0, (out.width, total_modules)
+    modules_per_unit = out.width // total_modules
+    assert modules_per_unit == constant.PIXELS_PER_MODULE * 3
+
+    # Verify sample modules are not in the reserved set before asserting
+    # colors, so a version change doesn't produce a misleading failure.
+    reserved = _reserved_modules(ver, n)
+
+    # Sample a data module near the TOP of the QR (module (10, 10)) —
+    # should be RED because the portrait bg's top half is red.
+    # Use the top-left sub-pixel (i%3=0, j%3=0) to avoid the combine()
+    # center-sub-pixel skip (i%3==1 and j%3==1).
+    top_mx, top_my = 10, 10
+    assert (top_mx, top_my) not in reserved, f"top sample module ({top_mx},{top_my}) is reserved"
+    top_x = (qz + top_mx) * modules_per_unit
+    top_y = (qz + top_my) * modules_per_unit
+    top_px = out.getpixel((top_x, top_y))
+    assert _is_red(top_px), (
+        f"top module ({top_mx},{top_my}) should be red (center-cropped portrait bg), got {top_px}"
+    )
+
+    # Sample a data module near the BOTTOM of the QR (module (10, n-10)) —
+    # should be BLUE because the portrait bg's bottom half is blue.
+    bottom_mx, bottom_my = 10, n - 10
+    assert (bottom_mx, bottom_my) not in reserved, f"bottom sample module ({bottom_mx},{bottom_my}) is reserved"
+    bottom_x = (qz + bottom_mx) * modules_per_unit
+    bottom_y = (qz + bottom_my) * modules_per_unit
+    bottom_px = out.getpixel((bottom_x, bottom_y))
+    assert bottom_px[2] > 200 and bottom_px[0] < 50 and bottom_px[1] < 50, (
+        f"bottom module ({bottom_mx},{bottom_my}) should be blue (center-cropped portrait bg), got {bottom_px}"
+    )
+
+    # Also verify reserved modules are still skipped (not colored over).
+    # Top-left finder area should be mostly untouched (not red/blue).
+    finder_x0 = qz * modules_per_unit + modules_per_unit // 2
+    finder_y0 = qz * modules_per_unit + modules_per_unit // 2
+    fp = out.getpixel((finder_x0, finder_y0))
+    # Finder center should be dark (black module), not red or blue.
+    assert fp[0] < 50 and fp[1] < 50 and fp[2] < 50, (
+        f"finder should be dark, got {fp}"
+    )
