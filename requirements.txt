@@ -1,3 +1,0 @@
-imageio==1.5
-numpy==1.11.1
-Pillow==8.1.1
