@@ -101,3 +101,7 @@ uv.toml
 
 # pytest-benchmark baselines
 .benchmarks/
+
+.agents/skills/
+.claude/skills/
+skills-lock.json
