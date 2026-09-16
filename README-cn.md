@@ -20,8 +20,9 @@
   * [示例](#示例)
   * [安装](#安装)
   * [使用方法](#使用方法)
-    * [命令行方式](#命令行方式)
-    * [作为导入文件](#作为导入文件)
+    * [命令行](#命令行)
+    * [Python库](#python-库)
+    * [Agent 集成](#agent-集成)
   * [使用提示](#使用提示)
   * [可用字符](#可用字符)
   * [环境](#环境)
@@ -49,7 +50,7 @@ pip install amzqr
 
 ## 使用方法
 
-### 命令行方式
+### 命令行
 
 *（**提示**：如果你尚未安装 [**amzqr**](https://pypi.python.org/pypi/amzqr) ，以下内容请使用`python(3) amzqr.py` 而非`amzqr` 。）*
 
@@ -143,7 +144,7 @@ amzqr https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 
 动态二维码与上述的带图片的二维码的生成方法没什么区别，你只要采用 `.gif` 格式的图片即可生成黑白或者彩色的动态二维码。但**注意**如果使用了 `-n` 参数自定义输出的文件名，切记其格式也必须是 `.gif` 格式。
 
-### 作为导入文件
+### Python 库
 
 ```python
 # 安装模块后
@@ -179,6 +180,26 @@ Optional parameters
    save_name: str, the output filename like 'example.png'
    save_dir: str, the output directory
 ```
+
+### Agent 集成
+
+可以安装 agent skill 或连接 MCP server，以在 agent 中使用 `amazing-qr`。
+
+#### Agent Skill
+
+本仓库提供 `generate-amazing-qr-code` skill，教 AI agent 使用 `amzqr` 命令行工具来生成二维码。
+使用以下命令进行安装：
+
+```sh
+npx skills add x-hw/amazing-qr
+```
+
+接着让 agent 生成二维码即可，agent 会自动识别并加载该技能。
+
+#### MCP Server
+
+对于支持 MCP 的 agent，可以使用 [`x-hw/amzqr-mcp`](https://github.com/x-hw/amzqr-mcp)。
+
 ## 使用提示
 
 * 请采用**正方形**或近似正方形的图片

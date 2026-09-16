@@ -20,8 +20,9 @@ Generate *common qr-code*,  *artistic qr-code (black & white or colorized)*,  *a
   * [Examples](#examples)
   * [Install](#install)
   * [Usage](#usage)
-    * [Terminal Way](#terminal-way)
-    * [Import Way](#import-way)
+    * [CLI](#cli)
+    * [Library](#library)
+    * [Agent Integration](#agent-integration)
   * [Tips](#tips)
   * [Supported Characters](#supported-characters)
   * [Environment](#environment)
@@ -49,9 +50,7 @@ pip install amzqr
 
 ## Usage
 
-### Terminal Way  
-
-*(**TIPS**: If you haven't install [**amzqr**](https://pypi.python.org/pypi/amzqr), you should  `python(3) amzqr.py` instead of `amzqr` blow.)*
+### CLI
 
 ```sh
 # summary
@@ -154,7 +153,7 @@ amzqr https://github.com -p github.jpg [-c] -con 1.5 -bri 1.6
 
 The only difference from Artistic QR-Code mentioned above is that you should input an image file in the `.gif` format. The you can get your black-and-white or colorful qr-code. Remember that when you use `-n` to customize the output-filename, then the output-filename must end by `.gif`.
 
-### Import Way
+### Library
 
 ```python
 from amzqr import amzqr
@@ -189,6 +188,24 @@ Optional parameters
    save_name: str, the output filename like 'example.png'
    save_dir: str, the output directory
 ```
+
+### Agent Integration
+
+To use `amazing-qr` inside an agent, you can either install the agent skill or connect the MCP server.
+
+#### Agent Skill
+
+This repository ships the `generate-amazing-qr-code` skill, which teaches AI agents to generate QR codes with the `amzqr` CLI. Install it into your agent with:
+
+```sh
+npx skills add x-hw/amazing-qr
+```
+
+Then ask your agent to generate a QR code and it will pick up the skill automatically.
+
+#### MCP Server
+
+For MCP-compatible agents, use [`x-hw/amzqr-mcp`](https://github.com/x-hw/amzqr-mcp).
 
 ## Tips
 
