@@ -19,10 +19,12 @@ Generate *common qr-code*,  *artistic qr-code (black & white or colorized)*,  *a
   * [Contents](#contents)
   * [Examples](#examples)
   * [Install](#install)
+    * [CLI or Library](#cli-or-library)
+    * [Agent Integration](#agent-integration)
   * [Usage](#usage)
     * [CLI](#cli)
     * [Library](#library)
-    * [Agent Integration](#agent-integration)
+    * [Agent](#agent)
   * [Tips](#tips)
   * [Supported Characters](#supported-characters)
   * [Environment](#environment)
@@ -43,10 +45,28 @@ Generate *common qr-code*,  *artistic qr-code (black & white or colorized)*,  *a
 
 ## Install
 
+### CLI or Library
+
 ```python
-# via pip
 pip install amzqr
 ```
+
+### Agent Integration
+
+To use `amazing-qr` inside an agent, you can either install the agent skill or connect the MCP server.
+
+#### Agent Skill
+
+[`x-hw/skills`](https://github.com/x-hw/skills) repository ships the `generate-amazing-qr-code` skill, which teaches AI agents to generate QR codes with the `amzqr` CLI. Install it into your agent with:
+
+```sh
+npx skills add x-hw/skills --skill generate-amazing-qr-code
+```
+
+#### MCP Server
+
+For MCP-compatible agents, use [`x-hw/amzqr-mcp`](https://github.com/x-hw/amzqr-mcp).
+
 
 ## Usage
 
@@ -171,7 +191,7 @@ version, level, qr_name = amzqr.run(
 )
 ```
 
-*details about each parameter are as mentioned [above](#terminal-way)*
+*details about each parameter are as mentioned [above](#cli)*
 
 ```python
 # help(amzqr)
@@ -189,23 +209,9 @@ Optional parameters
    save_dir: str, the output directory
 ```
 
-### Agent Integration
+### Agent
 
-To use `amazing-qr` inside an agent, you can either install the agent skill or connect the MCP server.
-
-#### Agent Skill
-
-This repository ships the `generate-amazing-qr-code` skill, which teaches AI agents to generate QR codes with the `amzqr` CLI. Install it into your agent with:
-
-```sh
-npx skills add x-hw/amazing-qr
-```
-
-Then ask your agent to generate a QR code and it will pick up the skill automatically.
-
-#### MCP Server
-
-For MCP-compatible agents, use [`x-hw/amzqr-mcp`](https://github.com/x-hw/amzqr-mcp).
+After [installation](#agent-integration), just ask your agent to generate a QR code and it will pick up the skill or mcp server automatically.
 
 ## Tips
 
