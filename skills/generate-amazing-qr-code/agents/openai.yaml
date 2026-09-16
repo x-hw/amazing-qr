@@ -1,4 +1,0 @@
-interface:
-  display_name: "Generate Amazing QR"
-  short_description: "Generate ordinary, artistic, or animated QR codes with amzqr"
-  default_prompt: "Generate a QR code with Amazing QR"
