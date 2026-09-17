@@ -66,6 +66,19 @@ def test_encode_chooses_alphanumeric_for_mixed():
     assert ver == 1
 
 
+@pytest.mark.parametrize("content", ["1" * 17, "A" * 10, "a" * 7])
+def test_encode_uses_version_one_at_exact_capacity(content):
+    # Version 1-H holds exactly 17 numeric, 10 alphanumeric, or 7 byte characters.
+    ver, _ = data.encode(1, "H", content)
+    assert ver == 1
+
+
+def test_encode_accepts_version_forty_at_exact_capacity():
+    # Version 40-L is the largest QR code and holds exactly 7089 numeric digits.
+    ver, _ = data.encode(1, "L", "1" * 7089)
+    assert ver == 40
+
+
 # --- encode() rejects oversized content --------------------------------
 def test_oversized_content_raises():
     # 5000 digits exceeds even v40-H numeric capacity. Spec: encode() must

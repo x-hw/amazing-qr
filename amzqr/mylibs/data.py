@@ -65,7 +65,7 @@ def analyse(ver, ecl, str):
     l = len(str)
     fit_ver = None
     for i in range(40):
-        if char_cap[ecl][i][m] > l:
+        if char_cap[ecl][i][m] >= l:
             fit_ver = i + 1
             break
     if fit_ver is None:
