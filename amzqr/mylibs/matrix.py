@@ -140,55 +140,73 @@ def get_mask_patterns(mm):
 
 
 def compute_score(m):
-    def evaluation1(m):
-        def ev1(ma):
-            sc = 0
-            for mi in ma:
-                j = 0
-                while j < len(mi) - 4:
-                    n = 4
-                    while mi[j : j + n + 1] in [[1] * (n + 1), [0] * (n + 1)]:
-                        n += 1
-                    (sc, j) = (sc + n - 2, j + n) if n > 4 else (sc, j + 1)
-            return sc
+    size = len(m)
+    size_sq = size * size
+    size_m10 = size - 10
+    p1 = b"\x01\x00\x01\x01\x01\x00\x01\x00\x00\x00\x00"
+    p2 = b"\x00\x00\x00\x00\x01\x00\x01\x01\x01\x00\x01"
+    trans = bytes.maketrans(b"\x00\x01", b"01")
+    _cnt = getattr(int, "bit_count", lambda n: bin(n).count("1"))
 
-        return ev1(m) + ev1(list(map(list, zip(*m))))
+    def evaluate_runs_and_patterns(b, s1, s3):
+        # Evaluation 1: Same color runs
+        for run in b.split(b"\x00"):
+            n = len(run)
+            if n >= 5:
+                s1 += n - 2
+        for run in b.split(b"\x01"):
+            n = len(run)
+            if n >= 5:
+                s1 += n - 2
 
-    def evaluation2(m):
-        sc = 0
-        for i in range(len(m) - 1):
-            for j in range(len(m) - 1):
-                sc += 3 if m[i][j] == m[i + 1][j] == m[i][j + 1] == m[i + 1][j + 1] else 0
-        return sc
+        # Evaluation 3: Finder patterns
+        if size_m10 > 0:
+            j, i1, i2 = 0, -1, -1
+            while j < size_m10:
+                if i1 < j:
+                    i1 = b.find(p1, j)
+                    if i1 == -1:
+                        i1 = size
+                if i2 < j:
+                    i2 = b.find(p2, j)
+                    if i2 == -1:
+                        i2 = size
+                if i1 == size and i2 == size:
+                    break
+                s3 += 40
+                if i1 < i2:
+                    j = i1 + 7
+                else:
+                    j = i2 + 4
+        return s1, s3
 
-    def evaluation3(m):
-        def ev3(ma):
-            sc = 0
-            for mi in ma:
-                j = 0
-                while j < len(mi) - 10:
-                    if mi[j : j + 11] == [1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0]:
-                        sc += 40
-                        j += 7
-                    elif mi[j : j + 11] == [0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1]:
-                        sc += 40
-                        j += 4
-                    else:
-                        j += 1
-            return sc
+    s1 = s3 = darknum = 0
+    row_ints = []
+    for row in m:
+        rb = bytes(row)
+        darknum += rb.count(1)
+        row_ints.append(int(rb.translate(trans), 2))
+        s1, s3 = evaluate_runs_and_patterns(rb, s1, s3)
 
-        return ev3(m) + ev3(list(map(list, zip(*m))))
+    s2 = 0
+    if size > 1:
+        mask = (1 << (size - 1)) - 1
+        r1 = row_ints[0]
+        h1 = r1 ^ (r1 >> 1)
+        for r2 in row_ints[1:]:
+            diff = r1 ^ r2
+            combined = (diff | (diff >> 1) | h1) & mask
+            s2 += (size - 1 - _cnt(combined)) * 3
+            r1, h1 = r2, r2 ^ (r2 >> 1)
 
-    def evaluation4(m):
-        darknum = 0
-        for i in m:
-            darknum += sum(i)
-        percent = darknum / (len(m) ** 2) * 100
-        s = int((50 - percent) / 5) * 5
-        return 2 * s if s >= 0 else -2 * s
+    for cb in map(bytes, zip(*m)):
+        s1, s3 = evaluate_runs_and_patterns(cb, s1, s3)
 
-    score = evaluation1(m) + evaluation2(m) + evaluation3(m) + evaluation4(m)
-    return score
+    percent = darknum / size_sq * 100
+    s = int((50 - percent) / 5) * 5
+    s4 = 2 * s if s >= 0 else -2 * s
+
+    return s1 + s2 + s3 + s4
 
 
 def add_format_and_version_string(ver, ecl, mask_num, m):
